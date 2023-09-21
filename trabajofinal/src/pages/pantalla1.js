@@ -3,9 +3,7 @@ const Index = () => {
  return (
     <>
       <div>
-        <h1>
-             Sistema de reserva de libros
-        </h1>
+        <tittle>Sistema de reserva de libros</tittle>
 
 
       </div>
