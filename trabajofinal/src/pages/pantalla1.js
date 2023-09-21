@@ -2,14 +2,12 @@ import Link  from "next/link"
 const Index = () => {
  return (
     <>
-    
       <div>
         <h1>
-            Pagina de Bienvenida
+             Sistema de reserva de libros
         </h1>
-        <p>
-            Hola mundo NextJS
-        </p>
+
+
       </div>
 
 
