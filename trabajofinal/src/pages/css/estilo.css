@@ -6,4 +6,11 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px; /* 55.556% */
+    padding:50px 50px;
+}
+div{
+    background-color: #FFF;;
+}
+ul, li {
+    list-style: none; /* Quita las viñetas */
 }
