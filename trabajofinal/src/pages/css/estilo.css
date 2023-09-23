@@ -14,39 +14,17 @@ div{
 ul, li {
     list-style: none; /* Quita las viñetas */
 }
-.input-container {
-    position: relative;
-    margin-bottom: 10px;
-    
-}
 
-/* Estilo para el texto encima del input */
-.input-label {
-    position: absolute;
-    top: -10px; /* Posición encima del input */
-    left: 50%; /* Centrar horizontalmente */
-    transform: translateX(-50%); /* Centrar horizontalmente */
-    background-color: #fff; /* Fondo del texto */
-    padding: 0 5px; /* Espaciado del texto */
-    font-size: 12px; /* Tamaño de fuente del texto */
-}
-
-/* Estilo para el input */
-input[type="text"] {
-    width: 30%;
-    position: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    left: 50%; 
-}
 /* Estilo para el texto dentro del input */
-#op1, #op2{
-    display: flex;
 
-    height: 40px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    flex: 1 0 0;
-    border:2px solid #6750A4;
+#op1,
+#op2 {
+  display: flex;
+  height: 40px;
+  border: 2px solid #6750A4; /* Estilo de borde en estado normal */
+}
+
+#op1:focus,
+#op2:focus {
+  border-color: #6750A4; /* Estilo de borde en estado :focus */
 }
