@@ -9,7 +9,7 @@ const Index = () => {
         <p id="olis">Sistema de reserva de libros</p>
         <form action="#" method="get">
         <ul>
-            <li><label>Usuario o Correo: </label>
+            <li><label>Usuario o Correo:</label>
                 <input class="input-box" type="text" id="op1" name="n1" />
             </li>
             <li><label>Contraseña:</label>
@@ -26,8 +26,8 @@ const Index = () => {
         </ul>    
 
         <div className="buttons">
-        <input type="button" value="Registro usuario"/> <t></t>
-        <input type="button" value="Ingresar" className="login-button"/>
+        <input type="button" value="Registro usuario" className="registro-button"/> <t></t>
+        <input type="submit" value="Ingresar" className="login-button"/>
         </div>
 
     </form>

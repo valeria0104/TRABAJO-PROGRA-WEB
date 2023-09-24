@@ -15,15 +15,6 @@ ul, li {
     list-style: none; /* Quita las viñetas */
 }
 
-/* Estilo para el texto dentro del input */
-
-/*.input-box{
-border: 2px solid #6750A4; 
-width: 250px;
-height: 40px;
-position:relative; 
-transform: translate(180%, 20%);
-}*/
 ul {
   list-style: none;
   padding: 0;
@@ -36,38 +27,47 @@ li {
 
 }
 .input-box{
-
+position:relative;
   border: 2px solid #6750A4;
   width: 250px;
   height: 40px;
-  position: relative;
-  z-index: 0;}
+  border-radius: 4px 4px 0px 0px;
+
+z-index: 0; 
+}
+  
 label {
 display: block;
-/* Hace que cada etiqueta sea un bloque independiente */
-margin-bottom: -8px; /* Espacio entre la etiqueta y el campo de entrada */
+margin-bottom: -8px; 
 position: relative;
-z-index: 1; 
 white-space: nowrap;
 overflow: hidden; 
 transform: translate(-5%);
-
-
+color: var(--m-3-sys-light-primary, #6750A4);
+/* M3/body/small */
+font-family: Roboto;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 16px; /* 133.333% */
+z-index: 1; 
   }
   #op1,
 #op2 {
   margin: 0 auto; /* Centra horizontalmente los campos de entrada */
 }
 .forgot-password {
-  margin-left: 110px; /* Espacio entre el campo de entrada y el enlace */
+  margin-left: 160px; /* Espacio entre el campo de entrada y el enlace */
 }
 .buttons {
   text-align: center;
 }
 .password{
   text-decoration: none; /* Quitar el subrayado */
-  color: #6750A4; /* Cambiar el color del enlace si es necesario */
+  color: #6750A4;/* Cambiar el color del enlace si es necesario */
   font-weight: bold;
+  font-size: 10px;
+
 }
 
 .login-button {
@@ -76,8 +76,24 @@ transform: translate(-5%);
   border: none;
   border-radius: 50px; /* Hace que el botón sea ovalado */
   color: black; /* Color de texto blanco */
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   padding: 10px 20px; /* Ajusta el padding según tus preferencias */
   cursor: pointer;
+  transform: translate(20%);
+}
+.registro-button{
+color: var(--m-3-sys-light-primary, #6750A4);
+text-align: center;
+/* M3/label/large */
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 142.857% */
+background-color: transparent; /* Fondo transparente */
+border: none; 
+font-weight: bold;
+cursor: pointer;
+transform: translate(20%);
 }
