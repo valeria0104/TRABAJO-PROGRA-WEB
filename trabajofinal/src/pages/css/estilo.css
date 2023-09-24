@@ -1,15 +1,15 @@
 #olis {
     color: #000;
     text-align: center;
-    font-family: Roboto;
+    font-weight: bold;
     font-size: 36px;
     font-style: normal;
-    font-weight: 500;
     line-height: 20px; /* 55.556% */
     padding:50px 50px;
 }
 div{
-    background-color: #FFF;;
+    background-color: #FFF;
+    font-family: Roboto;
 }
 ul, li {
     list-style: none; /* Quita las viñetas */
@@ -17,14 +17,67 @@ ul, li {
 
 /* Estilo para el texto dentro del input */
 
-#op1,
-#op2 {
-  display: flex;
-  height: 40px;
-  border: 2px solid #6750A4; 
+/*.input-box{
+border: 2px solid #6750A4; 
+width: 250px;
+height: 40px;
+position:relative; 
+transform: translate(180%, 20%);
+}*/
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-#op1:focus,
-#op2:focus {
-  border-color: #6750A4; /* Estilo de borde en estado :focus */
+li {
+  text-align: center; /* Centra horizontalmente el contenido de cada <li> */
+  margin-bottom: 20px; /* Espacio entre cada par de elementos <label> y <input> */
+  justify-content: space-between;
+
+}
+.input-box{
+
+  border: 2px solid #6750A4;
+  width: 250px;
+  height: 40px;
+  position: relative;
+  z-index: 0;}
+label {
+display: block;
+/* Hace que cada etiqueta sea un bloque independiente */
+margin-bottom: -8px; /* Espacio entre la etiqueta y el campo de entrada */
+position: relative;
+z-index: 1; 
+white-space: nowrap;
+overflow: hidden; 
+transform: translate(-5%);
+
+
+  }
+  #op1,
+#op2 {
+  margin: 0 auto; /* Centra horizontalmente los campos de entrada */
+}
+.forgot-password {
+  margin-left: 110px; /* Espacio entre el campo de entrada y el enlace */
+}
+.buttons {
+  text-align: center;
+}
+.password{
+  text-decoration: none; /* Quitar el subrayado */
+  color: #6750A4; /* Cambiar el color del enlace si es necesario */
+  font-weight: bold;
+}
+
+.login-button {
+  background-color: #E8DEF8;
+  ; /* Color morado claro */
+  border: none;
+  border-radius: 50px; /* Hace que el botón sea ovalado */
+  color: black; /* Color de texto blanco */
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 20px; /* Ajusta el padding según tus preferencias */
+  cursor: pointer;
 }
