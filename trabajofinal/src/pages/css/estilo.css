@@ -40,8 +40,6 @@ label {
 display: block;
 margin-bottom: -8px; 
 position: relative;
-white-space: nowrap;
-overflow: hidden; 
 transform: translate(-5%);
 color: var(--m-3-sys-light-primary, #6750A4);
 /* M3/body/small */
