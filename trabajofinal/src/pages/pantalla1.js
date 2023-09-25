@@ -28,7 +28,7 @@ const Index = () => {
 
         <div className="buttons">
         <input type="button" value="Registro usuario" className="registro-button"/> <t></t>
-        <input type="submit" value="Ingresar" className="login-button"/>
+        <input type="button" value="Ingresar" className="login-button"/>
         </div>
 
     </form>
