@@ -10,7 +10,7 @@ const Index = () => {
         <form action="#" method="get">
         <ul>
             <li><label><span class="resaltado">Usuario o Correo:</span></label>
-                <input class="input-box" type="text" id="op1" name="n1" />
+                <input class="input-box" type="text" id="op1" name="n1"/>
             </li>
             <li><label><span class="resaltado">Contraseña:</span></label>
             <div className="input-with-link">
