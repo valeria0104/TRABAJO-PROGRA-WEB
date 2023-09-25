@@ -6,7 +6,6 @@ const Index = () => {
   <div>
          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
 
-        <p>valeriaaa</p>
         <p id="olis">Sistema de reserva de libros</p>
         <form action="#" method="get">
         <ul>
