@@ -1,12 +1,12 @@
 import Link  from "next/link"
-
+import Head from "next/head"
 const Index = () => {
  return (
     <>
   <div>
          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
 
-        <p id="olis">Sistema de reserva de libros</p>
+         <h1 id="olis">Sistema de reserva de libros</h1>
         <form action="#" method="get">
         <ul>
             <li><label><span class="resaltado">Usuario o Correo:</span></label>
