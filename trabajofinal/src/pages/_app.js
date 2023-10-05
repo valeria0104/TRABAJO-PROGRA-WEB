@@ -1,4 +1,6 @@
 import './css/estilo.css'
+import './css/cuerpo2.css'
+import './css/colores.css'
 import { AppProps } from 'next/app'
 
 export default function MyApp({Component, pageProps }){
