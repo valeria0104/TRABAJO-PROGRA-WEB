@@ -36,7 +36,7 @@ export default props => (
     </>
 )
 
-async function MenuDesplegable() {
+ function MenuDesplegable() {
     const menu = document.getElementById('menu');
     const cuerpo = document.getElementById('cuerpo');
     const cuerpo1 = document.getElementById('cuerpo1');
