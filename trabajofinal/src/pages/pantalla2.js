@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Head from "next/head"
 import Layout from './componentes/Layout.js'
+import datos from './json/archivo.json'
 const Index = () =>  <Layout content =
 {
   <>
@@ -13,6 +14,7 @@ const Index = () =>  <Layout content =
                 <p1>Últimas reservas</p1>
                 <br/><br/>
                 <section className="cuerpo1">
+
                     <div className="cuadrado">
                         <div className="cuadrado_img">
                         <img src="foto_usuario.png" alt="" height="40px" />
@@ -54,7 +56,7 @@ const Index = () =>  <Layout content =
 
                     </div>
 
-
+          
                 </section>
 
                 <br/>
@@ -104,7 +106,7 @@ const Index = () =>  <Layout content =
                             </div>
 
 
-                        </section>
+                        </section>)
                     </div>
       </div>              
 
