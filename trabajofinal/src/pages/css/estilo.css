@@ -51,13 +51,8 @@ line-height: 10px;
 z-index: 1; 
 
   }
-  #op1,
-#op2 {
-  margin: 0 auto; /* Centra horizontalmente los campos de entrada */
-}
-.forgot-password {
-  margin-left: 160px; /* Espacio entre el campo de entrada y el enlace */
-}
+
+
 .buttons {
   text-align: center;
 }
@@ -66,7 +61,7 @@ z-index: 1;
   color: #6750A4;/* Cambiar el color del enlace si es necesario */
   font-weight: bold;
   font-size: 10px;
-
+  margin-left: 615px;
 }
 
 .login-button {
@@ -76,7 +71,7 @@ z-index: 1;
   border-radius: 50px; /* Hace que el botón sea ovalado */
   color: black; /* Color de texto blanco */
   font-size: 14px;
-  font-weight: bold;
+  font-weight: bold; 
   padding: 10px 20px; /* Ajusta el padding según tus preferencias */
   cursor: pointer;
   transform: translate(20%);
