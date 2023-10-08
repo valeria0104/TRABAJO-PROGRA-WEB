@@ -22,13 +22,6 @@ header {
 }
 
 
-hr {
-    width: 1,088px;
-    height:1px;
-    top: 129px;
-    left: 165px;
-
-}
 .cuerpo1{
     border: blue solid;
     display: flex;
@@ -77,6 +70,5 @@ hr {
     border: yellow solid;
     
 }
-
 
 

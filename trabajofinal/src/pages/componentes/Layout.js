@@ -5,9 +5,10 @@ export default props => (
     
         <>
             <header>
-                
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
 
-                <nav>
+
+                <nav id="nav1" >
                     <div className="menu-button" onClick={MenuDesplegable}>&#9776;</div>
                     <script src="funciones.js"></script>
                     <h1>Administración de bibliotecas</h1>

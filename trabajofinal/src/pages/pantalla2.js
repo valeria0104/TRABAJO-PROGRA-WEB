@@ -106,7 +106,7 @@ const Index = () =>  <Layout content =
                             </div>
 
 
-                        </section>)
+                        </section>
                     </div>
       </div>              
 
