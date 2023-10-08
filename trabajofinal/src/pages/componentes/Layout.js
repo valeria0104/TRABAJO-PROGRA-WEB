@@ -21,8 +21,7 @@ export default props => (
                         <a href="/pantalla3">Perfil</a>
                         <a href="">Biblioteca</a>
                         <footer>
-                            <p>
-                            </p>
+                            <p><strong>SAC v1 0.1 &copy; - alpha</strong></p>
                         </footer>
                     </section>
 
