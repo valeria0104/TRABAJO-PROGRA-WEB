@@ -27,6 +27,7 @@ export default props => (
  
                 </nav>
             </header>
+
             <main>
     
         {props.content}

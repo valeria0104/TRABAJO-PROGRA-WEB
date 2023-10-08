@@ -7,20 +7,20 @@
   line-height: 20px; /* 55.556% */
   padding:50px 50px;
 }
-div{
+#holi1{
   background-color: #FFF;
   font-family: Roboto;
 }
-ul, li {
+#primerul, #il1 {
   list-style: none; /* Quita las viñetas */
 }
 
-ul {
+#il1{
 list-style: none;
 padding: 0;
 }
 
-li {
+#il1 {
 text-align: center; /* Centra horizontalmente el contenido de cada <li> */
 margin-bottom: 20px; /* Espacio entre cada par de elementos <label> y <input> */
 justify-content: space-between;
@@ -36,7 +36,7 @@ border-radius: 4px 4px 0px 0px;
 z-index: 0; 
 }
 
-label {
+#label1 {
 display: block;
 margin-bottom: -8px; 
 position: relative;

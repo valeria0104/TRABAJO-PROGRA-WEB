@@ -42,7 +42,7 @@ transform: translate(45%);
 
 #MiPerfil{
     overflow: hidden;
-    position: relative;
+
   
 }
 #segundoil  {
@@ -58,34 +58,4 @@ transform: translate(45%);
     font-weight: 700;
     line-height: normal;/* Cambia el color del texto destacado (puedes ajustar el color según tus preferencias) */
     border-bottom: 3px solid #6750A4;
-}
-.imagen {
-    max-width: 300px; /* Ajusta el ancho máximo de la imagen según tus preferencias */
-    margin-right: 100px; /* Ajusta el margen derecho según tus preferencias para crear espacio entre la imagen y Layout2 */
-transform: translateX(5%);
-margin-top: 100px;}
-.contenedor {
-    display: flex; /* Utiliza flexbox para organizar los elementos en fila */
-    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
-    margin-top: 100px; /* Ajusta el margen superior según tus preferencias */
-}
-
-#form {
-    display: flex; /* Utiliza flexbox para organizar los elementos del formulario en fila */
-    flex-direction: column; /* Coloca los elementos del formulario en columna */
-    margin-top: 20px; /* Ajusta el margen superior del formulario para agregar espacio entre el formulario y la imagen */
-    margin-left: 250px; }
-
-/* Estilos para los elementos del formulario */
-#tercerul {
-    list-style: none;
-    margin: 0; /* Elimina el margen predeterminado de la lista */
-    padding: 0; /* Elimina el relleno predeterminado de la lista */
-}
-
-#il3 {
-    display: flex; /* Utiliza flexbox para organizar los elementos en fila */
-    align-items: center; /* Alinea los elementos verticalmente en el centro */
-    margin-bottom: 10px; 
-    /* Ajusta el margen inferior entre los elementos del formulario */
 }
