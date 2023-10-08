@@ -1,13 +1,15 @@
 #Formulario{
     /* Cambia el color de fondo a morado */
-    height:625x;
+
+    height: 100%;
 
  
 }
 #Fondo{
-    height:600px;
-    width: 1150px;
+    height:100%;
+    width: 100%;
     background-color: #F3EDF7; 
+    margin-bottom: 25px;
     
 }
 #segundoul, #segundoil{
@@ -17,13 +19,15 @@
 #segundoul{
     display: flex;
     justify-content: center;
-    width: 745px;
+    width: 65%;
     height: 40px;
     flex-shrink: 0;
     border-radius: 10px;
 background: #FEF7FF;
 list-style-type: none;
-transform: translate(45%);
+margin-left: 30%;
+margin-right: 30%;
+
 }
 
 #segundoil {
@@ -47,6 +51,9 @@ transform: translate(45%);
 
 #MiPerfil{
     overflow: hidden;
+    width: 100%;
+    position: center;
+
 
   
 }
@@ -138,5 +145,6 @@ transform: translate(45%);
     font-weight: bold;
     cursor: pointer;
     transform: translate(150%);
+    margin-top: -50px;
   
     }
