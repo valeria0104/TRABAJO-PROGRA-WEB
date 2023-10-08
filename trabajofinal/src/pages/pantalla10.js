@@ -11,17 +11,15 @@ import Layout2 from "./componentes/Layout2"
                 <p className="Bienvenido">Mi Perfil</p>
                 <hr/>
                 <div id="Formulario">
-                    <div id = "Fondo">
+                <div id = "Fondo">
                 <Layout2> 
                 </Layout2>  
                 <div class="contenedor">
-                <aside>
+                <aside id="imagen1">
                 <img src="pant10.png" alt="Chico estudiando" class="imagen"></img>
-        
-
                 </aside>
-               <section>
-                <form>
+               <section id= "seccion1">
+                <form id= "formulario1">
                 <li id="il4"><label id="label4"><span className="resaltado">Nombres:</span></label>
                 <input className="input-box1" type="text" id="op3" name="n3"/>
                  </li>  
