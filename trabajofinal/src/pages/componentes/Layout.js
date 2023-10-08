@@ -13,12 +13,12 @@ export default props => (
                     <script src="funciones.js"></script>
                     <h1>Administración de bibliotecas</h1>
 
-                    <a href="pantalla3.html">
+                    <a href="pantalla3">
                         <img src="usuario.png" alt="" className="usuario"/></a>
 
                     <section id="menu">
-                        <a href="./pantalla3.html">Inicio</a>
-                        <a href="">Perfil</a>
+                        <a href="/pantalla2">Inicio</a>
+                        <a href="/pantalla3">Perfil</a>
                         <a href="">Biblioteca</a>
                         <footer>
                             <p>

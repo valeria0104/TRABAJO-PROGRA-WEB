@@ -17,7 +17,7 @@ export default props => (
                     <section id="menu">
                     <a href="/pantalla9">Principal</a>
                      <a href="/pantalla10">Perfil</a>
-                    <a href="">Horarios</a>
+                    <a href="/pantalla12">Préstamos</a>
 
                     <footer>
                     <p>SAC v1 0.1 &copy; - alpha</p>
