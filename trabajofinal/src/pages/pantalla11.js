@@ -14,9 +14,9 @@ const Index1 = () => <Layout1 content =
     <div id = "Fondo">
     <Layout2> 
     </Layout2>  
-    <div class="contenedor">
+    <div className="contenedor">
     <aside>
-    <img src="pant10.png" alt="Chico estudiando" class="imagen"></img>
+    <img src="pant10.png" alt="Chico estudiando" className="imagen"></img>
         
 
     </aside>

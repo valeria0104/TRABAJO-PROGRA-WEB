@@ -14,9 +14,9 @@ import Layout2 from "./componentes/Layout2"
                 <div id = "Fondo">
                 <Layout2> 
                 </Layout2>  
-                <div class="contenedor">
+                <div className="contenedor">
                 <aside id="imagen1">
-                <img src="pant10.png" alt="Chico estudiando" class="imagen"></img>
+                <img src="pant10.png" alt="Chico estudiando" className="imagen"></img>
                 </aside>
                <section id= "seccion1">
                 <form id= "formulario1">
@@ -33,9 +33,8 @@ import Layout2 from "./componentes/Layout2"
                  </li>  
 
                  <li id="il4"><label id="label5"><span className="resaltado">Número de Documento:</span></label>
-                <input className="input-box1" type="text"  id="op6" name="n6" oninput="validarNumeroDocumento(this)"/>
+                <input className="input-box1" type="text"  id="op6" name="n6"/>
                  </li>  
-                 <div id="errorNumeroDocumento" class="error-message"></div>
                    <div className="buttons">
                     <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
                   </div>
@@ -57,16 +56,3 @@ import Layout2 from "./componentes/Layout2"
  export default Index1
 
 
- function validarNumeroDocumento(input) {
-    const valor = input.value;
-    const esNumero = /^\d+$/.test(valor);
-    const errorNumeroDocumento = document.getElementById('errorNumeroDocumento');
-    
-    if (!esNumero) {
-        errorNumeroDocumento.textContent = 'Carácter inválido. Ingrese solo números.';
-        input.setCustomValidity('Carácter inválido');
-    } else {
-        errorNumeroDocumento.textContent = '';
-        input.setCustomValidity('');
-    }
-}
