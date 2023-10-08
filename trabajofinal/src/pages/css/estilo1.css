@@ -1,9 +1,14 @@
 #Formulario{
     /* Cambia el color de fondo a morado */
-height: 1200px;
-width: 1150px;
-background-color: #E8DEF8; 
+    height:625x;
+
  
+}
+#Fondo{
+    height:600px;
+    width: 1150px;
+    background-color: #F3EDF7; 
+    
 }
 #segundoul, #segundoil{
     list-style: none;
@@ -59,3 +64,79 @@ transform: translate(45%);
     line-height: normal;/* Cambia el color del texto destacado (puedes ajustar el color según tus preferencias) */
     border-bottom: 3px solid #6750A4;
 }
+.imagen {
+    max-width: 275px; /* Ajusta el ancho máximo de la imagen según tus preferencias */
+    margin-right: 25px; /* Ajusta el margen derecho según tus preferencias para crear espacio entre la imagen y el formulario */
+    transform: translateX(10%);
+    margin-top: 30px; /* Ajusta el margen superior según tus preferencias */
+}
+.contenedor{
+    display: flex;
+}
+
+#il4{
+    transform: translate(120%);
+    text-align: center; /* Centra horizontalmente el contenido de cada <li> */
+    margin-bottom: 40px; /* Espacio entre cada par de elementos <label> y <input> */
+    justify-content: space-between;
+    list-style: none;
+    margin-top: 20px;
+    background-color:  #FEF7FF;
+
+}
+#label4{
+    display: block;
+    margin-bottom: -8px; 
+    position: relative;
+    transform: translate(-30%);
+    color: var(--m-3-sys-light-primary, #6750A4);
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px; 
+    z-index: 1; 
+}
+#label5{
+    display: block;
+    margin-bottom: -8px; 
+    position: relative;
+    transform: translate(-20%);
+    color: var(--m-3-sys-light-primary, #6750A4);
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px; 
+    z-index: 1; 
+}
+.input-box1{
+    position:relative;
+    border: 2px solid #6750A4;
+    width: 250px;
+    height: 40px;
+    border-radius: 4px 4px 0px 0px;
+    z-index: 0; 
+    background-color: transparent;
+}
+.submit-button{
+    color: var(--m-3-sys-light-primary, #6750A4);
+    border-radius: 200px;
+    border: 1px solid var(--m-3-sys-light-outline, #79747E);
+
+    text-align: center;
+    /* M3/label/large */
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    width: 200px;
+    line-height: 40px; /* 142.857% */
+    background-color: transparent; /* Fondo transparente */
+    font-weight: bold;
+    cursor: pointer;
+    transform: translate(150%);
+  
+    }
