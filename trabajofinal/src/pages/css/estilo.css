@@ -7,20 +7,20 @@
   line-height: 20px; /* 55.556% */
   padding:50px 50px;
 }
-.holi1{
+div{
   background-color: #FFF;
   font-family: Roboto;
 }
-#primerul , #il1 {
+ul, li {
   list-style: none; /* Quita las viñetas */
 }
 
-#primerul {
+ul {
 list-style: none;
 padding: 0;
 }
 
-#il1 {
+li {
 text-align: center; /* Centra horizontalmente el contenido de cada <li> */
 margin-bottom: 20px; /* Espacio entre cada par de elementos <label> y <input> */
 justify-content: space-between;
@@ -36,7 +36,7 @@ border-radius: 4px 4px 0px 0px;
 z-index: 0; 
 }
 
-#label1 {
+label {
 display: block;
 margin-bottom: -8px; 
 position: relative;
@@ -52,6 +52,7 @@ z-index: 1;
 
 }
 
+
 .buttons {
 text-align: center;
 }
@@ -61,7 +62,6 @@ color: #6750A4;/* Cambiar el color del enlace si es necesario */
 font-weight: bold;
 font-size: 10px;
 margin-left: 615px;
-
 }
 
 .login-button {
@@ -71,7 +71,7 @@ border: none;
 border-radius: 50px; /* Hace que el botón sea ovalado */
 color: black; /* Color de texto blanco */
 font-size: 14px;
-font-weight: bold;
+font-weight: bold; 
 padding: 10px 20px; /* Ajusta el padding según tus preferencias */
 cursor: pointer;
 transform: translate(20%);
