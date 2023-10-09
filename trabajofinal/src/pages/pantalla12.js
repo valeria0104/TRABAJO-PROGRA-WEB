@@ -8,6 +8,7 @@ const Index = () => {
     const [opcionesFiltradas, setOpcionesFiltradas] = useState([]);
     const [opcionesSeleccionadas, setOpcionesSeleccionadas] = useState([]);
     const [paginaActual, setPaginaActual] = useState(1);
+    const [errorMensaje, setErrorMensaje] = useState(''); // Declarar el estado errorMensaje
     const elementosPorPagina = 5;
 
     const handleLimpiar = () => {
@@ -25,15 +26,31 @@ const Index = () => {
         const nuevaCategoria = e.target.value;
         setCategoria(nuevaCategoria);
     };
+    
 
     const handleSeleccionarOpcion = (opcion) => {
-        setOpcionesSeleccionadas([...opcionesSeleccionadas, opcion]);
+        // Verificar si la opción ya está en las opciones seleccionadas
+        const existeOpcion = opcionesSeleccionadas.some((o) => o.ISBN === opcion.ISBN);
+        
+        if (!existeOpcion) {
+            // Verificar si la opción ya existe en la lista de opciones filtradas
+            const existeEnFiltradas = opcionesFiltradas.some((o) => o.ISBN === opcion.ISBN);
+            if (existeEnFiltradas) {
+                setOpcionesSeleccionadas([...opcionesSeleccionadas, opcion]);
+                setErrorMensaje(''); // Limpiar el mensaje de error
+            } else {
+                setErrorMensaje('La opción no existe en la lista de opciones filtradas.');
+            }
+        } else {
+            setErrorMensaje('Ya has seleccionado una opción con el mismo nombre.');
+        }
     };
 
     const handleEliminarOpcion = (opcion) => {
         const opcionesActualizadas = opcionesSeleccionadas.filter((o) => o.ISBN !== opcion.ISBN);
         setOpcionesSeleccionadas(opcionesActualizadas);
     };
+
 
     const totalPages = Math.ceil(opcionesFiltradas.length / elementosPorPagina);
 
@@ -94,10 +111,11 @@ const Index = () => {
                                         {opcionesSeleccionadas.map((opcion) => (
                                             <li key={opcion.ISBN}>
                                                 {opcion.categoria}
-                                                <button onClick={() => handleEliminarOpcion(opcion)}>X</button>
+                                                <button className="buttonX" onClick={() => handleEliminarOpcion(opcion)}>x</button>
                                             </li>
                                         ))}
                                     </ul>
+                                    {errorMensaje && <div className="error-message">{errorMensaje}</div>}
                                 </div>
 
                                 <form className="form1" method="post" action="/process" >

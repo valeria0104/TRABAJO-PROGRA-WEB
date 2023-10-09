@@ -1,8 +1,26 @@
 import Link  from "next/link"
 import Head from "next/head"
-
+import usuarioData from "./json/usuario.json"; 
+import React, { useState } from "react";
+import { handleLogin1 } from './funciones';
+import { useRouter } from "next/router";
 
 const Index = () => {
+
+  const [formData, setFormData] = useState({
+    correo: "",
+    contrasena: "",
+  });
+  const handleSubmit = () => {
+    // Llama a la función handleLogin1 con los datos del formulario y usuarioData
+    handleLogin1(formData, usuarioData);
+  };
+  const handleSubmit1 = () => {
+    // Llama a la función handleLogin1 con los datos del formulario y usuarioData
+    const nombreUsuario = obtenerNombreUsuario(formData.correo);
+    router.push(`/pantalla2?nombre=${nombreUsuario}`);
+  };
+
  return (
     <>
  
@@ -14,11 +32,17 @@ const Index = () => {
         <form action="#" method="get">
         <ul id="primerul">
             <li id="il1"><label id="label1"><span className="resaltado">Usuario o Correo:</span></label>
-                <input className="input-box" type="text" id="op1" name="n1"/>
+                <input className="input-box" type="text" id="op1" name="n1" 
+                value={formData.correo}
+                onChange={(e) => setFormData({ ...formData, correo: e.target.value })}/>
             </li>
             <li id="il1"><label id="label1" ><span className="resaltado">Contraseña:</span></label>
             <div className="input-with-link">
-              <input className="input-box" type="text" id="op2" name="n2" />
+              <input className="input-box" type="password" id="op2" name="n2" 
+              value={formData.contrasena}
+              onChange={(e) =>
+                setFormData({ ...formData, contrasena: e.target.value })
+              }/>
               <div className="forgot-password">
                 <Link href="/contraseña" className="password">
                   Olvidé mi contraseña
@@ -31,7 +55,7 @@ const Index = () => {
 
         <div className="buttons">
         <input type="button" value="Registro usuario" className="registro-button"/> <t></t>
-        <input type="button" value="Ingresar" className="login-button"/>
+        <input type="button" value="Ingresar" className="login-button" onClick={handleSubmit}/>
         </div>
 
     </form>
@@ -51,3 +75,4 @@ const Index = () => {
  )}
 
 export default Index
+

@@ -167,3 +167,9 @@ padding: 2px 4px; /* Agrega un pequeño espaciado interno para resaltar */
       top: 0;
       right: 0;
     }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+  }
