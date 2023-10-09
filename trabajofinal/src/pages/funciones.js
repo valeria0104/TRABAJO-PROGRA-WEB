@@ -21,13 +21,22 @@ function MenuDesplegable() {
 
 export function buscarOpcionesPorCategoria(categoria) {
     const opcionesFiltradas = datos.filter((opcion) =>
-      opcion.categoria &&
-      opcion.categoria.trim().toLowerCase().includes(categoria.trim().toLowerCase())
+        opcion.categoria &&
+        opcion.categoria.trim().toLowerCase().includes(categoria.trim().toLowerCase())
     );
-  
-    // Eliminar duplicados utilizando un Set
-    const opcionesUnicas = Array.from(new Set(opcionesFiltradas.map((opcion) => opcion.ISBN)));
-    
-    // Mapear los ISBN únicos de vuelta a las opciones correspondientes
-    return opcionesUnicas.map((isbn) => opcionesFiltradas.find((opcion) => opcion.ISBN === isbn));
-  }
+
+    // Crear un conjunto para mantener un registro de las categorías únicas
+    const categoriasUnicas = new Set();
+
+    // Filtrar las opciones únicas basadas en la categoría
+    const opcionesUnicas = opcionesFiltradas.filter((opcion) => {
+        const categoriaLowerCase = opcion.categoria.trim().toLowerCase();
+        if (!categoriasUnicas.has(categoriaLowerCase)) {
+            categoriasUnicas.add(categoriaLowerCase);
+            return true;
+        }
+        return false;
+    });
+
+    return opcionesUnicas;
+}
