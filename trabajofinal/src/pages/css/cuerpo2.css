@@ -1,3 +1,9 @@
+ header {
+    padding-bottom: 70px; /* Espaciado interior del header */
+    text-align: center; /* Alineación de texto al centro */
+
+}
+
 #cuerpo{
     padding-left: 100px;
     position: relative;
@@ -69,5 +75,3 @@
     border: yellow solid;
     
 }
-
-
