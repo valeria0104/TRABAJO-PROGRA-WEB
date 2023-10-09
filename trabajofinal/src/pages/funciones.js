@@ -16,3 +16,16 @@ function MenuDesplegable() {
 
     }
 }
+
+export function buscarOpcionesPorCategoria(categoria) {
+    const opcionesFiltradas = datos.filter((opcion) =>
+      opcion.categoria &&
+      opcion.categoria.trim().toLowerCase().includes(categoria.trim().toLowerCase())
+    );
+  
+    // Eliminar duplicados utilizando un Set
+    const opcionesUnicas = Array.from(new Set(opcionesFiltradas.map((opcion) => opcion.ISBN)));
+    
+    // Mapear los ISBN únicos de vuelta a las opciones correspondientes
+    return opcionesUnicas.map((isbn) => opcionesFiltradas.find((opcion) => opcion.ISBN === isbn));
+  }
