@@ -12,7 +12,7 @@ const Index = () =>  <Layout content =
   <div>
   
             <div id="cuerpo">
-                <p className="Bienvenido">{`Bienvenido, ${nombre}`}</p>
+                <p className="Bienvenido">Bienvenido, Juan</p>
                 <hr/>
                 <br/>
                 <p1>Últimas reservas</p1>
