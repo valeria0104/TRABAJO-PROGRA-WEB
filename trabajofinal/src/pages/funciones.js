@@ -25,10 +25,40 @@ export function buscarOpcionesPorCategoria(categoria) {
         opcion.categoria &&
         opcion.categoria.trim().toLowerCase().includes(categoria.trim().toLowerCase())
     );
+
+    // Crear un conjunto para mantener un registro de las categorías únicas
+    const categoriasUnicas = new Set();
+
+    // Filtrar las opciones únicas basadas en la categoría
+    const opcionesUnicas = opcionesFiltradas.filter((opcion) => {
+        const categoriaLowerCase = opcion.categoria.trim().toLowerCase();
+        if (!categoriasUnicas.has(categoriaLowerCase)) {
+            categoriasUnicas.add(categoriaLowerCase);
+            return true;
+        }
+        return false;
+    });
+
+    return opcionesUnicas;
+}
+ export const handleLogin1  = (formData, usuarioData)=> {
+    const correo = formData.correo;
+    const contrasena = formData.contrasena;
   
-    // Eliminar duplicados utilizando un Set
-    const opcionesUnicas = Array.from(new Set(opcionesFiltradas.map((opcion) => opcion.ISBN)));
-    
-    // Mapear los ISBN únicos de vuelta a las opciones correspondientes
-    return opcionesUnicas.map((isbn) => opcionesFiltradas.find((opcion) => opcion.ISBN === isbn));
-  }
+    const usuarioEncontrado = usuarioData.find(
+        (usuario) => usuario.correo === correo && usuario.contrasena === contrasena
+    );
+  
+    if (usuarioEncontrado) {
+      if (usuarioEncontrado.tipo === 1) {
+        // Redirecciona al usuario tipo 1 a pantalla2.js
+        window.location.href = "/pantalla2";
+      } else if (usuarioEncontrado.tipo === 2) {
+        // Redirecciona al usuario tipo 2 a pantalla9.js
+        window.location.href = "/pantalla9";
+      }
+    } else {
+      // Usuario no encontrado, muestra un mensaje de error
+      alert("Usuario inválido");
+    }
+  };

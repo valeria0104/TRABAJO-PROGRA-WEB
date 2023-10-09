@@ -3,6 +3,7 @@ import Head from "next/head"
 import usuarioData from "./json/usuario.json"; 
 import React, { useState } from "react";
 import { handleLogin1 } from './funciones';
+import { useRouter } from "next/router";
 
 const Index = () => {
 
@@ -13,6 +14,11 @@ const Index = () => {
   const handleSubmit = () => {
     // Llama a la función handleLogin1 con los datos del formulario y usuarioData
     handleLogin1(formData, usuarioData);
+  };
+  const handleSubmit1 = () => {
+    // Llama a la función handleLogin1 con los datos del formulario y usuarioData
+    const nombreUsuario = obtenerNombreUsuario(formData.correo);
+    router.push(`/pantalla2?nombre=${nombreUsuario}`);
   };
 
  return (
