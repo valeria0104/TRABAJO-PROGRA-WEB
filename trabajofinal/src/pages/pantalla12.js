@@ -10,6 +10,11 @@ const Index = () => {
     const [paginaActual, setPaginaActual] = useState(1);
     const elementosPorPagina = 5;
 
+    const handleLimpiar = () => {
+        // Recargar la página
+        window.location.reload();
+      };
+
     useEffect(() => {
         const opcionesFiltradas = buscarOpcionesPorCategoria(categoria);
         setOpcionesFiltradas(opcionesFiltradas);
@@ -111,7 +116,7 @@ const Index = () => {
                                 </form>
                             </div>
                             <div className="buttons">
-                                <input type="button" value="Limpiar" className="limpiar-button" /> <t></t>
+                                <input type="button" value="Limpiar" className="limpiar-button" onClick={handleLimpiar}/> <t></t>
                                 <input type="button" value="Buscar" className="buscar-button" />
                             </div>
 

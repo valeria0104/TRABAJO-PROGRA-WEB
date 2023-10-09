@@ -1,3 +1,5 @@
+import datos from './json/archivo.json'
+
 function MenuDesplegable() {
     const menu = document.getElementById('menu');
     const cuerpo = document.getElementById('cuerpo');
