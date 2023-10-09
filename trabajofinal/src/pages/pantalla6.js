@@ -49,7 +49,7 @@ const Busqueda = () => {
                                     <div key={index} className="libro">
                                         <h2>{libro.titulo}</h2>
                                         <img src={libro['imagen-portada-url']} alt={`Portada de ${libro.titulo}`} />
-                                        <p>ISBM: {libro.ISBN13}</p>
+                                        <p>ISBN: {libro.ISBN}</p>
                                         <p>Autor: {libro.autor}</p>
                                         <p>Editorial: {libro.editorial}</p>
                                     </div>
