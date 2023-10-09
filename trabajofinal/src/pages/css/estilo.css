@@ -103,3 +103,67 @@ padding: 2px 4px; /* Agrega un pequeño espaciado interno para resaltar */
 .input-box:focus {
   border-color: #6750A4; /* Cambia el color del borde cuando el input está enfocado */
 }
+
+.resaltado2 {
+  font-weight: bold; /* Hace que el texto aparezca en negrita */
+  background-color: #fff5f5; /* Aplica un fondo amarillo al texto */
+  padding: 2px 4px; /* Agrega un pequeño espaciado interno para resaltar */
+  margin-left: 95px;
+  }
+
+.limpiar-button {
+  background-color: #E8DEF8;
+  ; /* Color morado claro */
+  border: none;
+  border-radius: 50px; /* Hace que el botón sea ovalado */
+  color: black; /* Color de texto blanco */
+  font-size: 14px;
+  font-weight: bold; 
+  padding: 10px 20px; /* Ajusta el padding según tus preferencias */
+  cursor: pointer;
+  transform: translate(20%);
+  }
+
+.buscar-button {
+  background-color: #E8DEF8;
+    ; /* Color morado claro */
+    border: none;
+    border-radius: 50px; /* Hace que el botón sea ovalado */
+    color: black; /* Color de texto blanco */
+    font-size: 14px;
+    font-weight: bold; 
+    padding: 10px 20px; /* Ajusta el padding según tus preferencias */
+    cursor: pointer;
+    transform: translate(20%);
+    }
+
+
+    .form1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    
+    .labelA {
+      display: inline-block; /* Allow for margin/padding */
+      width: 100px; /* Adjust the width to control the space between label and checkbox */
+      margin-right: 10px; /* Add margin to the right for spacing */
+    }
+    
+    /* Style for the checkboxes */
+    .box {
+      margin-bottom: 5px; /* Add margin to the bottom for spacing */
+    }
+
+
+    .container {
+      position: relative; /* Ensure the container has a defined position other than 'static' */
+      /* Other container styles here */
+    }
+    
+    /* Style for the form */
+    .form1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
