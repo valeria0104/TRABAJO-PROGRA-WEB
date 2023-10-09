@@ -3,7 +3,7 @@ import Head from "next/head"
 import React, { useState, useEffect } from "react";
 import Layout from './componentes/Layout.js'
 import dato from "./json/archivo.json"
-
+ 
 const  Busqueda = () =>  {
   const [busqueda, setbusqueda] = useState("");
   const [resultBusqueda, setresultBusqueda] = useState([]);
