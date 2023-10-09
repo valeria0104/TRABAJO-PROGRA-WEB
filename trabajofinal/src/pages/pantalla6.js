@@ -28,7 +28,9 @@ const Busqueda = () => {
                         
                             <div className="Librooo">
                             <h1>Buscar Libros</h1>
-                            <input type="button" value="Añadir un nuevo recurso" className="nuevorecurso-button" />
+                            <p id="nuevorecurso">
+                            <a href="pantalla.html">Añadir un nuevo recurso</a>
+                            </p>
                             </div>
                             <hr />
                             
