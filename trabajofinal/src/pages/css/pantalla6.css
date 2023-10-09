@@ -1,5 +1,40 @@
+.Librooo{
+    display:flex
+
+}
 
 
+#lipage6{
+    margin-bottom: 40px; /* Espacio entre cada par de elementos <label> y <input> */
+    justify-content: space-between;
+    list-style: none;
+
+}
+#labelpage6{
+    display: block;
+    margin-bottom: -8px; 
+    position: relative;
+    transform: translate(2%);
+    color: var(--m-3-sys-light-primary, #6750A4);
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px; 
+    z-index: 1; 
+}
+.input-boxpage6{
+    position:relative;
+    border: 2px solid #6750A4;
+    width: 590px;
+    height: 40px;
+    border-radius: 4px 4px 0px 0px;
+    z-index: 0; 
+    background-color: transparent;
+    outline: none;
+    
+}
 .nuevorecurso-button {
     
     color: var(--m-3-sys-light-primary, white);
@@ -7,8 +42,6 @@
     /* M3/label/large */
     font-family: Roboto;
     font-size: 14px;
-    font-style: normal;
-    line-height: 20px;
     /* 142.857% */
     background-color: #6750A4;
     /* Fondo transparente */
@@ -18,7 +51,5 @@
     border-radius: 20px 20px 20px 20px;
     width: 207px;
     height: 40px;
-    transform: translate(120%);
-
-
+    float: right;
 }

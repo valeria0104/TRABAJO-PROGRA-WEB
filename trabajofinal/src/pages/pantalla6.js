@@ -25,18 +25,23 @@ const Busqueda = () => {
             <>
                 <div>
                 <div id="cuerpo">    
-                        <div>
-
+                        
+                            <div className="Librooo">
                             <h1>Buscar Libros</h1>
                             <input type="button" value="Añadir un nuevo recurso" className="nuevorecurso-button" />
+                            </div>
                             <hr />
+                            
+                            <li id="lipage6"><label id="labelpage6"><span className="resaltado">Ingrese la palabra clave:</span></label>
                             <input
+                            
                                 type="text"
-                                placeholder="Buscar libro..."
                                 value={busqueda}
                                 onChange={(e) => setbusqueda(e.target.value)}
+                                className="input-boxpage6" 
+                                id="opage6" name="npage6"
                             />
-
+                            </li>
                             <div className="results">
                                 {resultBusqueda.slice(0, librosMostrar).map((libro, index) => (
                                     <div key={index} className="libro">
@@ -53,7 +58,7 @@ const Busqueda = () => {
                             )}
                         </div>
                     </div>
-                </div>
+                
             </>
         }
         ></Layout>
