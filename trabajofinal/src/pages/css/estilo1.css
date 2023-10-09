@@ -9,6 +9,7 @@
     width: 100%;
     background-color: #F3EDF7;
     margin-bottom: 25px;
+   display: block;
     
 }
 #segundoul, #segundoil{
@@ -127,6 +128,7 @@
     border-radius: 4px 4px 0px 0px;
     z-index: 0; 
     background-color: transparent;
+    outline: none;
 }
 .submit-button{
     color: var(--m-3-sys-light-primary, #6750A4);
@@ -152,12 +154,6 @@
     #imagen1{
         height: 100%;
     }
-    #seccion1{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
-    #formulario1{
-        margin: 0 auto; 
+    .input-box1:hover {
+        border-color: #6750A4; /* Cambia el color del borde cuando el input está enfocado */
     }
