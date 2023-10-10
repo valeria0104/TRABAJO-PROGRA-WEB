@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 
 
 function App() {
-    const librosAMostrar = [datos[0], datos[1]];
-    const librosAMostrar2 = [datos[20], datos[21]];
+    const librosAMostrar = datos.slice(-5);;
+    const librosAMostrar2 = datos.slice(0,10)
 
     return (
         <Layout content=
@@ -45,8 +45,10 @@ function App() {
                                             </a>
                                         </div>
                                     </div>
-                                ))}
+                                ))} 
+                                
                             </section>
+                           
 
 
                             <br />
