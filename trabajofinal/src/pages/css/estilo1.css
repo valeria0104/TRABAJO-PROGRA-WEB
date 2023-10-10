@@ -58,15 +58,18 @@ transform: translate(1%);
     font-family: Roboto;
     display: inline-block;
     margin-right: 110px;
-    transform: translateY(20%);
+    font-weight: bold;
+    height: 25%;
+  
     margin-left: 80px;
     text-align: center;
     font-family: Roboto;
     border-bottom: 3px solid transparent; 
 }
 #label2{
-    color:#6750A4;
+    color: #79747E;
     font-size: 14px;
+  
     
 }
 #segundoil a{
@@ -186,13 +189,14 @@ transform: translate(1%);
     z-index: 1; 
 }
 .destacado {
-    color: #6750A4;
+    color: #6750A4 !important;
+    
     text-align: center;
     font-family: Roboto;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: bold !important;
     line-height: normal;/* Cambia el color del texto destacado (puedes ajustar el color según tus preferencias) */
-    border-bottom: 3px solid #6750A4;
+    border-bottom: 5px solid #6750A4;
 }
 .input-box1{
     position:relative;

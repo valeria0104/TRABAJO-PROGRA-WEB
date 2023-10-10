@@ -4,8 +4,10 @@ import usuarioData from "./json/usuario.json";
 import React, { useState } from "react";
 import { handleLogin1 } from './funciones';
 import { useRouter } from "next/router";
+import {useUser} from './context/demo';
 
 const Index = () => {
+  const { loginUser } = useUser();
   const [formData, setFormData] = useState({
     correo: "",
     contrasena: "",
@@ -20,8 +22,10 @@ const Index = () => {
     if (usuarioEncontrado) {
       if (usuarioEncontrado.tipo === 1) {
         // Redirecciona al usuario tipo 1 a pantalla2.js
+        loginUser(usuarioEncontrado);
         router.push("/pantalla2");
       } else if (usuarioEncontrado.tipo === 2) {
+        loginUser(usuarioEncontrado);
         // Redirecciona al usuario tipo 2 a pantalla9.js
         router.push("/pantalla9");
       }
