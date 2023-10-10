@@ -2,52 +2,55 @@ import Link  from "next/link"
 import Head from "next/head"
 import Layout from "./componentes/Layout"
 import Layout4 from "./componentes/Layout4"
- const Index = () => <Layout content =
- {
-   
-        <>
-            <div id= "cuerpo">
-         
-                <p className="Bienvenido">Mi Perfil</p>
-                <hr/>
-                <div id="Formulario">
-                <div id = "Fondo">
-                <Layout4> 
-                </Layout4>  
-                <div className="contenedor">
-                <aside id="imagen1">
-                <img src="jovennazhe.png" alt="Chica estudiando" className="imagen"></img>
-                </aside>
-               <section id= "seccion1">
-                <form id= "formulario1">
-                <li id="il4"><label id="label21"><span className="resaltado11">Idioma</span></label>
-                <input className="input-box11" type="text" id="otp9" name="m9"/>
-                 </li>  
-
-                 <li id="il4"><label id="label11"><span className="resaltado11">Prefijo</span></label>
-                <input className="input-box11" type="text" id="tp10" name="m10"/>
-                 </li>  
-
-                 <li id="il4"><label id="label21"><span className="resaltado11">Color</span></label>
-                <input className="input-box11" type="text" id="tp11" name="m11"/>
-                 </li>  
- 
-                   <div className="buttons11">
-                    <input type="submit" value="GUARDAR" className="submit-button11"/> <t></t>
-                  </div>
-                </form>
-
-               </section>
-                 </div>
-                 </div>
-                </div>
-            </div>
-
-
-
+const Index2 = () => 
+{
+  return ( <Layout content ={
+       <>
+           <div id= "cuerpo">
         
-        </>
-    
- }></Layout>
+               <p className="Bienvenido">Hola Juliana</p>
+               <hr/>
+               <div id="FormularioY">
+               <div id = "FondoY">
+               <Layout4 /> 
 
- export default Index
+               <div className="contenedorY">
+               <aside id="imagenAM1">
+               <img src="jovennazhe.png" alt="Chica estudiando" className="imagenAM"></img>
+               </aside>
+
+               <form id= "formularioAM1" action="#" method="get">
+               <ul id="formulAM">
+
+               <li id= "formilAM"><label id="labelAM4"><span className="resaltado">Idioma:</span></label>
+               <input type="text" className="input-boxAM1" id="op13" name="n13"/>
+                </li>  
+
+
+                <li id= "formilAM"><label id="labelAM4"><span className="resaltado">Prefijo:</span></label>
+               <input type="text" className="input-boxAM1" id="op14" name="n14"/>
+                </li>  
+
+                <li id= "formilAM"><label id="labelAM4"><span className="resaltado">Color:</span></label>
+               <input type="text" className="input-boxAM1" id="op15" name="n15"/>
+                </li>  
+
+                </ul>  
+                  <div className="buttons">
+                   <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
+                 </div>
+               </form>
+
+                </div>
+                </div>
+               </div>
+           </div>
+
+
+
+       
+       </>
+}   
+></Layout>)
+}
+ export default Index2
