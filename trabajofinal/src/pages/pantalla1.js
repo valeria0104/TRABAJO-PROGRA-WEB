@@ -4,9 +4,13 @@ import usuarioData from "./json/usuario.json";
 import React, { useState } from "react";
 import { handleLogin1 } from './funciones';
 import { useRouter } from 'next/router';
+import { useUser } from './context/demo'; ///cambio
+
 
 
 const Index = () => {
+  const { loginUser } = useUser();///cambio
+
   const router = useRouter(); 
 
   const [formData, setFormData] = useState({
