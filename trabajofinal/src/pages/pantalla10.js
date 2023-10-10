@@ -12,36 +12,38 @@ import Layout2 from "./componentes/Layout2"
                 <hr/>
                 <div id="Formulario">
                 <div id = "Fondo">
-                <Layout2> 
-                </Layout2>  
+                <Layout2 /> 
+
                 <div className="contenedor">
                 <aside id="imagen1">
                 <img src="pant10.png" alt="Chico estudiando" className="imagen"></img>
                 </aside>
-               <section id= "seccion1">
+
                 <form id= "formulario1" action="#" method="get">
-                <ul>
-                <li id="il4"><label id="label4"><span className="resaltado">Nombres:</span></label>
-                <input className="input-box1" type="text" id="op3" name="n3"/>
+                <ul id="formul">
+
+                <li id= "formil"><label id="label4"><span className="resaltado">Nombres:</span></label>
+                <input type="text" className="input-box1" id="op3" name="n3"/>
                  </li>  
 
-                 <li id="il4"><label id="label5"><span className="resaltado">Tipo de Documento:</span></label>
-                <input className="input-box1" type="text" id="op4" name="n4"/>
+
+                 <li id= "formil"><label id="label6"><span className="resaltado">Tipo de Documento:</span></label>
+                <input type="text" className="input-box1" id="op4" name="n4"/>
                  </li>  
 
-                 <li id="il4"><label id="label4"><span className="resaltado">Apellidos:</span></label>
-                <input className="input-box1" type="text" id="op5" name="n5"/>
+                 <li id= "formil"><label id="label4"><span className="resaltado">Apellidos:</span></label>
+                <input type="text" className="input-box1" id="op5" name="n5"/>
                  </li>  
 
-                 <li id="il4"><label id="label5"><span className="resaltado">Número de Documento:</span></label>
-                <input className="input-box1" type="text"  id="op6" name="n6"/>
+                 <li id= "formil" ><label id="label5"><span className="resaltado">Número de Documento:</span></label>
+                <input type="text" className="input-box1" id="op6" name="n6"/>
                  </li>
                  </ul>  
                    <div className="buttons">
                     <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
                   </div>
                 </form>
-               </section>
+
                  </div>
                  </div>
                 </div>

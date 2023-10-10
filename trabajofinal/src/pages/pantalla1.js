@@ -36,7 +36,7 @@ const Index = () => {
                 value={formData.correo}
                 onChange={(e) => setFormData({ ...formData, correo: e.target.value })}/>
             </li>
-            <li id="il1"><label id="label1" ><span className="resaltado">Contraseña:</span></label>
+            <li id="il1"><label id="label8" ><span className="resaltado">Contraseña:</span></label>
             <div className="input-with-link">
               <input className="input-box" type="password" id="op2" name="n2" 
               value={formData.contrasena}

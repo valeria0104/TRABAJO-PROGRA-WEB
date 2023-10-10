@@ -12,28 +12,30 @@ const Index1 = () => <Layout1 content =
 <hr/>
 <div id="Formulario">
     <div id = "Fondo">
-    <Layout2> 
-    </Layout2>  
+    <Layout2 /> 
+
     <div className="contenedor">
-    <aside>
+    <aside id= "imagen1">
     <img src="pant10.png" alt="Chico estudiando" className="imagen"></img>
         
 
     </aside>
-    <section>
-    <form>
-    <li id="il4"><label id="label4"><span className="resaltado">Correo:</span></label>
-                <input className="input-box1" type="text" id="op7" name="n7"/>
+
+    <form id= "formulario1" action="#" method="get">
+    <ul id="formul">
+    <li id= "formil"><label id="label4"><span className="resaltado">Correo:</span></label>
+                <input type="text" className="input-box1" id="op7" name="n7"/>
     </li>  
-    <li id="il4"><label id="label4"><span className="resaltado">Contraseña:</span></label>
-                <input className="input-box1" type="text" id="op8" name="n8"/>
+    <li id= "formil"><label id="label7"><span className="resaltado">Contraseña:</span></label>
+                <input  type="text" className="input-box1" id="op8" name="n8"/>
     </li>  
+    </ul>
     <div className="buttons">
                     <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
                   </div>
     </form>
 
-    </section>
+
 
 
     </div>
