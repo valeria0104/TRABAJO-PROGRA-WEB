@@ -65,18 +65,19 @@ const opcionesFiltradas = datos.filter((opcion) => {
     setPaginaActual(pagina);
   }, [router.query.pagina]);
 
-  const handleReservar = (titulo, imagenPortada, ISBN13) => {
+  const handleReservar = (titulo, imagenPortada, ISBN13, urlCompra) => {
     // Agregar el libro a la lista de reservas
-    agregarReserva({ titulo, "imagen-portada-url": imagenPortada, ISBN13 });
+    agregarReserva({ titulo, "imagen-portada-url": imagenPortada, ISBN13, "url-compra": urlCompra });
     alert(`Reservando el libro: ${titulo}`);
-  
+    
     // Crear un objeto con los datos de la reserva (ajusta esto según tus necesidades)
     const reservaData = {
       titulo, // Aquí está el título del libro
       "imagen-portada-url": imagenPortada,
       ISBN13,
+      "url-compra": urlCompra,
     };
-  
+    
     // Realizar la solicitud para guardar la reserva en la API
     fetch('/api/guardarReserva', {
       method: 'PUT',
@@ -153,7 +154,7 @@ const opcionesFiltradas = datos.filter((opcion) => {
               {checkbox2 === 'autor' && <p>Autor(es): {opcion.autor}</p>}
               {checkbox3 === 'editorial' && <p>Editorial: {opcion.editorial}</p>}
               {checkbox4 === 'ISBN13' && <p>ISBN: {opcion.ISBN13}</p>}
-              <button onClick={() => handleReservar(opcion.titulo, opcion["imagen-portada-url"], opcion.ISBN13)}>Reservar</button>
+              <button onClick={() => handleReservar(opcion.titulo, opcion["imagen-portada-url"], opcion.ISBN13, opcion["url-compra"])}>Reservar</button>
             </div>
           ))}
         </div>
