@@ -3,11 +3,16 @@ import datos from './json/archivo.json';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
+
 const Pantalla13 = () => {
   const router = useRouter();
   const { palabraclave, checkbox1, checkbox2, checkbox3, checkbox4, categorias } = router.query;
   const [opcionesSeleccionadas, setOpcionesSeleccionadas] = useState([]);
+  const [reservas, setReservas] = useState([]);
 
+  const agregarReserva = (reserva) => {
+    setReservas([...reservas, reserva]);
+  };
   
 // Filtra los datos en función de las opciones seleccionadas y la palabra clave
 const opcionesFiltradas = datos.filter((opcion) => {
@@ -60,9 +65,36 @@ const opcionesFiltradas = datos.filter((opcion) => {
     setPaginaActual(pagina);
   }, [router.query.pagina]);
 
-  const handleReservar = (titulo) => {
-    // Agrega aquí la lógica para realizar la reserva del libro con el título dado
+  const handleReservar = (titulo, imagenPortada, ISBN13) => {
+    // Agregar el libro a la lista de reservas
+    agregarReserva({ titulo, "imagen-portada-url": imagenPortada, ISBN13 });
     alert(`Reservando el libro: ${titulo}`);
+  
+    // Crear un objeto con los datos de la reserva (ajusta esto según tus necesidades)
+    const reservaData = {
+      titulo, // Aquí está el título del libro
+      "imagen-portada-url": imagenPortada,
+      ISBN13,
+    };
+  
+    // Realizar la solicitud para guardar la reserva en la API
+    fetch('/api/guardarReserva', {
+      method: 'PUT',
+      body: JSON.stringify(reservaData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('Reserva guardada correctamente en la API.');
+        } else {
+          console.error('Error al guardar la reserva en la API.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error al guardar la reserva en la API:', error);
+      });
   };
 
   const totalPaginas = Math.ceil(opcionesFiltradas.length / elementosPorPagina);
@@ -121,7 +153,7 @@ const opcionesFiltradas = datos.filter((opcion) => {
               {checkbox2 === 'autor' && <p>Autor(es): {opcion.autor}</p>}
               {checkbox3 === 'editorial' && <p>Editorial: {opcion.editorial}</p>}
               {checkbox4 === 'ISBN13' && <p>ISBN: {opcion.ISBN13}</p>}
-              <button onClick={() => handleReservar(opcion.titulo)}>Reservar</button>
+              <button onClick={() => handleReservar(opcion.titulo, opcion["imagen-portada-url"], opcion.ISBN13)}>Reservar</button>
             </div>
           ))}
         </div>
