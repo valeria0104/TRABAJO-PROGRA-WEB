@@ -2,37 +2,40 @@ import Link  from "next/link"
 import Head from "next/head"
 import Layout from "./componentes/Layout"
 import Layout4 from "./componentes/Layout4"
-const Index = () => <Layout content =
+
+const Index2 = () => <Layout content =
 {
   <>
 
 <div id= "cuerpo">
-<p className="Bienvenido">Mi Perfil</p>
+<p className="Bienvenido">Hola Juliana</p>
 <hr/>
-<div id="Formulario">
-    <div id = "Fondo">
-    <Layout4> 
-    </Layout4>  
-    <div className="contenedor">
-    <aside>
-    <img src="jovennazhe.png" alt="Chica estudiando" className="imagen11"></img>
+<div id="FormularioY">
+    <div id = "FondoY">
+    <Layout4 /> 
+
+    <div className="contenedorY">
+    <aside id= "imagenAM1">
+    <img src="jovennazhe.png" alt="Chica estudiando" className="imagenAM"></img>
         
 
     </aside>
-    <section>
-    <form>
-    <li id="il11"><label id="label21"><span className="resaltado11">Correo</span></label>
-                <input className="input-box11" type="text" id="tp7" name="m7"/>
+
+    <form id= "formularioAM1" action="#" method="get">
+    <ul id="formul">
+    <li id= "formilAM"><label id="labelAM4"><span className="resaltado">Correo:</span></label>
+                <input type="text" className="input-boxAM1" id="op11" name="n11"/>
     </li>  
-    <li id="il11"><label id="label21"><span className="resaltado11">Contraseña</span></label>
-                <input className="input-box11" type="text" id="tp8" name="m8"/>
+    <li id= "formilAM"><label id="labelAM7"><span className="resaltado">Contraseña:</span></label>
+                <input  type="text" className="input-boxAM1" id="op12" name="n12"/>
     </li>  
-    <div className="buttons11">
-                    <input type="submit" value="GUARDAR" className="submit-button11"/> <t></t>
+    </ul>
+    <div className="buttons">
+                    <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
                   </div>
     </form>
 
-    </section>
+
 
 
     </div>
@@ -49,4 +52,4 @@ const Index = () => <Layout content =
   </>
 }></Layout>
 
-export default Index
+export default Index2
