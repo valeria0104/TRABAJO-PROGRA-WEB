@@ -80,11 +80,11 @@ const Index = () => {
                         <br />
                         <section className="cuerpo3">
                             <div className='container'>
-                                <ul id="primerul">
-                                    <li><label id="label1"><span className="resaltado2">Ingresa la palabra clave</span></label>
+                                <ul id="ul12">
+                                    <li><label id="label2"><span className="resaltado2">Ingresa la palabra clave</span></label>
                                         <input className="input-box" type="text" id="palabraclave" name="pc" />
                                     </li>
-                                    <li><label id="label1"><span className="resaltado2">Tipo de recurso</span></label>
+                                    <li><label id="label2"><span className="resaltado2">Tipo de recurso</span></label>
                                         <div className="input-with-link">
                                             <input className="input-box" type="text" id="tiporecurso" name="tr" value={categoria} onChange={handleCategoriaChange} />
                                         </div>
