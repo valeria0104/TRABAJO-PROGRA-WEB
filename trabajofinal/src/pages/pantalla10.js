@@ -3,8 +3,18 @@ import Head from "next/head"
 import Layout1 from "./componentes/Layout1"
 import Layout2 from "./componentes/Layout2"
 import {useUser} from './context/demo'
+import React, { useState } from "react";
+
+import usuarioData from "./json/usuario.json"; 
+
+
 const Index1 = () => 
 {
+
+
+  
+
+
   return ( <Layout1 content ={
        <>
            <div id= "cuerpo">
@@ -24,7 +34,7 @@ const Index1 = () =>
                <ul id="formul">
 
                <li id= "formil"><label id="label4"><span className="resaltado">Nombres:</span></label>
-               <input type="text" className="input-box1" id="op3" name="n3"/>
+               <input type="text" className="input-box1" id="op3" name="n3"  />
                 </li>  
 
 
@@ -41,7 +51,7 @@ const Index1 = () =>
                 </li>
                 </ul>  
                   <div className="buttons">
-                   <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
+                   <input type="submit" value="GUARDAR" className="submit-button"/> 
                  </div>
                </form>
 
