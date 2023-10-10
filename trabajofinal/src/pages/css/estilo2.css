@@ -1,0 +1,159 @@
+#Formulario11{
+    /* Cambia el color de fondo a morado */
+    height: 100%; 
+
+ 
+}
+#Fondo11{
+    height: 76vh; /* Usamos vh (viewport height) para que cubra toda la altura de la pantalla */
+    width: 100%;
+    background-color: #F3EDF7;
+    margin-bottom: 25px;
+   display: block;
+    
+}
+#admin7, #admin11{
+    list-style: none;
+ 
+}
+#admin7{
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FEF7FF;
+    list-style-type: none;
+    margin-left: 30%;
+    margin-right: 30%;
+
+}
+
+#admin11 {
+    font-family: Roboto;
+    display: inline-block;
+    margin-right: 110px;
+    transform: translateY(20%);
+    margin-left: 80px;
+    text-align: center;
+    font-family: Roboto;
+    border-bottom: 3px solid transparent; 
+}
+#label11{
+    color:#6750A4;
+    font-size: 14px;
+    
+}
+#admin7 a{
+    text-decoration: none;
+}
+
+#PerfilAdmi{
+    overflow: hidden;
+    width: 100%;
+    position: center;
+
+
+  
+}
+#admin11  {
+    white-space: nowrap;
+}
+
+/* Estilos para el texto destacado */
+.destacado11 {
+    color: #6750A4;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;/* Cambia el color del texto destacado (puedes ajustar el color según tus preferencias) */
+    border-bottom: 3px solid #6750A4;
+}
+.imagen11 {
+    max-width: 275px; /* Ajusta el ancho máximo de la imagen según tus preferencias */
+    margin-right: 25px; /* Ajusta el margen derecho según tus preferencias para crear espacio entre la imagen y el formulario */
+    transform: translateX(10%);
+    margin-top: 30px; /* Ajusta el margen superior según tus preferencias */
+}
+.contenedor11{
+    display: flex;
+
+}
+
+#il11{
+    transform: translate(120%);
+    text-align: center; /* Centra horizontalmente el contenido de cada <li> */
+    margin-bottom: 40px; /* Espacio entre cada par de elementos <label> y <input> */
+    justify-content: space-between;
+    list-style: none;
+    margin-top: 20px;
+    background-color:  #FEF7FF;
+
+}
+#label21{
+    display: block;
+    margin-bottom: -8px; 
+    position: relative;
+    transform: translate(-30%);
+    color: var(--m-3-sys-light-primary, #6750A4);
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px; 
+    z-index: 1; 
+}
+#label22{
+    display: block;
+    margin-bottom: -8px; 
+    position: relative;
+    transform: translate(-20%);
+    color: var(--m-3-sys-light-primary, #6750A4);
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px; 
+    z-index: 1; 
+}
+.input-box11{
+    position:relative;
+    border: 2px solid #6750A4;
+    width: 250px;
+    height: 40px;
+    border-radius: 4px 4px 0px 0px;
+    z-index: 0; 
+    background-color: transparent;
+    outline: none;
+}
+.submit-button11{
+    color: var(--m-3-sys-light-primary, #6750A4);
+    border-radius: 200px;
+    border: 1px solid var(--m-3-sys-light-outline, #79747E);
+
+    text-align: center;
+    /* M3/label/large */
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    width: 200px;
+    line-height: 40px; /* 142.857% */
+    background-color: transparent; /* Fondo transparente */
+    font-weight: bold;
+    cursor: pointer;
+    transform: translate(150%);
+    margin-top: -50px;
+  
+    }
+
+    #imagen21{
+        height: 100%;
+    }
+    .input-box11:hover11 {
+        border-color: #6750A4; /* Cambia el color del borde cuando el input está enfocado */
+    }

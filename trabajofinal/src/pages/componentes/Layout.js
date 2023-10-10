@@ -12,13 +12,13 @@ export default props => (
                     <div className="menu-button" onClick={MenuDesplegable}>&#9776;</div>
                     <h1>Administración de bibliotecas</h1>
 
-                    <a href="pantalla3">
+                    <a href="/pantalla3">
                         <img src="usuario.png" alt="" className="usuario"/></a>
 
                     <section id="menu">
                         <a href="/pantalla2">Inicio</a>
                         <a href="/pantalla3">Perfil</a>
-                        <a href="">Biblioteca</a>
+                        <a href="/pantalla6">Biblioteca</a>
                         <footer>
                             <p><strong>SAC v1 0.1 &copy; - alpha</strong></p>
                         </footer>
