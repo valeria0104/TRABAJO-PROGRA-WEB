@@ -9,9 +9,9 @@ import { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }) {
     return (
-      <UserProvider>
+
         <Component {...pageProps} />
-      </UserProvider>
+
     );
   }
   
