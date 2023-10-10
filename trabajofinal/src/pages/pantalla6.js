@@ -7,7 +7,7 @@ import dato from "./json/archivo.json"
 const Busqueda = () => {
     const [busqueda, setbusqueda] = useState("");
     const [resultBusqueda, setresultBusqueda] = useState([]);
-    const [librosMostrar, setlibrosMostrar] = useState(10);
+    const [librosMostrar, setlibrosMostrar] = useState(12);
 
     useEffect(() => {
         const results = dato.filter((libro) =>
@@ -17,7 +17,7 @@ const Busqueda = () => {
     }, [busqueda]);
 
     const CargarLibros = () => {
-        setlibrosMostrar(librosMostrar + 10); // Aumenta en 10 el número de libros a mostrar
+        setlibrosMostrar(librosMostrar + 12); // Aumenta en 10 el número de libros a mostrar
     };
 
     return (
@@ -60,9 +60,11 @@ const Busqueda = () => {
                             </div>
                         ))}
                     </div>
+                    <div id="nuevorecurso">
+                        <a>
                     {librosMostrar < resultBusqueda.length && (
                         <button onClick={CargarLibros}>Cargar más libros</button>
-                    )}
+                    )}</a></div>
                 </div>
             </div>
                 

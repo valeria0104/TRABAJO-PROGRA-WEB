@@ -22,6 +22,7 @@
     text-decoration: none;
     margin: 5% 0%;
     font-size: 14px;
+    list-style: none;
 
 
 }
@@ -30,15 +31,13 @@
 .results {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    /* Espaciado entre resultados */
-
-
+        /* Espaciado entre resultados */
+    justify-content: flex-start;
 }
 
 /* Estilo para cada libro */
 .libro {
-    width: calc(50% - 10px);
+    width: calc(45% - 10px);
     /* Ancho del 50% con un margen derecho e izquierdo de 10px */
     margin-bottom: 20px;
     /* Margen inferior para separación entre libros */
@@ -50,6 +49,8 @@
     /* Asegura que el padding no afecte el tamaño total */
     width: 314px;
     height: 434px;
+    margin-right: 4%;
+   
 }
 
 .libro h2 {
