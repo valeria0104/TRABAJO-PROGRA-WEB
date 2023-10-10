@@ -1,24 +1,128 @@
+.Librooo {
+    display: flex
+}
 
-
-.nuevorecurso-button {
-    
-    color: var(--m-3-sys-light-primary, white);
-    text-align: center;
-    /* M3/label/large */
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    line-height: 20px;
-    /* 142.857% */
+#nuevorecurso {
     background-color: #6750A4;
     /* Fondo transparente */
     border: none;
-    font-weight: bold;
-    cursor: pointer;
     border-radius: 20px 20px 20px 20px;
-    width: 207px;
+    width: 201px;
     height: 40px;
-    transform: translate(120%);
+    float: left;
+    margin-left: auto;
+
+}
+
+#nuevorecurso a {
+    color: var(--m-3-sys-light-primary, white);
+    text-align: center;
+    font-weight: bold;
+    font-family: Roboto;
+    text-decoration: none;
+    margin: 5% 0%;
+    font-size: 14px;
+    list-style: none;
 
 
+}
+
+/* Estilo para los resultados */
+.results {
+    display: flex;
+    flex-wrap: wrap;
+        /* Espaciado entre resultados */
+    justify-content: flex-start;
+}
+
+/* Estilo para cada libro */
+.libro {
+    width: calc(45% - 10px);
+    /* Ancho del 50% con un margen derecho e izquierdo de 10px */
+    margin-bottom: 20px;
+    /* Margen inferior para separación entre libros */
+    border: 1px solid #ccc;
+    /* Borde opcional para resaltar cada resultado */
+    padding: 10px;
+    /* Espacio interno para cada libro */
+    box-sizing: border-box;
+    /* Asegura que el padding no afecte el tamaño total */
+    width: 314px;
+    height: 434px;
+    margin-right: 4%;
+   
+}
+
+.libro h2 {
+
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+#imagen_page6 {
+    background-color: #CAC4D0;
+}
+
+/* Estilo para las imágenes de portada */
+.libro img {
+    max-width: 100%;
+    /* Asegura que las imágenes no superen su contenedor */
+    margin-left: 30%;
+
+}
+
+
+#lipage6 {
+    margin-bottom: 40px;
+    /* Espacio entre cada par de elementos <label> y <input> */
+    justify-content: space-between;
+    list-style: none;
+
+}
+
+#labelpage6 {
+    display: block;
+    margin-bottom: -8px;
+    position: relative;
+    transform: translate(0.5%);
+    color: var(--m-3-sys-light-primary, #6750A4);
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px;
+    z-index: 1;
+}
+
+.input-boxpage6 {
+    position: relative;
+    border: 2px solid #6750A4;
+    width: 590px;
+    height: 56px;
+    border-radius: 4px 4px 0px 0px;
+    z-index: 0;
+    background-color: transparent;
+    outline: none;
+    padding-left: 30px;
+}
+
+.contenidoBusqueda {
+    position: relative;
+}
+
+.iconoBusqueda {
+    position: absolute;
+    left: 10px;
+    /* Ajusta la posición de la imagen según tus necesidades */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
+    height: 20px;
 }
