@@ -1,15 +1,32 @@
-import Layout from './componentes/Layout3.js'
+import Layout from './componentes/Layout3.js';
 import datos from './json/archivo.json'
 import { useState, useEffect } from 'react';
 import { buscarOpcionesPorCategoria } from './funciones';
+import { useRouter } from 'next/router';
 
 const Index = () => {
+    const router = useRouter();
     const [categoria, setCategoria] = useState('');
     const [opcionesFiltradas, setOpcionesFiltradas] = useState([]);
     const [opcionesSeleccionadas, setOpcionesSeleccionadas] = useState([]);
     const [paginaActual, setPaginaActual] = useState(1);
     const [errorMensaje, setErrorMensaje] = useState(''); // Declarar el estado errorMensaje
     const elementosPorPagina = 5;
+
+    const handleBuscar = () => {
+        const palabraclave = document.getElementById('palabraclave').value;
+        const checkbox1 = document.getElementById('checkbox1').checked ? 'titulo' : '';
+        const checkbox2 = document.getElementById('checkbox2').checked ? 'autor' : '';
+        const checkbox3 = document.getElementById('checkbox3').checked ? 'editorial' : '';
+        const checkbox4 = document.getElementById('checkbox4').checked ? 'ISBN13' : '';
+      
+       // Obtiene las categorías seleccionadas
+  const categoriasSeleccionadas = opcionesSeleccionadas.map((opcion) => opcion.categoria);
+
+  // Agrega las categorías seleccionadas a la URL
+  router.push(`/pantalla13?palabraclave=${palabraclave}&checkbox1=${checkbox1}&checkbox2=${checkbox2}&checkbox3=${checkbox3}&checkbox4=${checkbox4}&categorias=${categoriasSeleccionadas.join(',')}`, undefined, { shallow: true });
+};
+    
 
     const handleLimpiar = () => {
         // Recargar la página
@@ -22,11 +39,28 @@ const Index = () => {
         setPaginaActual(1); // Restablecer a la primera página cuando cambie la categoría
     }, [categoria]);
 
+    useEffect(() => {
+        const checkbox1 = document.getElementById('checkbox1').checked ? 'titulo' : '';
+        const checkbox2 = document.getElementById('checkbox2').checked ? 'autor' : '';
+        const checkbox3 = document.getElementById('checkbox3').checked ? 'editorial' : '';
+        const checkbox4 = document.getElementById('checkbox4').checked ? 'ISBN13' : '';
+      
+        const query = `?palabraclave=${router.query.palabraclave || ''}&checkbox1=${checkbox1}&checkbox2=${checkbox2}&checkbox3=${checkbox3}&checkbox4=${checkbox4}`;
+        
+        // Actualiza la URL sin recargar la página
+        console.log("query:", query);
+        router.replace({ pathname: '/pantalla12', query }, undefined, { shallow: true });
+      }, [router]);
+
     const handleCategoriaChange = (e) => {
         const nuevaCategoria = e.target.value;
         setCategoria(nuevaCategoria);
     };
     
+    const handleEliminarOpcion = (opcion) => {
+        const opcionesActualizadas = opcionesSeleccionadas.filter((o) => o.ISBN !== opcion.ISBN);
+        setOpcionesSeleccionadas(opcionesActualizadas);
+    };
 
     const handleSeleccionarOpcion = (opcion) => {
         // Verificar si la opción ya está en las opciones seleccionadas
@@ -44,11 +78,15 @@ const Index = () => {
         } else {
             setErrorMensaje('Ya has seleccionado una opción con el mismo nombre.');
         }
-    };
 
-    const handleEliminarOpcion = (opcion) => {
-        const opcionesActualizadas = opcionesSeleccionadas.filter((o) => o.ISBN !== opcion.ISBN);
-        setOpcionesSeleccionadas(opcionesActualizadas);
+         // Obtener categorías seleccionadas
+        const categoriasSeleccionadas = opcionesFiltradas.map((opcion) => opcion.categoria);
+
+        // Agregar las categorías seleccionadas a la URL
+        const query = `?palabraclave=${palabraclave}&checkbox1=${checkbox1}&checkbox2=${checkbox2}&checkbox3=${checkbox3}&checkbox4=${checkbox4}&categorias=${categoriasSeleccionadas.join(',')}`;
+
+        // Actualizar la URL sin recargar la página
+        router.replace({ pathname: '/pantalla12', query }, undefined, { shallow: true });
     };
 
 
@@ -118,32 +156,29 @@ const Index = () => {
                                     {errorMensaje && <div className="error-message">{errorMensaje}</div>}
                                 </div>
 
-                                <form className="form1" method="post" action="/process" >
+                                  <form className="form1" method="post" action="/process" >
                                     <p className="">Incluir búsqueda en</p>
                                     <label className="labelA" for="checkbox1">Titulo</label>
-                                    <input className="box" type="checkbox" id="checkbox1" name="checkbox1" value="Checkbox1" /> <br />
+                                    <input className="box" type="checkbox" id="checkbox1" name="checkbox1" value="titulo" /> <br />
 
                                     <label className="labelA" for="checkbox2">Autor(ers)</label>
-                                    <input className="box" type="checkbox" id="checkbox2" name="checkbox2" value="Checkbox2" /> <br />
+                                    <input className="box" type="checkbox" id="checkbox2" name="checkbox2" value="autor" /> <br />
 
-                                    <label className="labelA" for="checkbox3">Serie</label>
-                                    <input className="box" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3" /> <br />
+                                    <label className="labelA" for="checkbox3">Editorial</label>
+                                    <input className="box" type="checkbox" id="checkbox3" name="checkbox3" value="editorial"/> <br />
 
                                     <label className="labelA" for="checkbox4">ISBM</label>
-                                    <input className="box" type="checkbox" id="checkbox4" name="checkbox4" value="checkbox4" /> <br />
+                                    <input className="box" type="checkbox" id="checkbox4" name="checkbox4" value="ISBN13" /> <br />
                                 </form>
-                            </div>
-                            <div className="buttons">
-                                <input type="button" value="Limpiar" className="limpiar-button" onClick={handleLimpiar}/> <t></t>
-                                <input type="button" value="Buscar" className="buscar-button" />
                             </div>
 
                         </section>
-
+                            <div className="buttons">
+                                <input type="button" value="Limpiar" className="limpiar-button" onClick={handleLimpiar}/> <t></t>
+                                <input type="button" value="Buscar" className="buscar-button" onClick={handleBuscar}/>
+                            </div>
                     </div>
                 </div>
-
-
             </>
         } />
     );
