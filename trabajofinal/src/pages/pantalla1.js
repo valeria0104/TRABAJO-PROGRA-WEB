@@ -6,19 +6,29 @@ import { handleLogin1 } from './funciones';
 import { useRouter } from "next/router";
 
 const Index = () => {
-
   const [formData, setFormData] = useState({
     correo: "",
     contrasena: "",
   });
-  const handleSubmit = () => {
-    // Llama a la función handleLogin1 con los datos del formulario y usuarioData
-    handleLogin1(formData, usuarioData);
-  };
-  const handleSubmit1 = () => {
-    // Llama a la función handleLogin1 con los datos del formulario y usuarioData
-    const nombreUsuario = obtenerNombreUsuario(formData.correo);
-    router.push(`/pantalla2?nombre=${nombreUsuario}`);
+
+  const router = useRouter(); // Inicializa useRouter aquí
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+    const usuarioEncontrado = handleLogin1(formData, usuarioData);
+
+    if (usuarioEncontrado) {
+      if (usuarioEncontrado.tipo === 1) {
+        // Redirecciona al usuario tipo 1 a pantalla2.js
+        router.push("/pantalla2");
+      } else if (usuarioEncontrado.tipo === 2) {
+        // Redirecciona al usuario tipo 2 a pantalla9.js
+        router.push("/pantalla9");
+      }
+    } else {
+      // Usuario no encontrado, muestra un mensaje de error
+      alert("Usuario inválido");
+    }
   };
 
  return (
@@ -55,7 +65,7 @@ const Index = () => {
 
         <div className="buttons">
         <input type="button" value="Registro usuario" className="registro-button"/> <t></t>
-        <input type="button" value="Ingresar" className="login-button" onClick={handleSubmit}/>
+        <input type="submit" value="Ingresar" className="login-button" onClick={handleSubmit}/>
         </div>
 
     </form>

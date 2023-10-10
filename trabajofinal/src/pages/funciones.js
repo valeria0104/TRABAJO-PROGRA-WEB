@@ -1,5 +1,6 @@
 import datos from './json/archivo.json'
-import usuarioData from "./json/usuario.json"; 
+import usuarioData from "./json/usuario.json";
+import { useRouter } from "next/router"; 
 
 function MenuDesplegable() {
     const menu = document.getElementById('menu');
@@ -41,24 +42,13 @@ export function buscarOpcionesPorCategoria(categoria) {
 
     return opcionesUnicas;
 }
- export const handleLogin1  = (formData, usuarioData)=> {
-    const correo = formData.correo;
-    const contrasena = formData.contrasena;
-  
-    const usuarioEncontrado = usuarioData.find(
-        (usuario) => usuario.correo === correo && usuario.contrasena === contrasena
-    );
-  
-    if (usuarioEncontrado) {
-      if (usuarioEncontrado.tipo === 1) {
-        // Redirecciona al usuario tipo 1 a pantalla2.js
-        window.location.href = "/pantalla2";
-      } else if (usuarioEncontrado.tipo === 2) {
-        // Redirecciona al usuario tipo 2 a pantalla9.js
-        window.location.href = "/pantalla9";
-      }
-    } else {
-      // Usuario no encontrado, muestra un mensaje de error
-      alert("Usuario inválido");
-    }
-  };
+export const handleLogin1 = (formData, usuarioData) => {
+  const correo = formData.correo;
+  const contrasena = formData.contrasena;
+
+  const usuarioEncontrado = usuarioData.find(
+    (usuario) => usuario.correo === correo && usuario.contrasena === contrasena
+  );
+
+  return usuarioEncontrado;
+};
