@@ -129,8 +129,29 @@ padding: 2px 4px; /* Agrega un pequeño espaciado interno para resaltar */
   font-weight: bold; /* Hace que el texto aparezca en negrita */
   background-color: #fff5f5; /* Aplica un fondo amarillo al texto */
   padding: 2px 4px; /* Agrega un pequeño espaciado interno para resaltar */
-  margin-left: 95px;
+  margin-left: 10px;
   }
+
+  #ul12{
+    display: flex;
+    flex-direction: column;
+    list-style: none; /* Quita las viñetas */
+  }
+
+  #label2 {
+    display: block;
+    margin-bottom: -8px; 
+    position: relative;
+    color: var(--m-3-sys-light-primary, #6750A4);
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px; 
+    z-index: 1; 
+    
+    }
 
 .limpiar-button {
   background-color: #E8DEF8;
