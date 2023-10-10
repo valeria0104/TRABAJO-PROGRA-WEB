@@ -9,8 +9,7 @@
     width: 100%;
     background-color: #F3EDF7;
     margin-bottom: 25px;
-   display: block;
-    
+
 }
 #segundoul, #segundoil{
     list-style: none;
@@ -157,3 +156,8 @@
     .input-box1:hover {
         border-color: #6750A4; /* Cambia el color del borde cuando el input está enfocado */
     }
+ #formulario1{
+    border: black solid 3px;
+    z-index: -1;
+ }
+ 

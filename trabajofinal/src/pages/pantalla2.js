@@ -3,16 +3,16 @@ import Head from "next/head"
 import Layout from './componentes/Layout.js'
 import datos from './json/archivo.json'
 import { useRouter } from "next/router";
-const Index = () =>  <Layout content =
-
-{
-
-  
+const Index = () =>  {
+const router = useRouter();
+  const { nombre } = router.query;
+return (
+    <Layout content ={
   <>
   <div>
   
             <div id="cuerpo">
-                <p className="Bienvenido">Bienvenido, Juan</p>
+                <p className="Bienvenido">{`Bienvenido, ${nombre|| "Juan"}`}</p>
                 <hr/>
                 <br/>
                 <p1>Últimas reservas</p1>
@@ -116,7 +116,7 @@ const Index = () =>  <Layout content =
 
 
                     </>
- }></Layout>
-
+}></Layout>)
+}
 
 export default Index

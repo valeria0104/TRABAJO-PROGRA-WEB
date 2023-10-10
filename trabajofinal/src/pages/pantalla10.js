@@ -19,7 +19,8 @@ import Layout2 from "./componentes/Layout2"
                 <img src="pant10.png" alt="Chico estudiando" className="imagen"></img>
                 </aside>
                <section id= "seccion1">
-                <form id= "formulario1">
+                <form id= "formulario1" action="#" method="get">
+                <ul>
                 <li id="il4"><label id="label4"><span className="resaltado">Nombres:</span></label>
                 <input className="input-box1" type="text" id="op3" name="n3"/>
                  </li>  
@@ -34,12 +35,12 @@ import Layout2 from "./componentes/Layout2"
 
                  <li id="il4"><label id="label5"><span className="resaltado">Número de Documento:</span></label>
                 <input className="input-box1" type="text"  id="op6" name="n6"/>
-                 </li>  
+                 </li>
+                 </ul>  
                    <div className="buttons">
                     <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
                   </div>
                 </form>
-
                </section>
                  </div>
                  </div>
@@ -54,5 +55,3 @@ import Layout2 from "./componentes/Layout2"
  }></Layout1>
 
  export default Index1
-
-
