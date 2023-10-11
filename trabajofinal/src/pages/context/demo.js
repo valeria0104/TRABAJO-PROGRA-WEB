@@ -1,20 +1,20 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   const loginUser = (userData) => {
-    setCurrentUser(userData);
+    setUser(userData);
   };
 
   const logoutUser = () => {
-    setCurrentUser(null);
+    setUser(null);
   };
 
   return (
-    <UserContext.Provider value={{ currentUser, loginUser, logoutUser }}>
+    <UserContext.Provider value={{ user, loginUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );
@@ -23,7 +23,8 @@ export const UserProvider = ({ children }) => {
 export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error("useUser debe ser utilizado dentro de un UserProvider");
+    throw new Error('useUser debe ser utilizado dentro de un UserProvider');
   }
   return context;
 };
+/*CAMBIOS */

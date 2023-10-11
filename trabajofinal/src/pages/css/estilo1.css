@@ -38,8 +38,8 @@ transform: translate(1%);
 
 #segundoul, #segundoil{
     list-style: none;
- 
 }
+
 #segundoul{
     display: flex;
     justify-content: center;
