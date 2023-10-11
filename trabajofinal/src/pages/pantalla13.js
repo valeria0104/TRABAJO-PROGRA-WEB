@@ -2,6 +2,7 @@ import Layout from './componentes/Layout3.js';
 import datos from './json/archivo.json';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 
 const Pantalla13 = () => {
@@ -146,6 +147,9 @@ const opcionesFiltradas = datos.filter((opcion) => {
     <Layout content={
       <>
         <h1>Resultados de la búsqueda</h1>
+        
+        <button onClick={() => router.push('/pantalla14')}>Ver Reservas</button>
+
         <div className="results">
           {librosPaginaActual.map((opcion) => (
             <div key={opcion.ISBN} className="libro">
@@ -163,7 +167,7 @@ const opcionesFiltradas = datos.filter((opcion) => {
           {paginaActual < totalPaginas && <button onClick={handlePaginaSiguiente}>Siguiente</button>}
         </div>
         <br/>
-        <button onClick={handleRegresar}>Anterior</button>
+        <button onClick={handleRegresar}>Regresar a la busqueda</button>
       </>
     } />
   );
