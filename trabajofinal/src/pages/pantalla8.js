@@ -8,7 +8,7 @@ const Index = () =>  <Layout6 content =
 
 {
 
-  
+   
   <>
   <div>
   
