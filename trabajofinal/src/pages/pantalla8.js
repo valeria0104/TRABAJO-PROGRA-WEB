@@ -23,29 +23,31 @@ const Index = () =>  <Layout6 content =
                 <aside id="imagen1">
                 <img src="Rectangle 5.png" alt="Libros" className="imagen"></img>
                 </aside>
-               <section id= "seccion1">
-                <form id= "formulario1">
-                <li id="il4"><label id="label4"><span className="resaltado">TITULO</span></label>
-                <input className="input-box1" type="text" id="op3" name="n3"/>
-                 </li>  
+             
+               <form id= "formularioAM1" action="#" method="get">
+               <ul id="formulAM">
 
-                 <li id="il4"><label id="label5"><span className="resaltado">Autor, Autores</span></label>
-                <input className="input-box1" type="text" id="op4" name="n4"/>
-                 </li>  
+               <li id= "formilAM"><label id="labelAM4"><span className="resaltado">TITULO</span></label>
+               <input type="text" className="input-boxAM1" id="op12" name="12"/>
+                </li>  
 
-                 <li id="il4"><label id="label4"><span className="resaltado">ISBN</span></label>
-                <input className="input-box1" type="text" id="op5" name="n5"/>
-                 </li>  
 
-                 <li id="il4"><label id="label5"><span className="resaltado">Serie, Tipo</span></label>
-                <input className="input-box1" type="text"  id="op6" name="n6"/>
-                 </li>  
-                   <div className="buttons">
-                    <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
-                  </div>
-                </form>
+                <li id= "formilAM"><label id="labelAM4"><span className="resaltado">Autor, Autores</span></label>
+               <input type="text" className="input-boxAM1" id="op13" name="n13"/>
+                </li>  
 
-               </section>
+                <li id= "formilAM"><label id="labelAM4"><span className="resaltado">ISBN</span></label>
+               <input type="text" className="input-boxAM1" id="op14" name="n14"/>
+                </li>  
+
+                <li id= "formilAM"><label id="labelAM4"><span className="resaltado">Serie, tipo</span></label>
+               <input type="text" className="input-boxAM1" id="op15" name="n15"/>
+                </li> 
+                </ul>  
+                  <div className="buttons">
+                   <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
+                 </div>
+               </form>
                  </div>
                  </div>
                 </div>
