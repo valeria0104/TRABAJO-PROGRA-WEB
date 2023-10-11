@@ -37,7 +37,7 @@ const Index2 = () =>
 
                 </ul>  
                   <div className="buttons">
-                   <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
+                   <input type="submit" value="GUARDAR" className="submit-buttonAM"/> <t></t>
                  </div>
                </form>
 

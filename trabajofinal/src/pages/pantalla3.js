@@ -36,11 +36,11 @@ const Index2 = () =>
                 </li>  
 
                 <li id= "formilAM" ><label id="labelAM5"><span className="resaltado">Número de Documento:</span></label>
-               <input type="text" className="input-boxAdmin" id="op10" name="n10"/>
+               <input type="text" className="input-boxAM1" id="op10" name="n10"/>
                 </li>
                 </ul>  
                   <div className="buttons">
-                   <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
+                   <input type="submit" value="GUARDAR" className="submit-buttonAM"/> <t></t>
                  </div>
                </form>
 

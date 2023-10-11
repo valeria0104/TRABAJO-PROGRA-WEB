@@ -56,6 +56,20 @@ transform: translate(1%);
     color:#6750A4;
     font-size: 14px;
 }
+#labelY {
+    display: block;
+
+    position: relative;
+    color:  #79747E;
+    /* M3/body/small */
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px; 
+  
+    
+    }
 
 #adminY a{
     text-decoration: none;
@@ -88,7 +102,7 @@ transform: translate(1%);
         border-color: #6750A4; /* Cambia el color del borde cuando el input está enfocado */
     }
 
-#formularioAM{
+#formularioAM1{
     width: 40%;
     overflow: auto;
     transform: translate(40%)
