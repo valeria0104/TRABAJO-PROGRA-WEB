@@ -8,7 +8,7 @@ import reservas from '../../public/reserva.json';
 
 function App() {
     const librosMasPedidos = fusionarDatos(reservas, datos);
-    const librosAMostrar2 = datos.slice(0,10);
+    const librosAMostrar2 = datos.slice(0,4);
 
     return (
         <Layout7
