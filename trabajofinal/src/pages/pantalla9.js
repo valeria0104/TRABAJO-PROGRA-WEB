@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Head from "next/head"
-import Layout from './componentes/Layout.js'
+import Layout1 from './componentes/Layout1.js'
 import datos from './json/archivo.json'
 import { useRouter } from "next/router";
 import reservas from '../../public/reserva.json'
@@ -11,7 +11,7 @@ function App() {
     const librosAMostrar2 = datos.slice(0,10)
 
     return (
-        <Layout content=
+        <Layout1 content=
 
             {
 
@@ -52,7 +52,7 @@ function App() {
 
 
                             <br />
-                            <p1>Los más pedidos</p1>
+                            <p1>Próximos a vencer</p1>
                             <br /><br />
                             <section className="cuerpo1">
 
@@ -69,12 +69,10 @@ function App() {
                                             </p>
                                         </div>
 
-                                        <div id="imagen_page2">
                                         <div className="cuadrado_libro">
                                             <a href="pantalla3.html">
                                                 <img src={libro['imagen-portada-url']} height="100px" />
-                                            </a></div>
-
+                                            </a>
                                         </div>
                                     </div>
                                 ))}
@@ -86,7 +84,7 @@ function App() {
 
 
                 </>
-            }></Layout>
+            }></Layout1>
     )
 }
 

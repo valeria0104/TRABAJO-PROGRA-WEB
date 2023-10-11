@@ -1,0 +1,61 @@
+#flor {
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
+    font-style: normal;
+    line-height: 20px; /* 55.556% */
+    padding:10px 10px;
+}
+
+#flor1{
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    font-style: normal;
+    line-height: 20px; /* 55.556% */
+    padding:10px 10px;
+}
+
+#primerul1{
+    display: flex;
+}
+
+#shoyo1{
+    background-color: #FFF;
+    font-family: Roboto;
+  }
+  
+  .registrar1-button{
+  color: var(--m-3-sys-light-primary, #6750A4);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  background-color: transparent; /* Fondo transparente */
+  border: none; 
+  font-weight: bold;
+  cursor: pointer;
+  transform: translate(20%);
+  background: #E8DEF8; 
+  border: #6750A4 solid;
+  padding: 5px 60px;
+  border-radius: 10px;
+  }
+  
+.columna1{
+margin-left: 5%;
+-ms-flex-align: center;
+}
+
+#datos1{
+  color: #6750A4;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}

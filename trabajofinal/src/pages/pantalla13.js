@@ -2,6 +2,7 @@ import Layout from './componentes/Layout3.js';
 import datos from './json/archivo.json';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 
 const Pantalla13 = () => {
@@ -66,8 +67,8 @@ const opcionesFiltradas = datos.filter((opcion) => {
   }, [router.query.pagina]);
 
   const handleReservar = (titulo, imagenPortada, ISBN13, urlCompra) => {
-    // Agregar el libro a la lista de reservas
-    agregarReserva({ titulo, "imagen-portada-url": imagenPortada, ISBN13, "url-compra": urlCompra });
+    // Agregar el libro a la lista de reservas con una fecha de reserva en blanco
+    agregarReserva({ titulo, "imagen-portada-url": imagenPortada, ISBN13, "url-compra": urlCompra, fechareserva: "" });
     alert(`Reservando el libro: ${titulo}`);
     
     // Crear un objeto con los datos de la reserva (ajusta esto según tus necesidades)
@@ -76,6 +77,7 @@ const opcionesFiltradas = datos.filter((opcion) => {
       "imagen-portada-url": imagenPortada,
       ISBN13,
       "url-compra": urlCompra,
+      fechareserva: "", // Aquí se agrega una fecha en blanco
     };
     
     // Realizar la solicitud para guardar la reserva en la API
@@ -146,6 +148,9 @@ const opcionesFiltradas = datos.filter((opcion) => {
     <Layout content={
       <>
         <h1>Resultados de la búsqueda</h1>
+        
+        <button onClick={() => router.push('/pantalla14')}>Ver Reservas</button>
+
         <div className="results">
           {librosPaginaActual.map((opcion) => (
             <div key={opcion.ISBN} className="libro">
@@ -163,7 +168,7 @@ const opcionesFiltradas = datos.filter((opcion) => {
           {paginaActual < totalPaginas && <button onClick={handlePaginaSiguiente}>Siguiente</button>}
         </div>
         <br/>
-        <button onClick={handleRegresar}>Anterior</button>
+        <button onClick={handleRegresar}>Regresar a la busqueda</button>
       </>
     } />
   );

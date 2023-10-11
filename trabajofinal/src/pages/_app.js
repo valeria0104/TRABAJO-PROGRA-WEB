@@ -4,6 +4,7 @@ import './css/cuerpo2.css'
 import './css/colores.css'
 import './css/pantalla6.css'
 import './css/estilo2.css'
+import './css/pantalla7.css'
 import {UserProvider} from './context/demo'
 
 import { AppProps } from 'next/app'
