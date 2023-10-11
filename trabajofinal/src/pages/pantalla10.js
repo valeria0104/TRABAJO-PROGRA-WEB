@@ -5,6 +5,7 @@ import Layout2 from "./componentes/Layout2"
 import { useUser } from './context/demo';
 import { useRouter } from 'next/router';
 
+
 import React, { useState, useEffect } from 'react';
 
 import usuarioData from "./json/usuario.json"; 
@@ -13,7 +14,7 @@ import usuarioData from "./json/usuario.json";
 const Index1 = () => 
 {
 ////
-  const { user } = useUser();
+const { currentUser } = useUser();
   const router = useRouter();
   const [userData, setUserData] = useState({
     nombres: '',
@@ -24,17 +25,17 @@ const Index1 = () =>
     tipo: '',
   });
   useEffect(() => {
-    if (user) {
+    if (currentUser) {
       setUserData({
-        nombres: user.nombres,
-        apellidos: user.apellidos,
-        tipodoc: user.tipodoc,
-        numerodoc: user.numerodoc,
-        correo: user.correo,
-        tipo: user.tipo,
+        nombres: currentUser.nombres,
+        apellidos: currentUser.apellidos,
+        tipodoc: currentUser.tipodoc,
+        numerodoc: currentUser.numerodoc,
+        correo: currentUser.correo,
+        tipo: currentUser.tipo,
       });
     }
-  }, [user]);
+  }, [currentUser]);
 //////
 
 
@@ -57,7 +58,7 @@ const Index1 = () =>
                <ul id="formul">
 
                <li id= "formil"><label id="label4"><span className="resaltado">Nombres:</span></label>
-               <input type="text" className="input-box1" id="op3" name="n3" value= {userData.nombres} readOnly  />
+               <input type="text" className="input-box1" id="op3" name="n3" value= {userData.nombres}   />
                 </li>  
 
 
