@@ -8,7 +8,7 @@ const Index2 = () => <Layout content =
   <>
 
 <div id= "cuerpo">
-<p className="Bienvenido">Hola Juliana</p>
+<p className="Bienvenido">Hola Valeria</p>
 <hr/>
 <div id="FormularioY">
     <div id = "FondoY">
