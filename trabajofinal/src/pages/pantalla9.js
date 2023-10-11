@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Head from "next/head"
-import Layout1 from './componentes/Layout1.js'
+import Layout7 from './componentes/Layout7.js'
 import datos from './json/archivo.json'
 import { useRouter } from "next/router";
 import reservas from '../../public/reserva.json';
@@ -8,10 +8,10 @@ import reservas from '../../public/reserva.json';
 
 function App() {
     const librosMasPedidos = fusionarDatos(reservas, datos);
-    const librosAMostrar2 = datos.slice(0,10);
+    const librosAMostrar2 = datos.slice(0,4);
 
     return (
-        <Layout1
+        <Layout7
           content={
             <div>
               <div id="cuerpo">
@@ -41,7 +41,7 @@ function App() {
                   ))}
                 </section>
                 <br />
-                <p1>Los más pedidos</p1>
+                <p1>Próximos a vencer</p1>
                 <br /><br />
                 <section className="cuerpo1">
                   {librosAMostrar2.map((libro, index) => (

@@ -1,6 +1,6 @@
 import Link  from "next/link"
 import Head from "next/head"
-import usuarioData from "./json/usuario.json"; 
+import usuarioData from './json/usuario.json'; 
 import React, { useState } from "react";
 import { handleLogin1 } from './funciones';
 import { useRouter } from 'next/router';
@@ -31,7 +31,7 @@ const Index = () => {
       } else if (usuarioEncontrado.tipo === 2) {
 
         // Redirecciona al usuario tipo 2 a pantalla9.js
-        router.push("/pantalla10");
+        router.push("/pantalla9");
       }
     } else {
       // Usuario no encontrado, muestra un mensaje de error
