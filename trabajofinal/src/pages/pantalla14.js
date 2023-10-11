@@ -1,10 +1,17 @@
 import Layout from './componentes/Layout3.js';
 import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PantallaReservas = () => {
   const [reservas, setReservas] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
-  const reservasPorPagina = 3; // Máximo de reservas por página
+  const reservasPorPagina = 3;
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedISBN, setSelectedISBN] = useState(null);
+  const [isCompleting, setIsCompleting] = useState(false);
+
+  
 
   useEffect(() => {
     // Cargar las reservas desde el archivo JSON local
@@ -46,13 +53,11 @@ const PantallaReservas = () => {
   );
 
   const eliminarReserva = (ISBN13) => {
-    // Enviar una solicitud DELETE a la API para eliminar la reserva
     fetch(`/api/cancelarReserva?ISBN13=${ISBN13}`, {
       method: 'DELETE',
     })
       .then((response) => {
         if (response.ok) {
-          // Si la eliminación es exitosa, actualiza las reservas en el estado local
           setReservas((prevReservas) => prevReservas.filter((reserva) => reserva.ISBN13 !== ISBN13));
         } else {
           console.error('Error al eliminar la reserva desde el servidor.');
@@ -63,8 +68,60 @@ const PantallaReservas = () => {
       });
   };
 
-  const completarReserva = (index) => {
-    // Tu lógica para completar una reserva
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  // Función para actualizar la fecha de reserva en una reserva existente
+function actualizarFechaReserva(ISBN13, nuevaFecha) {
+    const reservaIndex = reservas.findIndex((reserva) => reserva.ISBN13 === ISBN13);
+  
+    if (reservaIndex !== -1) {
+      // Clona el objeto de reserva y actualiza la propiedad fechareserva
+      const reservaActualizada = { ...reservas[reservaIndex], fechareserva: nuevaFecha };
+  
+      // Actualiza el arreglo de reservas con la reserva actualizada
+      const nuevasReservas = [...reservas];
+      nuevasReservas[reservaIndex] = reservaActualizada;
+  
+      setReservas(nuevasReservas);
+    }
+  }
+
+  const completarReserva = (ISBN13) => {
+    if (selectedDate) {
+
+    console.log('ISBN13:', ISBN13);
+    console.log('selectedDate:', selectedDate);
+      // Realiza la solicitud PUT a la API para actualizar la reserva con la nueva fecha
+      fetch(`/api/actualizarReserva/${ISBN13}`, {
+        method: 'PUT',
+        body: JSON.stringify({ fechareserva: selectedDate }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            // Actualiza la fecha de reserva en el estado local
+            actualizarFechaReserva(ISBN13, selectedDate);
+  
+            setSelectedDate(null);
+            setSelectedISBN(null);
+            setIsCompleting(false);
+          } else {
+            console.error('Error al completar la reserva:', response.status);
+          }
+        })
+        .catch((error) => {
+          console.error('Error al completar la reserva:', error);
+        });
+    }
+  };
+
+  const separarLibro = (ISBN13) => {
+    setSelectedISBN(ISBN13);
+    setIsCompleting(true);
   };
 
   return (
@@ -80,7 +137,14 @@ const PantallaReservas = () => {
                 <p>ISBN: {reserva.ISBN13}</p>
                 <p>URL de Compra: {reserva["url-compra"]}</p>
                 <button onClick={() => eliminarReserva(reserva.ISBN13)}>Eliminar</button>
-                <button onClick={() => completarReserva(index)}>Completar Reserva</button>
+                {isCompleting && selectedISBN === reserva.ISBN13 ? (
+                  <div>
+                    <DatePicker selected={selectedDate} onChange={handleDateChange} />
+                    <button onClick={() => completarReserva(reserva.ISBN13)}>Completar Reserva</button>
+                  </div>
+                ) : (
+                  <button onClick={() => separarLibro(reserva.ISBN13)}>Separar Libro</button>
+                )}
               </div>
             ))}
           </div>
@@ -99,7 +163,7 @@ const PantallaReservas = () => {
           </div>
         )}
 
-        <button onClick={() => window.history.back()}>Regresar a Reserva de Libros</button>
+        <button onClick={() => window.history.back()}>Regresar a Reservar de Libros</button>
       </>
     } />
   );

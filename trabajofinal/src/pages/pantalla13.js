@@ -67,8 +67,8 @@ const opcionesFiltradas = datos.filter((opcion) => {
   }, [router.query.pagina]);
 
   const handleReservar = (titulo, imagenPortada, ISBN13, urlCompra) => {
-    // Agregar el libro a la lista de reservas
-    agregarReserva({ titulo, "imagen-portada-url": imagenPortada, ISBN13, "url-compra": urlCompra });
+    // Agregar el libro a la lista de reservas con una fecha de reserva en blanco
+    agregarReserva({ titulo, "imagen-portada-url": imagenPortada, ISBN13, "url-compra": urlCompra, fechareserva: "" });
     alert(`Reservando el libro: ${titulo}`);
     
     // Crear un objeto con los datos de la reserva (ajusta esto según tus necesidades)
@@ -77,6 +77,7 @@ const opcionesFiltradas = datos.filter((opcion) => {
       "imagen-portada-url": imagenPortada,
       ISBN13,
       "url-compra": urlCompra,
+      fechareserva: "", // Aquí se agrega una fecha en blanco
     };
     
     // Realizar la solicitud para guardar la reserva en la API
