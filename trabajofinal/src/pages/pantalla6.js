@@ -8,16 +8,14 @@ const Busqueda = () => {
   const [busqueda, setBusqueda] = useState("");
   const [resultBusqueda, setResultBusqueda] = useState([]);
   const [librosMostrar, setLibrosMostrar] = useState(12);
-  const [selectedData, setSelectedData] = useState(null); // Para almacenar los datos seleccionados
-
+  const [selectedData, setSelectedData] = useState(null);
   const handleSave = (data) => {
-    // Llama a la función para guardar la reserva en el archivo JSON
+
     const reservaData = {
       titulo: data.titulo,
       "imagen-portada-url": data["imagen-portada-url"],
       ISBN13: data.ISBN13,
       "url-compra": data["url-compra"],
-      // Agrega otros campos que desees guardar
     };
 
     fetch('/api/guardarReserva', {
@@ -30,7 +28,7 @@ const Busqueda = () => {
       .then((response) => {
         if (response.ok) {
           console.log('Reserva guardada correctamente en el archivo "reservas.json".');
-          setSelectedData(data); // Establece los datos seleccionados para mostrarlos
+          setSelectedData(data); 
         } else {
           console.error('Error al guardar la reserva en el archivo "reservas.json".');
         }
@@ -48,7 +46,7 @@ const Busqueda = () => {
   }, [busqueda]);
 
   const CargarLibros = () => {
-    setLibrosMostrar(librosMostrar + 12); // Aumenta en 12 el número de libros a mostrar
+    setLibrosMostrar(librosMostrar + 12);
   };
 
   return (

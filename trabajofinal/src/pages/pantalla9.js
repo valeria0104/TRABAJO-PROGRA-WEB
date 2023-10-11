@@ -41,7 +41,7 @@ function App() {
                   ))}
                 </section>
                 <br />
-                <p1>Los más pedidos</p1>
+                <p1>Próximos a vencer</p1>
                 <br /><br />
                 <section className="cuerpo1">
                   {librosAMostrar2.map((libro, index) => (
