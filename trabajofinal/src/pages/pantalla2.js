@@ -17,7 +17,7 @@ function App() {
       content={
         <div>
           <div id="cuerpo">
-            <p className="Bienvenido">Bienvenida, Valeria</p>
+            <p className="Bienvenido">Bienvenida,Valeria</p>
             <hr />
             <br />
             <p1>Últimas reservas</p1>
