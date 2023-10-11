@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Head from "next/head"
-import Layout1 from './componentes/Layout1.js'
+import Layout7 from './componentes/Layout7.js'
 import datos from './json/archivo.json'
 import { useRouter } from "next/router";
 import reservas from '../../public/reserva.json';
@@ -11,7 +11,7 @@ function App() {
     const librosAMostrar2 = datos.slice(0,10);
 
     return (
-        <Layout1
+        <Layout7
           content={
             <div>
               <div id="cuerpo">
