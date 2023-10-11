@@ -22,7 +22,7 @@ const Index2 = () => <Layout content =
     </aside>
 
     <form id= "formularioAM1" action="#" method="get">
-    <ul id="formul">
+    <ul id="formulAM">
     <li id= "formilAM"><label id="labelAM4"><span className="resaltado">Correo:</span></label>
                 <input type="text" className="input-boxAM1" id="op11" name="n11"/>
     </li>  
@@ -31,7 +31,7 @@ const Index2 = () => <Layout content =
     </li>  
     </ul>
     <div className="buttons">
-                    <input type="submit" value="GUARDAR" className="submit-button"/> <t></t>
+                    <input type="submit" value="GUARDAR" className="submit-buttonAM"/> <t></t>
                   </div>
     </form>
 
