@@ -6,6 +6,7 @@ import { useUser } from './context/demo';
 import { useRouter } from 'next/router';
 
 
+
 import React, { useState, useEffect } from 'react';
 
 import usuarioData from "./json/usuario.json"; 
@@ -13,9 +14,8 @@ import usuarioData from "./json/usuario.json";
 
 const Index1 = () => 
 {
-////
+
 const { currentUser } = useUser();
-  const router = useRouter();
   const [userData, setUserData] = useState({
     nombres: '',
     apellidos: '',
@@ -24,6 +24,43 @@ const { currentUser } = useUser();
     correo: '',
     tipo: '',
   });
+  // En tu componente de cliente (por ejemplo, Index1.js)
+
+const handleEditData = async (e) => {
+  e.preventDefault();
+
+  // Crea un objeto con los datos del usuario a actualizar
+  const data = {
+    correo: userData.correo,
+    nombres: userData.nombres,
+    apellidos: userData.apellidos,
+    tipodoc: userData.tipodoc,
+    numerodoc: userData.numerodoc,
+  };
+
+  // Realiza una solicitud POST a la ruta API en el servidor
+  try {
+    const response = await fetch('/api/editarUsuario', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.status === 200) {
+      // Los datos se actualizaron correctamente
+      console.log('Datos actualizados con éxito');
+    } else {
+      // Manejar errores o respuestas no exitosas
+      const data = await response.json();
+      console.error(data.message);
+    }
+  } catch (error) {
+    console.error('Error al realizar la solicitud:', error);
+  }
+};
+
   useEffect(() => {
     if (currentUser) {
       setUserData({
@@ -36,8 +73,6 @@ const { currentUser } = useUser();
       });
     }
   }, [currentUser]);
-//////
-
 
   return ( <Layout1 content ={
        <>
@@ -58,7 +93,7 @@ const { currentUser } = useUser();
                <ul id="formul">
 
                <li id= "formil"><label id="label4"><span className="resaltado">Nombres:</span></label>
-               <input type="text" className="input-box1" id="op3" name="n3" value= {userData.nombres}   />
+               <input type="text" className="input-box1" id="op3" name="n3" value= {userData.nombres}    onChange={(e) => setUserData({ ...userData, nombres: e.target.value })} />
                 </li>  
 
 
@@ -75,7 +110,7 @@ const { currentUser } = useUser();
                 </li>
                 </ul>  
                   <div className="buttons">
-                   <input type="submit" value="GUARDAR" className="submit-button"/> 
+                   <input type="submit" value="GUARDAR" className="submit-button" onClick={handleEditData}/> 
                  </div>
                </form>
 
@@ -91,4 +126,4 @@ const { currentUser } = useUser();
 }   
 ></Layout1>)
 }
- export default Index1
+ export default Index1;
