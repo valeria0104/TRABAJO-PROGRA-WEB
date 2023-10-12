@@ -13,7 +13,7 @@ const Index = () =>  <Layout6 content =
   <div>
   
             <div id="cuerpo">
-                <p className="Bienvenido">Hola, Juliana</p>
+                <p className="Bienvenido">Hola, Valeria</p>
                 <hr/>
                 <br/>
                 <div id="Formulario">
