@@ -38,6 +38,9 @@ const Index = () => {
       alert("Usuario inválido");
     }
   };
+  const handleRegistroUsuario = () => {
+    router.push("/pantalla7");
+  };
 
  return (
     <>
@@ -72,7 +75,7 @@ const Index = () => {
         </ul>    
 
         <div className="buttons">
-        <input type="button" value="Registro usuario" className="registro-button"/> <t></t>
+        <input type="button" value="Registro usuario" className="registro-button" onClick={handleRegistroUsuario}/> <t></t>
         <input type="submit" value="Ingresar" className="login-button" onClick={handleSubmit}/>
         </div>
 
