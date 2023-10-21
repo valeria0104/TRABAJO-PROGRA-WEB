@@ -15,9 +15,9 @@ export default props => (
                         <img src="usuario.png" alt="" className="usuario"/></a>
                   
                     <section id="menu">
-                    <a href="/pantalla9">Principal</a>
-                     <a href="/pantalla10">Perfil</a>
-                    <a href="">Préstamos</a>
+                    <Link href="/pantalla9">Principal</Link>
+                     <Link href="/pantalla10">Perfil</Link>
+                    <Link href="">Préstamos</Link>
 
                     <footer>
                     

@@ -2,13 +2,18 @@ import Link  from "next/link"
 import Head from "next/head"
 import Layout from "./componentes/Layout"
 import Layout4 from "./componentes/Layout4"
+import { useAuth } from './context/demo'; // Importa el contexto de autenticación
 const Index2 = () => 
 {
+  const { state } = useAuth();
+  const user = state.user;
+  const SALUDO = user ? `Hola, ${user.nombres}` : 'Hola';
+  console.log('User:', user); 
   return ( <Layout content ={
        <>
            <div id= "cuerpo">
         
-               <p className="Bienvenido">Hola Valeria</p>
+               <p className="Bienvenido">{SALUDO}</p>
                <hr/>
                <div id="FormularioY">
                <div id = "FondoY">

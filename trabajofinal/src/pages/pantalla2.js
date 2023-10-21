@@ -4,6 +4,7 @@ import Layout from './componentes/Layout.js';
 import datos from './json/archivo.json';
 import { useRouter } from "next/router";
 import reservas from '../../public/reserva.json';
+import { useAuth } from './context/demo'; // Importa el contexto de autenticación
 
 function App() {
   // Obtén las últimas reservas
@@ -11,13 +12,17 @@ function App() {
 
   // Fusiona las reservas con los datos de los libros
   const librosMasPedidos = fusionarDatos(reservas, datos);
+  const { state } = useAuth();
+  const user = state.user;
+  const welcomeMessage = user ? `Bienvenido, ${user.nombres}` : 'Bienvenido';
+  console.log('User:', user); 
 
   return (
-    <Layout
+    <Layout 
       content={
         <div>
           <div id="cuerpo">
-            <p className="Bienvenido">Bienvenida,Valeria</p>
+            <p className="Bienvenido">{welcomeMessage}</p>
             <hr />
             <br />
             <p1>Últimas reservas</p1>

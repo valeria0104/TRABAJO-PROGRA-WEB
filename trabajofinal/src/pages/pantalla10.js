@@ -2,78 +2,27 @@ import Link  from "next/link"
 import Head from "next/head"
 import Layout1 from "./componentes/Layout1"
 import Layout2 from "./componentes/Layout2"
-import { useUser } from './context/demo';
+import { useAuth } from './context/demo';
 import { useRouter } from 'next/router';
-
-
-
-import React, { useState, useEffect } from 'react';
-
-import usuarioData from "./json/usuario.json"; 
-
+import { useEffect } from 'react';
 
 const Index1 = () => 
 {
-
-const { currentUser } = useUser();
-  const [userData, setUserData] = useState({
-    nombres: '',
-    apellidos: '',
-    tipodoc: '',
-    numerodoc: '',
-    correo: '',
-    tipo: '',
-  });
-  // En tu componente de cliente (por ejemplo, Index1.js)
-
-const handleEditData = async (e) => {
-  e.preventDefault();
-
-  // Crea un objeto con los datos del usuario a actualizar
-  const data = {
-    correo: userData.correo,
-    nombres: userData.nombres,
-    apellidos: userData.apellidos,
-    tipodoc: userData.tipodoc,
-    numerodoc: userData.numerodoc,
-  };
-
-  // Realiza una solicitud POST a la ruta API en el servidor
-  try {
-    const response = await fetch('/api/editarUsuario', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.status === 200) {
-      // Los datos se actualizaron correctamente
-      console.log('Datos actualizados con éxito');
-    } else {
-      // Manejar errores o respuestas no exitosas
-      const data = await response.json();
-      console.error(data.message);
-    }
-  } catch (error) {
-    console.error('Error al realizar la solicitud:', error);
-  }
-};
-
+  /* cambio*/
+  const { state } = useAuth();
+  const user = state.user; 
+  const router = useRouter();
+///SOLO ES PARA VERIFICAR LA AUTENTICACION --> SI NO HAY ME MANDA A INICIO 
   useEffect(() => {
-    if (currentUser) {
-      setUserData({
-        nombres: currentUser.nombres,
-        apellidos: currentUser.apellidos,
-        tipodoc: currentUser.tipodoc,
-        numerodoc: currentUser.numerodoc,
-        correo: currentUser.correo,
-        tipo: currentUser.tipo,
-      });
+    console.log('User:', user); 
+    if (!user) {
+      router.push("/");
+      console.log('Redirigiendo a /index.js'); 
     }
-  }, [currentUser]);
+  }, [user, router]);
+  /////
 
+  /*cambio*/
   return ( <Layout1 content ={
        <>
            <div id= "cuerpo">
@@ -92,25 +41,25 @@ const handleEditData = async (e) => {
                <form id= "formulario1" action="#" method="get">
                <ul id="formul">
 
-               <li id= "formil"><label id="label4"><span className="resaltado">Nombres:</span></label>
-               <input type="text" className="input-box1" id="op3" name="n3" value= {userData.nombres}    onChange={(e) => setUserData({ ...userData, nombres: e.target.value })} />
+               <li id="formil"><label id="label4"><span className="resaltado">Nombres: {user && user.nombres} </span></label>
+               <input type="text" className="input-box1" id="op3" name="n3" />
                 </li>  
 
 
-                <li id= "formil"><label id="label6"><span className="resaltado">Tipo de Documento:</span></label>
+                <li id="formil"><label id="label6"><span className="resaltado">Tipo de Documento:</span></label>
                <input type="text" className="input-box1" id="op4" name="n4"/>
                 </li>  
 
-                <li id= "formil"><label id="label4"><span className="resaltado">Apellidos:</span></label>
+                <li id="formil"><label id="label4"><span className="resaltado">Apellidos:</span></label>
                <input type="text" className="input-box1" id="op5" name="n5"/>
                 </li>  
 
-                <li id= "formil" ><label id="label5"><span className="resaltado">Número de Documento:</span></label>
+                <li id="formil" ><label id="label5"><span className="resaltado">Número de Documento:</span></label>
                <input type="text" className="input-box1" id="op6" name="n6"/>
                 </li>
                 </ul>  
                   <div className="buttons">
-                   <input type="submit" value="GUARDAR" className="submit-button" onClick={handleEditData}/> 
+                   <input type="submit" value="GUARDAR" className="submit-button"/> 
                  </div>
                </form>
 

@@ -4,19 +4,22 @@ import usuarioData from './json/usuario.json';
 import React, { useState } from "react";
 import { handleLogin1 } from './funciones';
 import { useRouter } from 'next/router';
-import { useUser } from './context/demo'; ///cambio
+import { useAuth } from './context/demo';
 
 
 
 const Index = () => {
-  const { loginUser } = useUser();///cambio
 
-  const router = useRouter(); 
+
+  const router = useRouter();
+  const { dispatch } = useAuth();
 
   const [formData, setFormData] = useState({
     correo: "",
     contrasena: "",
   });
+  
+
 
 
   const handleSubmit = (e) => {
@@ -24,6 +27,7 @@ const Index = () => {
     const usuarioEncontrado = handleLogin1(formData, usuarioData);
 
     if (usuarioEncontrado) {
+      dispatch({ type: 'LOGIN', payload: usuarioEncontrado });
       if (usuarioEncontrado.tipo === 1) {
         // Redirecciona al usuario tipo 1 a pantalla2.js
  
@@ -75,11 +79,12 @@ const Index = () => {
         </ul>    
 
         <div className="buttons">
-        <input type="button" value="Registro usuario" className="registro-button" onClick={handleRegistroUsuario}/> <t></t>
+        <input type="button" value="Registro usuario" className="registro-button" onClick={handleRegistroUsuario}/>
         <input type="submit" value="Ingresar" className="login-button" onClick={handleSubmit}/>
         </div>
 
     </form>
+    
 
     </div>
  

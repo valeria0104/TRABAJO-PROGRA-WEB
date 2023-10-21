@@ -2,10 +2,19 @@ import Link  from "next/link"
 import Head from "next/head"
 import Layout1 from "./componentes/Layout1"
 import Layout2 from "./componentes/Layout2"
-
-const Index1 = () => <Layout1 content =
+import { useAuth } from './context/demo';
+const Index1 = () => 
 {
-  <>
+   /* cambio*/
+   const { state } = useAuth();
+   const user = state.user; 
+
+
+ 
+
+  return (
+<Layout1 content = 
+{
 
 <div id= "cuerpo">
 <p className="Bienvenido">Mi Perfil</p>
@@ -23,7 +32,7 @@ const Index1 = () => <Layout1 content =
 
     <form id= "formulario1" action="#" method="get">
     <ul id="formul">
-    <li id= "formil"><label id="label4"><span className="resaltado">Correo:</span></label>
+    <li id= "formil"><label id="label4"><span className="resaltado">Correo: {user && user.correo}</span></label>
                 <input type="text" className="input-box1" id="op7" name="n7"/>
     </li>  
     <li id= "formil"><label id="label7"><span className="resaltado">Contraseña:</span></label>
@@ -49,7 +58,7 @@ const Index1 = () => <Layout1 content =
 
 </div>
 
-  </>
-}></Layout1>
+
+}></Layout1>)}
 
 export default Index1

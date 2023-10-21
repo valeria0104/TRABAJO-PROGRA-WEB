@@ -16,9 +16,9 @@ export default props => (
                         <img src="usuario.png" alt="" className="usuario"/></a>
 
                     <section id="menu">
-                        <a href="/pantalla2">Inicio</a>
-                        <a href="/pantalla3">Perfil</a>
-                        <a href="/pantalla6">Biblioteca</a>
+                        <Link href="/pantalla2">Inicio</Link>
+                        <Link href="/pantalla3">Perfil</Link>
+                        <Link href="/pantalla6">Biblioteca</Link>
                         <footer>
                             <p><strong>SAC v1 0.1 &copy; - alpha</strong></p>
                         </footer>
