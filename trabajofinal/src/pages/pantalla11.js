@@ -32,11 +32,11 @@ const Index1 = () =>
 
     <form id= "formulario1" action="#" method="get">
     <ul id="formul">
-    <li id= "formil"><label id="label4"><span className="resaltado">Correo: {user && user.correo}</span></label>
-                <input type="text" className="input-box1" id="op7" name="n7"/>
+    <li id= "formil"><label id="label4"><span className="resaltado">Correo: </span></label>
+                <input type="text" className="input-box1" id="op7" name="n7" value ={user && user.correo}/>
     </li>  
     <li id= "formil"><label id="label7"><span className="resaltado">Contraseña:</span></label>
-                <input  type="text" className="input-box1" id="op8" name="n8"/>
+                <input  type="text" className="input-box1" id="op8" name="n8" value ={user && user.contrasena}/>
     </li>  
     </ul>
     <div className="buttons">

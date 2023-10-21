@@ -41,21 +41,21 @@ const Index1 = () =>
                <form id= "formulario1" action="#" method="get">
                <ul id="formul">
 
-               <li id="formil"><label id="label4"><span className="resaltado">Nombres: {user && user.nombres} </span></label>
-               <input type="text" className="input-box1" id="op3" name="n3" />
+               <li id="formil"><label id="label4"><span className="resaltado">Nombres:  </span></label>
+               <input type="text" className="input-box1" id="op3" name="n3" value={user && user.nombres}/>
                 </li>  
 
 
                 <li id="formil"><label id="label6"><span className="resaltado">Tipo de Documento:</span></label>
-               <input type="text" className="input-box1" id="op4" name="n4"/>
+               <input type="text" className="input-box1" id="op4" name="n4" value={user && user.tipodoc}/>
                 </li>  
 
                 <li id="formil"><label id="label4"><span className="resaltado">Apellidos:</span></label>
-               <input type="text" className="input-box1" id="op5" name="n5"/>
+               <input type="text" className="input-box1" id="op5" name="n5" value={user && user.apellidos}/>
                 </li>  
 
                 <li id="formil" ><label id="label5"><span className="resaltado">Número de Documento:</span></label>
-               <input type="text" className="input-box1" id="op6" name="n6"/>
+               <input type="text" className="input-box1" id="op6" name="n6" value={user && user.numerodoc}/>
                 </li>
                 </ul>  
                   <div className="buttons">
