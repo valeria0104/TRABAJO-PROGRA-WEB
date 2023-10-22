@@ -11,8 +11,8 @@ export default props => (
                 <nav id="nav1">
                 <div className="menu-button" onClick={MenuDesplegable}>&#9776;</div>
                     <h1>Sistema de biblioteca</h1>
-                    <a href="/pantalla9">
-                        <img src="usuario.png" alt="" className="usuario"/></a>
+                    <Link href="/pantalla9">
+                        <img src="usuario.png" alt="" className="usuario"/></Link>
                   
                     <section id="menu">
                     <Link href="/pantalla9">Principal</Link>

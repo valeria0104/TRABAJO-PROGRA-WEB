@@ -21,11 +21,16 @@ h1 {
  
   
 }
-a{
+/*le puse el# */
+#a1{
     max-width: 200px;
     display: block;
-    overflow: hidden;
+  
 }
+/*
+a.overflow-hidden {
+    overflow: hidden;
+}*/
 .usuario{
   float: right;
   width: 40px;

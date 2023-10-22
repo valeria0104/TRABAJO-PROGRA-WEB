@@ -57,7 +57,7 @@ const Busqueda = () => {
             <div className="Librooo">
               <h1>Buscar Libros</h1>
               <p id="nuevorecurso">
-                <Link href="/pantalla8">Añadir un nuevo recurso</Link>
+                <Link id= "a1" href="/pantalla8">Añadir un nuevo recurso</Link>
               </p>
             </div>
             <hr />
