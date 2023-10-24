@@ -52,7 +52,7 @@ const handleUpdateUser = async (e) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...formData, correo: user.correo}),
+      body: JSON.stringify({ ...formData, id: user.id}),
     });
 
     if (response.ok) {

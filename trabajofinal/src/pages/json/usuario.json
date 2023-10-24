@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "nombres": "Valeria",
     "apellidos": "Vega Herrera",
     "tipodoc": "DNI",
@@ -9,12 +10,13 @@
     "contrasena": "valeria"
   },
   {
-    "nombres": "Abell1234",
-    "apellidos": "Delgado Romero",
+    "id": "2",
+    "nombres": "Abel",
+    "apellidos": "Delgado Romeroa",
     "tipodoc": "DNIIi",
     "numerodoc": "78283809",
-    "correo": "abel@gmail.com",
+    "correo": "abel@gmail.pe",
     "tipo": 2,
-    "contrasena": "abel"
+    "contrasena": "hola"
   }
 ]

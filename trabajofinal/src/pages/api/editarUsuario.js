@@ -1,42 +1,38 @@
-
-// Importa las bibliotecas necesarias
 import fs from 'fs';
 import path from 'path';
 
-// Ruta al archivo JSON que contiene los datos de los usuarios
 const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/usuario.json');
 
-// Función para actualizar los datos de un usuario
+console.log('Ruta del archivo JSON de usuarios:', usuariosFilePath);
 export default async function handler(req, res) {
   if (req.method === 'PUT') {
-    const { correo, nombres, apellidos, tipodoc, numerodoc } = req.body;
+    const { id, correo, contrasena, nombres, apellidos, tipodoc, numerodoc } = req.body;
 
     try {
-      // Lee el archivo JSON de usuarios
       const usuariosData = JSON.parse(fs.readFileSync(usuariosFilePath, 'utf8'));
 
-      // Encuentra al usuario que coincide con el correo proporcionado
-      const usuarioIndex = usuariosData.findIndex((usuario) => usuario.correo === correo);
+      const usuarioIndex = usuariosData.findIndex((usuario) => usuario.id === id);
 
       if (usuarioIndex === -1) {
         return res.status(404).json({ error: 'Usuario no encontrado' });
       }
 
-      // Actualiza los datos del usuario
+      // Actualiza los campos que se proporcionan en el objeto
       usuariosData[usuarioIndex] = {
         ...usuariosData[usuarioIndex],
-        nombres,
-        apellidos,
-        tipodoc,
-        numerodoc,
+        correo: correo || usuariosData[usuarioIndex].correo,
+        contrasena: contrasena || usuariosData[usuarioIndex].contrasena,
+        nombres: nombres || usuariosData[usuarioIndex].nombres,
+        apellidos: apellidos || usuariosData[usuarioIndex].apellidos,
+        tipodoc: tipodoc || usuariosData[usuarioIndex].tipodoc,
+        numerodoc: numerodoc || usuariosData[usuarioIndex].numerodoc,
       };
 
-      // Escribe los datos actualizados en el archivo JSON
-       await fs.writeFileSync(usuariosFilePath, JSON.stringify(usuariosData, null, 2));
+      await fs.writeFileSync(usuariosFilePath, JSON.stringify(usuariosData, null, 2));
 
-      return res.status(200).json({ message: 'Usuario actualizado correctamente' });
+      return res.status(200).json({ message: 'Datos de usuario actualizados correctamente' });
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
       return res.status(500).json({ error: 'Error en el servidor' });
     }
   }
