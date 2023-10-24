@@ -1,19 +1,20 @@
-[{
+[
+  {
     "nombres": "Valeria",
     "apellidos": "Vega Herrera",
-     "tipodoc":"DNI",
-     "numerodoc": "72915768",
-     "correo": "vale@gmail.com",
-     "tipo" :1,
-     "contrasena":"valeria"
-},
-
-{
-    "nombres": "Abel",
+    "tipodoc": "DNI",
+    "numerodoc": "72915768",
+    "correo": "vale@gmail.com",
+    "tipo": 1,
+    "contrasena": "valeria"
+  },
+  {
+    "nombres": "Abell1234",
     "apellidos": "Delgado Romero",
-     "tipodoc":"DNI",
-     "numerodoc": "78283809",
-     "correo": "abel@gmail.com",
-     "tipo" :2,
-     "contrasena":"abel"
-}]
+    "tipodoc": "DNIIi",
+    "numerodoc": "78283809",
+    "correo": "abel@gmail.com",
+    "tipo": 2,
+    "contrasena": "abel"
+  }
+]

@@ -11,19 +11,11 @@ import { useState, useEffect } from 'react';
 const Index1 = () => 
 {
   /* cambio*/
-
-  const { state } = useAuth();
+ 
+  const { state} = useAuth();
   const user = state.user; 
   const router = useRouter();
-///SOLO ES PARA VERIFICAR LA AUTENTICACION --> SI NO HAY ME MANDA A INICIO 
-  useEffect(() => {
-    console.log('User:', user); 
-    if (!user) {
-      router.push("/");
-      console.log('Redirigiendo a /index.js'); 
-    }
-  }, [user, router]);
-  /////
+
   const [formData, setFormData] = useState({}); // Estado para almacenar los datos del formulario
 
   useEffect(() => {
@@ -48,7 +40,9 @@ const Index1 = () =>
     }));
   };
 ///////
-const handleUpdateUser = async () => {
+const handleUpdateUser = async (e) => {
+  e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
+
   try {
     console.log('Datos a enviar al servidor:', formData);
 
@@ -66,7 +60,8 @@ const handleUpdateUser = async () => {
       const updatedUser = await response.json();
       console.log('Respuesta del servidor:', updatedUser);
       // Actualiza la variable user con los datos actualizados
-      state.setUser(updatedUser);
+ 
+    
       alert('Datos de usuario actualizados correctamente');
     } else {
       // Error al actualizar
@@ -115,7 +110,7 @@ const handleUpdateUser = async () => {
                 </li>
                 </ul>  
                   <div className="buttons">
-                  <button onClick={handleUpdateUser} className="submit-button">Guardar</button>
+                  <button type="button" onClick={handleUpdateUser} className="submit-button">Guardar</button>
                  </div>
                </form>
 

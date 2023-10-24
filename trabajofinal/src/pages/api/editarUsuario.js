@@ -1,9 +1,10 @@
+
 // Importa las bibliotecas necesarias
 import fs from 'fs';
 import path from 'path';
 
 // Ruta al archivo JSON que contiene los datos de los usuarios
-const usuariosFilePath = path.join(process.cwd(), './json/usuario.json');
+const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/usuario.json');
 
 // Función para actualizar los datos de un usuario
 export default async function handler(req, res) {
@@ -31,10 +32,11 @@ export default async function handler(req, res) {
       };
 
       // Escribe los datos actualizados en el archivo JSON
-      fs.writeFileSync(usuariosFilePath, JSON.stringify(usuariosData, null, 2));
+       await fs.writeFileSync(usuariosFilePath, JSON.stringify(usuariosData, null, 2));
 
       return res.status(200).json({ message: 'Usuario actualizado correctamente' });
     } catch (error) {
+      console.log(error.message)
       return res.status(500).json({ error: 'Error en el servidor' });
     }
   }
