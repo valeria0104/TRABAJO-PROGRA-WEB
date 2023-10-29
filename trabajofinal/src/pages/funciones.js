@@ -43,12 +43,25 @@ export function buscarOpcionesPorCategoria(categoria) {
     return opcionesUnicas;
 }
 export const handleLogin1 = (formData, usuarioData) => {
-  const correo = formData.correo;
-  const contrasena = formData.contrasena;
+    const correo = formData.correo;
+    const contrasena = formData.contrasena;
+  
+    // Supongamos que los datos de usuario están en un objeto con propiedades de usuario
+    // Debes adaptar esto según la estructura real de tus datos
+    const usuarioEncontrado = Object.values(usuarioData).find(
+      (usuario) => usuario.correo === correo && usuario.contrasena === contrasena
+    );
+  
+    return usuarioEncontrado;
+  };
+////IMAGEN 
+export function abrirCuadroSeleccionImagen(handleImageUpload) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => handleImageUpload(e.target.files[0]);
+    input.click();
+  }
 
-  const usuarioEncontrado = usuarioData.find(
-    (usuario) => usuario.correo === correo && usuario.contrasena === contrasena
-  );
-
-  return usuarioEncontrado;
-};
+ 
+  //////
