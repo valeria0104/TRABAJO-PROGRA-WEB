@@ -11,13 +11,13 @@
   },
   {
     "id": "2",
-    "nombres": "Abel",
-    "apellidos": "Delgado Romeroa",
+    "nombres": "Abelardo1",
+    "apellidos": "Delgado Romero",
     "tipodoc": "DNI",
     "numerodoc": "78283809",
     "correo": "abel@gmail.com",
     "tipo": 2,
     "contrasena": "abel",
-    "imagenPerfil": "/fotosUsuarios/user2.png"
+    "imagenPerfil": "/fotosUsuarios/user.png"
   }
 ]

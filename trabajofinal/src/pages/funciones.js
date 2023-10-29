@@ -1,5 +1,4 @@
 import datos from './json/archivo.json'
-import usuarioData from "./json/usuario.json";
 import { useRouter } from "next/router"; 
 
 function MenuDesplegable() {
@@ -55,12 +54,26 @@ export const handleLogin1 = (formData, usuarioData) => {
     return usuarioEncontrado;
   };
 ////IMAGEN 
-export function abrirCuadroSeleccionImagen(handleImageUpload) {
-    const input = document.createElement('input');
+export function abrirCuadroSeleccionImagen() {
+   /* const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
     input.onchange = (e) => handleImageUpload(e.target.files[0]);
-    input.click();
+    input.click();*/
+
+    const file = document.getElementById('foto');
+    const img = document.getElementById('imagen')
+    file.addEventListener('change', e => {
+        if(e.target.files[0]){
+            const reader = new FileReader(); 
+            reader.onload= function(e) {
+            img.src= e.target.result;
+            }
+            reader.readAsDataURL(e.target.files[0])
+        }else{
+            e.preventDefault();
+        }
+    })
   }
 
  

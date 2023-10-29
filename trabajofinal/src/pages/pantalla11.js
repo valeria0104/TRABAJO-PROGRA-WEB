@@ -83,12 +83,14 @@ const handleUpdateUser = async (e) => {
     <Layout2 /> 
 
     <div className="contenedor">
-    <aside id= "imagen1">
-    <img src={formData.imagenPerfil} alt={`Imagen de ${formData.nombres}`} className="imagen"></img>
-    <button onClick={() => abrirCuadroSeleccionImagen()}>Cambiar Imagen</button>
+    <aside id="imagen1">
+               <img src={formData.imagenPerfil} id= "imagen" alt={`Imagen de ${formData.nombres}`} className="imagen"></img>
+               <label htmlFor="foto" id= "fotito">Cambiar Imagen</label>
+                <input type="file" name="foto" id="foto" accept="image/*" onClick={abrirCuadroSeleccionImagen }/>
+               </aside>
         
 
-    </aside>
+    
 
     <form id= "formulario1" action="#" method="get">
     <ul id="formul">

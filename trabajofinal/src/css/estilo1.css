@@ -241,4 +241,18 @@ transform: translate(1%);
         margin-bottom: 10px; 
 
     }
-   
+   #foto{
+    display: none;
+   }
+
+   #fotito {
+    display: block; /* Coloca el label en una nueva línea */
+    text-align: center;
+    color: var(--m-3-sys-light-primary, #6750A4);
+    border-radius: 200px;
+    border: 1px solid var(--m-3-sys-light-outline, #79747E);
+    width: 50%;
+    font-weight: bold;
+    font-family: Roboto;
+    transform: translate(20%);
+  }
