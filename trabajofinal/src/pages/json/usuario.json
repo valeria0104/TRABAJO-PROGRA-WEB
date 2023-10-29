@@ -13,10 +13,11 @@
     "id": "2",
     "nombres": "Abel",
     "apellidos": "Delgado Romeroa",
-    "tipodoc": "DNIIi",
+    "tipodoc": "DNI",
     "numerodoc": "78283809",
-    "correo": "abel@gmail.pe",
+    "correo": "abel@gmail.com",
     "tipo": 2,
-    "contrasena": "hola"
+    "contrasena": "abel",
+    "imagenPerfil": "/fotosUsuarios/user2.png"
   }
 ]

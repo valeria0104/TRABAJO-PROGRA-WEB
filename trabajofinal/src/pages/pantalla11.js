@@ -5,6 +5,7 @@ import Layout2 from "./componentes/Layout2"
 import { useAuth } from './context/demo'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import { abrirCuadroSeleccionImagen } from './funciones';
 const Index1 = () => 
 {
    /* cambio*/
@@ -21,6 +22,7 @@ const Index1 = () =>
       setFormData({
         correo: user.correo,
         contrasena: user.contrasena,
+        imagenPerfil: user.imagenPerfil, 
 
       });
     }
@@ -82,7 +84,8 @@ const handleUpdateUser = async (e) => {
 
     <div className="contenedor">
     <aside id= "imagen1">
-    <img src="pant10.png" alt="Chico estudiando" className="imagen"></img>
+    <img src={formData.imagenPerfil} alt={`Imagen de ${formData.nombres}`} className="imagen"></img>
+    <button onClick={() => abrirCuadroSeleccionImagen()}>Cambiar Imagen</button>
         
 
     </aside>

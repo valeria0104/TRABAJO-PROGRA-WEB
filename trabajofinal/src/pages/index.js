@@ -1,7 +1,6 @@
 import Link  from "next/link"
 import Head from "next/head"
-import usuarioData from './json/usuario.json'; 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { handleLogin1 } from './funciones';
 import { useRouter } from 'next/router';
 import { useAuth } from './context/demo';
@@ -20,10 +19,26 @@ const Index = () => {
   });
   
 
+  const [usuarioData, setUsuarioData] = useState([]);
+  useEffect(() => {
+    // Cargar los datos de usuario desde la API
+    fetch('/api/leerUsuario')
+      .then(response => response.json())
+      .then(data => {
+        setUsuarioData(data);
 
+      })
+      .catch(error => {
+        console.error('Error al cargar datos de usuario', error);
+ 
+      });
+  }, []);
+
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+   
     const usuarioEncontrado = handleLogin1(formData, usuarioData);
 
     if (usuarioEncontrado) {
