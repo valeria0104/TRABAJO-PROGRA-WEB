@@ -1,16 +1,51 @@
 import Link from "next/link";
 import Head from "next/head";
 import Layout from './componentes/Layout.js';
-import datos from './json/archivo.json';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
-import reservas from '../../public/reserva.json';
+import datos from './json/archivo.json';
 
 function App() {
-  // Obtén las últimas reservas
-  const librosAMostrar = reservas.slice(-5);
+  const [reservas, setReservas] = useState([]);
+  const [librosAMostrar, setLibrosAMostrar] = useState([]);
+  const [librosMasPedidos, setLibrosMasPedidos] = useState([]);
 
-  // Fusiona las reservas con los datos de los libros
-  const librosMasPedidos = fusionarDatos(reservas, datos);
+  // Efecto para cargar las reservas al montar el componente
+  useEffect(() => {
+    const obtenerReservas = async () => {
+      try {
+        const response = await fetch('/api/reservas');
+        const data = await response.json();
+        setReservas(data);
+
+        // Obtén las últimas reservas
+        const ultimasReservas = data.slice(-5);
+        setLibrosAMostrar(ultimasReservas);
+
+        // Contar la cantidad de pedidos por libro
+        const pedidosPorLibro = {};
+        data.forEach((libro) => {
+          pedidosPorLibro[libro.titulo] = (pedidosPorLibro[libro.titulo] || 0) + 1;
+        });
+
+        // Ordenar los libros por la cantidad de pedidos en orden descendente
+        const librosMasPedidos = Object.keys(pedidosPorLibro)
+          .map((titulo) => ({
+            titulo,
+            pedidos: pedidosPorLibro[titulo],
+          }))
+          .sort((a, b) => b.pedidos - a.pedidos)
+          .slice(0, 10);
+
+        setLibrosMasPedidos(librosMasPedidos);
+      } catch (error) {
+        console.error('Error al obtener las reservas:', error);
+      }
+    };
+
+    obtenerReservas();
+  }, []);
+
 
   return (
     <Layout
@@ -31,11 +66,11 @@ function App() {
                   <div className="cuadrado_letras">
                     <p>
                       <a href="pantalla3.html">{libro.titulo}</a>
-                      18/09/2023 08:00 am
+                      {libro.fechaReserva}
                     </p>
                   </div>
                   <div className="cuadrado_libro">
-                    <a href="pantalla3.html">
+                    <a>
                       <img src={libro['imagen-portada-url']} height="100px" />
                     </a>
                   </div>
@@ -46,7 +81,7 @@ function App() {
             <p1>Los más pedidos</p1>
             <br /><br />
             <section className="cuerpo1">
-              {librosMasPedidos.map((libro, index) => (
+            {librosMasPedidos.map((libro, index) => (
                 <div key={index} className="cuadrado">
                   <div className="cuadrado_img">
                     <img src="foto_usuario.png" alt="" height="40px" />
@@ -54,14 +89,14 @@ function App() {
                   <div className="cuadrado_letras">
                     <p>
                       <a href="pantalla3.html">{libro.titulo}</a>
-                      18/09/2023 08:00 am
+                      {` Pedidos: ${libro.pedidos}`}
+
                     </p>
                   </div>
                   <div id="imagen_page2">
                     <div className="cuadrado_libro">
-                      <a href="pantalla3.html">
-                        <img src={libro['imagen-portada-url']} height="100px" />
-                      </a>
+                      <a >
+                      <img src={datos.find((d) => d.titulo === libro.titulo)['imagen-portada-url']} height="100px" /></a>
                     </div>
                   </div>
                 </div>
@@ -73,25 +108,4 @@ function App() {
     />
   );
 }
-
-function fusionarDatos(reservas, libros) {
-  // Crear un objeto para rastrear las veces que se pide cada libro
-  const pedidos = {};
-  reservas.forEach((libro) => {
-    pedidos[libro.titulo] = (pedidos[libro.titulo] || 0) + 1;
-  });
-
-  // Fusionar los datos de libros con la cantidad de pedidos
-  const librosConPedidos = libros.map((libro) => ({
-    ...libro,
-    pedidos: pedidos[libro.titulo] || 0,
-  }));
-
-  // Ordenar los libros por la cantidad de pedidos en orden descendente
-  librosConPedidos.sort((a, b) => b.pedidos - a.pedidos);
-
-  // Devolver los 10 libros más pedidos
-  return librosConPedidos.slice(0, 10);
-}
-
 export default App;

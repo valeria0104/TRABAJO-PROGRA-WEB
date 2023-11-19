@@ -10,12 +10,18 @@ const Busqueda = () => {
   const [librosMostrar, setLibrosMostrar] = useState(12);
   const [selectedData, setSelectedData] = useState(null);
   const handleSave = (data) => {
+    const fechaActual = new Date();
+
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+  const fechaReserva = new Intl.DateTimeFormat('es-ES', options).format(fechaActual);
 
     const reservaData = {
       titulo: data.titulo,
       "imagen-portada-url": data["imagen-portada-url"],
       ISBN13: data.ISBN13,
       "url-compra": data["url-compra"],
+      fechaReserva: fechaReserva,
+
     };
 
     fetch('/api/guardarReserva', {
