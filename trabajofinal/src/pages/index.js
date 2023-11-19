@@ -1,29 +1,48 @@
 import Link  from "next/link"
 import Head from "next/head"
-import usuarioData from './json/usuario.json'; 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { handleLogin1 } from './funciones';
 import { useRouter } from 'next/router';
-import { useUser } from './context/demo'; ///cambio
+import { useAuth } from './context/demo';
 
 
 
 const Index = () => {
-  const { loginUser } = useUser();///cambio
 
-  const router = useRouter(); 
+
+  const router = useRouter();
+  const { dispatch } = useAuth();
 
   const [formData, setFormData] = useState({
     correo: "",
     contrasena: "",
   });
+  
 
+  const [usuarioData, setUsuarioData] = useState([]);
+  useEffect(() => {
+    // Cargar los datos de usuario desde la API
+    fetch('/api/leerUsuario')
+      .then(response => response.json())
+      .then(data => {
+        setUsuarioData(data);
+
+      })
+      .catch(error => {
+        console.error('Error al cargar datos de usuario', error);
+ 
+      });
+  }, []);
+
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+   
     const usuarioEncontrado = handleLogin1(formData, usuarioData);
 
     if (usuarioEncontrado) {
+      dispatch({ type: 'LOGIN', payload: usuarioEncontrado });
       if (usuarioEncontrado.tipo === 1) {
         // Redirecciona al usuario tipo 1 a pantalla2.js
  
@@ -37,6 +56,9 @@ const Index = () => {
       // Usuario no encontrado, muestra un mensaje de error
       alert("Usuario inválido");
     }
+  };
+  const handleRegistroUsuario = () => {
+    router.push("/pantalla7");
   };
 
  return (
@@ -72,11 +94,12 @@ const Index = () => {
         </ul>    
 
         <div className="buttons">
-        <input type="button" value="Registro usuario" className="registro-button"/> <t></t>
+        <input type="button" value="Registro usuario" className="registro-button" onClick={handleRegistroUsuario}/>
         <input type="submit" value="Ingresar" className="login-button" onClick={handleSubmit}/>
         </div>
 
     </form>
+    
 
     </div>
  

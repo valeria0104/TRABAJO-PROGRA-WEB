@@ -1,5 +1,4 @@
 import datos from './json/archivo.json'
-import usuarioData from "./json/usuario.json";
 import { useRouter } from "next/router"; 
 
 function MenuDesplegable() {
@@ -43,12 +42,39 @@ export function buscarOpcionesPorCategoria(categoria) {
     return opcionesUnicas;
 }
 export const handleLogin1 = (formData, usuarioData) => {
-  const correo = formData.correo;
-  const contrasena = formData.contrasena;
+    const correo = formData.correo;
+    const contrasena = formData.contrasena;
+  
+    // Supongamos que los datos de usuario están en un objeto con propiedades de usuario
+    // Debes adaptar esto según la estructura real de tus datos
+    const usuarioEncontrado = Object.values(usuarioData).find(
+      (usuario) => usuario.correo === correo && usuario.contrasena === contrasena
+    );
+  
+    return usuarioEncontrado;
+  };
+////IMAGEN 
+export function abrirCuadroSeleccionImagen() {
+   /* const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => handleImageUpload(e.target.files[0]);
+    input.click();*/
 
-  const usuarioEncontrado = usuarioData.find(
-    (usuario) => usuario.correo === correo && usuario.contrasena === contrasena
-  );
+    const file = document.getElementById('foto');
+    const img = document.getElementById('imagen')
+    file.addEventListener('change', e => {
+        if(e.target.files[0]){
+            const reader = new FileReader(); 
+            reader.onload= function(e) {
+            img.src= e.target.result;
+            }
+            reader.readAsDataURL(e.target.files[0])
+        }else{
+            e.preventDefault();
+        }
+    })
+  }
 
-  return usuarioEncontrado;
-};
+ 
+  //////

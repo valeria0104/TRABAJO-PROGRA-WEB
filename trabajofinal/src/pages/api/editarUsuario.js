@@ -1,32 +1,41 @@
 import fs from 'fs';
 import path from 'path';
 
-export default (req, res) => {
-  if (req.method === 'POST') {
-    // Obtiene los datos del usuario a actualizar desde el cuerpo de la solicitud
-    const { correo, nombres, apellidos, tipodoc, numerodoc } = req.body;
+const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/usuario.json');
 
-    // Lee el archivo JSON de usuarios
-    const rutaArchivo = path.resolve('./json/usuario.json');
-    const datos = JSON.parse(fs.readFileSync(rutaArchivo, 'utf-8'));
+console.log('Ruta del archivo JSON de usuarios:', usuariosFilePath);
+export default async function handler(req, res) {
+  if (req.method === 'PUT') {
+    const { id, correo, contrasena, nombres, apellidos, tipodoc, numerodoc } = req.body;
 
-    // Busca y actualiza los datos del usuario
-    const usuario = datos.find((user) => user.correo === correo);
+    try {
+      const usuariosData = JSON.parse(fs.readFileSync(usuariosFilePath, 'utf8'));
 
-    if (usuario) {
-      usuario.nombres = nombres;
-      usuario.apellidos = apellidos;
-      usuario.tipodoc = tipodoc;
-      usuario.numerodoc = numerodoc;
+      const usuarioIndex = usuariosData.findIndex((usuario) => usuario.id === id);
 
-      // Escribe los datos actualizados en el archivo JSON
-      fs.writeFileSync(rutaArchivo, JSON.stringify(datos, null, 2), 'utf-8');
+      if (usuarioIndex === -1) {
+        return res.status(404).json({ error: 'Usuario no encontrado' });
+      }
 
-      res.status(200).json({ message: 'Datos de usuario actualizados con éxito' });
-    } else {
-      res.status(404).json({ message: 'Usuario no encontrado' });
+      // Actualiza los campos que se proporcionan en el objeto
+      usuariosData[usuarioIndex] = {
+        ...usuariosData[usuarioIndex],
+        correo: correo || usuariosData[usuarioIndex].correo,
+        contrasena: contrasena || usuariosData[usuarioIndex].contrasena,
+        nombres: nombres || usuariosData[usuarioIndex].nombres,
+        apellidos: apellidos || usuariosData[usuarioIndex].apellidos,
+        tipodoc: tipodoc || usuariosData[usuarioIndex].tipodoc,
+        numerodoc: numerodoc || usuariosData[usuarioIndex].numerodoc,
+      };
+
+      await fs.writeFileSync(usuariosFilePath, JSON.stringify(usuariosData, null, 2));
+
+      return res.status(200).json({ message: 'Datos de usuario actualizados correctamente' });
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ error: 'Error en el servidor' });
     }
-  } else {
-    res.status(405).json({ message: 'Método no permitido' });
   }
-};
+
+  return res.status(405).json({ error: 'Método no permitido' });
+}

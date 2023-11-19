@@ -4,6 +4,8 @@ import Layout from './componentes/Layout.js';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import datos from './json/archivo.json';
+import { useRouter } from "next/router";
+import reservas from '../../public/reserva.json';
 
 function App() {
   const [reservas, setReservas] = useState([]);
@@ -46,13 +48,15 @@ function App() {
     obtenerReservas();
   }, []);
 
+  // Fusiona las reservas con los datos de los libros
+  const librosMasPedidos = fusionarDatos(reservas, datos);
 
   return (
-    <Layout
+    <Layout 
       content={
         <div>
           <div id="cuerpo">
-            <p className="Bienvenido">Bienvenida,Valeria</p>
+            <p className="Bienvenido">{welcomeMessage}</p>
             <hr />
             <br />
             <p1>Últimas reservas</p1>

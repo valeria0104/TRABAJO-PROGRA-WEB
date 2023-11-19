@@ -10,13 +10,13 @@ export default props => (
 
                 <nav id="nav1">
                 <div className="menu-button" onClick={MenuDesplegable}>&#9776;</div>
-                    <a href="/pantalla9">
-                        <img src="usuario.png" alt="" className="usuario"/></a>
+                    <Link href="/pantalla9">
+                        <img src="usuario.png" alt="" className="usuario"/></Link>
                   
                     <section id="menu">
-                    <a href="/pantalla9">Principal</a>
-                     <a href="/pantalla10">Perfil</a>
-                    <a href="">Biblioteca</a>
+                    <Link href="/pantalla9">Principal</Link >
+                     <Link href="/pantalla10">Perfil</Link>
+                    <Link href="">Biblioteca</Link>
 
                     <footer>
                     

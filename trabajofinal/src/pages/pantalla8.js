@@ -4,16 +4,21 @@ import Layout6 from './componentes/Layout6.js'
 import datos from './json/archivo.json'
 import { useRouter } from "next/router";
 import Layout5 from "./componentes/Layout5.js";
-const Index = () =>  <Layout6 content =
+import { useAuth } from './context/demo'; // Importa el contexto de autenticación
+const Index = () =>  
 
 {
-
-   
-  <>
+  const { state } = useAuth();
+  const user = state.user;
+  const SALUDO = user ? `Hola, ${user.nombres}` : 'Hola';
+  console.log('User:', user); 
+return (
+  <Layout6 content ={
+  
   <div>
   
             <div id="cuerpo">
-                <p className="Bienvenido">Hola, Valeria</p>
+                <p className="Bienvenido">{SALUDO}</p>
                 <hr/>
                 <br/>
                 <div id="Formulario">
@@ -54,9 +59,9 @@ const Index = () =>  <Layout6 content =
                 </div>
                 </div>
              
-</>
+
                     
-}></Layout6>
+}></Layout6>)}
 
 
 export default Index

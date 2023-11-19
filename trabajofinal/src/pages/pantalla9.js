@@ -4,18 +4,25 @@ import Layout7 from './componentes/Layout7.js'
 import datos from './json/archivo.json'
 import { useRouter } from "next/router";
 import reservas from '../../public/reserva.json';
+import { useAuth } from './context/demo'; // Importa el contexto de autenticación
+
 
 
 function App() {
     const librosMasPedidos = fusionarDatos(reservas, datos);
     const librosAMostrar2 = datos.slice(0,4);
-
+    
+    const { state } = useAuth();
+    const user = state.user;
+    const welcomeMessage = user ? `Bienvenido, ${user.nombres}` : 'Bienvenido';
+    console.log('User:', user); 
+   
     return (
-        <Layout7
+        <Layout7 
           content={
             <div>
               <div id="cuerpo">
-                <p className="Bienvenido">Bienvenido, Abel</p>
+                <p className="Bienvenido">{welcomeMessage}</p>
                 <hr />
                 <br />
                 <p1>Reservas más frecuentes</p1>

@@ -2,78 +2,82 @@ import Link  from "next/link"
 import Head from "next/head"
 import Layout1 from "./componentes/Layout1"
 import Layout2 from "./componentes/Layout2"
-import { useUser } from './context/demo';
+import { useAuth } from './context/demo';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { abrirCuadroSeleccionImagen } from './funciones';
 
-
-
-import React, { useState, useEffect } from 'react';
-
-import usuarioData from "./json/usuario.json"; 
 
 
 const Index1 = () => 
 {
+  /* cambio*/
+ 
+  const { state} = useAuth();
+  const user = state.user; 
+  const router = useRouter();
 
-const { currentUser } = useUser();
-  const [userData, setUserData] = useState({
-    nombres: '',
-    apellidos: '',
-    tipodoc: '',
-    numerodoc: '',
-    correo: '',
-    tipo: '',
-  });
-  // En tu componente de cliente (por ejemplo, Index1.js)
+  const [formData, setFormData] = useState({}); // Estado para almacenar los datos del formulario
 
-const handleEditData = async (e) => {
-  e.preventDefault();
+  useEffect(() => {
+    // Cargar los datos actuales del usuario en el formulario cuando se monte el componente
+    if (user) {
+      setFormData({
+        nombres: user.nombres,
+        apellidos: user.apellidos,
+        tipodoc: user.tipodoc,
+        numerodoc: user.numerodoc,
+        imagenPerfil: user.imagenPerfil, 
+      });
+    }
+  }, [user]);
 
-  // Crea un objeto con los datos del usuario a actualizar
-  const data = {
-    correo: userData.correo,
-    nombres: userData.nombres,
-    apellidos: userData.apellidos,
-    tipodoc: userData.tipodoc,
-    numerodoc: userData.numerodoc,
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log('Campo cambiado:', name, 'Nuevo valor:', value);
+    // Actualiza el estado de formData solo para el campo que cambió
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
+///////
 
-  // Realiza una solicitud POST a la ruta API en el servidor
+const handleUpdateUser = async (e) => {
+  e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
+
   try {
+    console.log('Datos a enviar al servidor:', formData);
+
+    // Realizar una solicitud PUT a la API para actualizar los datos del usuario
     const response = await fetch('/api/editarUsuario', {
-      method: 'POST',
-      body: JSON.stringify(data),
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ ...formData, id: user.id}),
     });
 
-    if (response.status === 200) {
-      // Los datos se actualizaron correctamente
-      console.log('Datos actualizados con éxito');
+    if (response.ok) {
+      // Actualización exitosa
+      const updatedUser = await response.json();
+      console.log('Respuesta del servidor:', updatedUser);
+      // Actualiza la variable user con los datos actualizados
+ 
+    
+      alert('Datos de usuario actualizados correctamente');
     } else {
-      // Manejar errores o respuestas no exitosas
-      const data = await response.json();
-      console.error(data.message);
+      // Error al actualizar
+      alert('No se pudo actualizar los datos del usuario');
     }
   } catch (error) {
-    console.error('Error al realizar la solicitud:', error);
+    console.error(error);
   }
 };
 
-  useEffect(() => {
-    if (currentUser) {
-      setUserData({
-        nombres: currentUser.nombres,
-        apellidos: currentUser.apellidos,
-        tipodoc: currentUser.tipodoc,
-        numerodoc: currentUser.numerodoc,
-        correo: currentUser.correo,
-        tipo: currentUser.tipo,
-      });
-    }
-  }, [currentUser]);
 
+
+  /*cambio*/
   return ( <Layout1 content ={
        <>
            <div id= "cuerpo">
@@ -86,31 +90,35 @@ const handleEditData = async (e) => {
 
                <div className="contenedor">
                <aside id="imagen1">
-               <img src="pant10.png" alt="Chico estudiando" className="imagen"></img>
+               <img src={formData.imagenPerfil} id= "imagen" alt={`Imagen de ${formData.nombres}`} className="imagen"></img>
+               <label htmlFor="foto" id= "fotito">Cambiar Imagen</label>
+                <input type="file" name="foto" id="foto" accept="image/*" onClick={abrirCuadroSeleccionImagen }/>
                </aside>
 
                <form id= "formulario1" action="#" method="get">
                <ul id="formul">
 
-               <li id= "formil"><label id="label4"><span className="resaltado">Nombres:</span></label>
-               <input type="text" className="input-box1" id="op3" name="n3" value= {userData.nombres}    onChange={(e) => setUserData({ ...userData, nombres: e.target.value })} />
+               <li id="formil"><label id="label4"><span className="resaltado">Nombres:  </span></label>
+               <input type="text" className="input-box1" id="nombres" name="nombres"   defaultValue={formData.nombres}
+  onChange={handleInputChange}
+  />
                 </li>  
 
 
-                <li id= "formil"><label id="label6"><span className="resaltado">Tipo de Documento:</span></label>
-               <input type="text" className="input-box1" id="op4" name="n4"/>
+                <li id="formil"><label id="label6"><span className="resaltado">Tipo de Documento:</span></label>
+               <input type="text" className="input-box1" id="tipodoc" name="tipodoc"  defaultValue={formData.tipodoc} onChange={handleInputChange}/>
                 </li>  
 
-                <li id= "formil"><label id="label4"><span className="resaltado">Apellidos:</span></label>
-               <input type="text" className="input-box1" id="op5" name="n5"/>
+                <li id="formil"><label id="label4"><span className="resaltado">Apellidos:</span></label>
+               <input type="text" className="input-box1" id="apellidos" name="apellidos"  defaultValue={formData.apellidos}   onChange={handleInputChange}/>
                 </li>  
 
-                <li id= "formil" ><label id="label5"><span className="resaltado">Número de Documento:</span></label>
-               <input type="text" className="input-box1" id="op6" name="n6"/>
+                <li id="formil" ><label id="label5"><span className="resaltado">Número de Documento:</span></label>
+               <input type="text" className="input-box1" id="numerodoc" name="numerodoc"  defaultValue={formData.numerodoc} onChange={handleInputChange} />
                 </li>
                 </ul>  
                   <div className="buttons">
-                   <input type="submit" value="GUARDAR" className="submit-button" onClick={handleEditData}/> 
+                  <button type="button" onClick={handleUpdateUser} className="submit-button">Guardar</button>
                  </div>
                </form>
 
