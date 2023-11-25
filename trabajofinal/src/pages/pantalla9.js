@@ -40,25 +40,20 @@ async function obtenerDatos(setLibrosMasPedidos, setLibrosAMostrar2) {
       const [hora, minuto] = libro.horaReserva.split(':');
       const fechaReserva = new Date(`${año}-${mes}-${dia}T${hora}:${minuto}:00Z`);
 
-      // Calcular la diferencia en días
       const diasRestantes = Math.floor((fechaReserva - hoy) / (1000 * 60 * 60 * 24));
 
-      // Si faltan menos de 20 días y más de 10, incluir el libro
       if (diasRestantes < 15) {
-        // Formatear la nueva fecha de reserva
         const nuevaFechaReserva = sumarDiasAFecha(libro.fechaReserva, 15).toLocaleString();
 
-        // Devolver el libro con la nueva fecha
         return {
           ...libro,
         };
       }
 
-      return null; // Si faltan 10 días o más, excluir el libro
+      return null;
     })
-    .filter(Boolean); // Filtrar libros nulos
+    .filter(Boolean);
 
-    // Setear los estados
     setLibrosMasPedidos(librosMasPedidos);
     setLibrosAMostrar2(librosAMostrar2);
   } catch (error) {
@@ -71,14 +66,12 @@ function App() {
   const user = state.user;
   const welcomeMessage = user ? `Bienvenido, ${user.nombres}` : 'Bienvenido';
 
-  // Utiliza los estados específicos de tu aplicación
   const [librosMasPedidos, setLibrosMasPedidos] = useState([]);
   const [librosAMostrar2, setLibrosAMostrar2] = useState([]);
 
   useEffect(() => {
     obtenerDatos(setLibrosMasPedidos, setLibrosAMostrar2);
-  }, []); // Asegúrate de agregar las dependencias necesarias en el array de dependencias si es necesario
-
+  }, []);
   return (
     <Layout7 
       content={
