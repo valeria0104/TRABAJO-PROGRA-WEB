@@ -73,7 +73,7 @@ function App() {
                     <p>
                       <a href="pantalla3.html">{libro.titulo}</a>
                       <br/>
-                      {libro.fechaReserva}
+                      {libro.fechaReserva} , {libro.horaReserva}
                     </p>
                   </div>
                   <div className="cuadrado_libro">
