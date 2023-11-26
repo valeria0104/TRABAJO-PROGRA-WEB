@@ -1,7 +1,8 @@
 import Layout from './componentes/Layout3.js';
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useRouter } from 'next/router';
+
 
 const PantallaReservas = () => {
   const [reservas, setReservas] = useState([]);
@@ -10,8 +11,7 @@ const PantallaReservas = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedISBN, setSelectedISBN] = useState(null);
   const [isCompleting, setIsCompleting] = useState(false);
-
-  
+  const router = useRouter();
 
   useEffect(() => {
     // Cargar las reservas desde el archivo JSON local
@@ -72,15 +72,11 @@ const PantallaReservas = () => {
     setSelectedDate(date);
   };
 
-  // Función para actualizar la fecha de reserva en una reserva existente
-function actualizarFechaReserva(ISBN13, nuevaFecha) {
+  function actualizarFechaReserva(ISBN13, nuevaFecha) {
     const reservaIndex = reservas.findIndex((reserva) => reserva.ISBN13 === ISBN13);
   
     if (reservaIndex !== -1) {
-      // Clona el objeto de reserva y actualiza la propiedad fechareserva
       const reservaActualizada = { ...reservas[reservaIndex], fechareserva: nuevaFecha };
-  
-      // Actualiza el arreglo de reservas con la reserva actualizada
       const nuevasReservas = [...reservas];
       nuevasReservas[reservaIndex] = reservaActualizada;
   
@@ -90,10 +86,6 @@ function actualizarFechaReserva(ISBN13, nuevaFecha) {
 
   const completarReserva = (ISBN13) => {
     if (selectedDate) {
-
-    console.log('ISBN13:', ISBN13);
-    console.log('selectedDate:', selectedDate);
-      // Realiza la solicitud PUT a la API para actualizar la reserva con la nueva fecha
       fetch(`/api/actualizarReserva/${ISBN13}`, {
         method: 'PUT',
         body: JSON.stringify({ fechareserva: selectedDate }),
@@ -103,9 +95,7 @@ function actualizarFechaReserva(ISBN13, nuevaFecha) {
       })
         .then((response) => {
           if (response.ok) {
-            // Actualiza la fecha de reserva en el estado local
             actualizarFechaReserva(ISBN13, selectedDate);
-  
             setSelectedDate(null);
             setSelectedISBN(null);
             setIsCompleting(false);
@@ -137,14 +127,6 @@ function actualizarFechaReserva(ISBN13, nuevaFecha) {
                 <p>ISBN: {reserva.ISBN13}</p>
                 <p>URL de Compra: {reserva["url-compra"]}</p>
                 <button onClick={() => eliminarReserva(reserva.ISBN13)}>Eliminar</button>
-                {isCompleting && selectedISBN === reserva.ISBN13 ? (
-                  <div>
-                    <DatePicker selected={selectedDate} onChange={handleDateChange} />
-                    <button onClick={() => completarReserva(reserva.ISBN13)}>Completar Reserva</button>
-                  </div>
-                ) : (
-                  <button onClick={() => separarLibro(reserva.ISBN13)}>Separar Libro</button>
-                )}
               </div>
             ))}
           </div>
@@ -163,7 +145,7 @@ function actualizarFechaReserva(ISBN13, nuevaFecha) {
           </div>
         )}
 
-        <button onClick={() => window.history.back()}>Regresar a Reservar de Libros</button>
+        <button onClick={() => router.push('/pantalla12')}>Regresar a Reservar de Libros</button>
       </>
     } />
   );
