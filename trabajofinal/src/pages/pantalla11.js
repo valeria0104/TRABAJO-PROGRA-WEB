@@ -5,7 +5,7 @@ import Layout2 from "./componentes/Layout2"
 import { useAuth } from './context/demo'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { abrirCuadroSeleccionImagen } from './funciones';
+
 const Index1 = () => 
 {
    /* cambio*/
@@ -85,9 +85,7 @@ const handleUpdateUser = async (e) => {
     <div className="contenedor">
     <aside id="imagen1">
                <img src={formData.imagenPerfil} id= "imagen" alt={`Imagen de ${formData.nombres}`} className="imagen"></img>
-               <label htmlFor="foto" id= "fotito">Cambiar Imagen</label>
-                <input type="file" name="foto" id="foto" accept="image/*" onClick={abrirCuadroSeleccionImagen }/>
-               </aside>
+    </aside>
         
 
     
@@ -100,6 +98,9 @@ const handleUpdateUser = async (e) => {
     <li id= "formil"><label id="label7"><span className="resaltado">Contraseña:</span></label>
                 <input  type="password" className="input-box1" id="contrasena" name="contrasena" defaultValue ={formData.contrasena}   onChange={handleInputChange}/>
     </li>  
+    <li id="formil" ><label id="label4"><span className="resaltado">Imagen:</span></label>
+                <input type="text" className="input-box1" id="imagenPerfil" name="imagenPerfil" defaultValue={formData.imagenPerfil} onChange={handleInputChange} />
+                </li>
     </ul>
     <div className="buttons">
     <button type="button" onClick={handleUpdateUser} className="submit-button">Guardar</button>

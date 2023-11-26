@@ -1,19 +1,14 @@
 [
     {
-        "formato": "Libro físico",
+       
         "autor": "Joyce dunbar",
-        "editorial": "Edebé",
         "categoria": "Infantil y juvenil",
-        "anio": "2007",
-        "idioma": "Español",
-        "nro-paginas": "104",
-        "encuadernacion": "Tapa blanda",
         "ISBN": "8423687570",
-        "ISBN13": "9788423687572",
-        "nro-edicion": "1",
+        "editorial": "Fondo editorial universidad césar vallejo",
         "imagen-portada-url": "https://images.cdn2.buscalibre.com/fit-in/180x180/1f/a6/1fa666e0f93fb0bc63c4c214188f3a46.jpg",
         "titulo": "Software la Superbabosa",
-        "url-compra": "https://www.buscalibre.pe/libro-software-la-superbabosa/9788423687572/p/2858249"
+        "descripcion": "sdasdasdasdasdas",
+        "cantidad" : 10
     },
     {
         "formato": "Libro físico",

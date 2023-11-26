@@ -6,7 +6,7 @@ const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/usuario.json')
 console.log('Ruta del archivo JSON de usuarios:', usuariosFilePath);
 export default async function handler(req, res) {
   if (req.method === 'PUT') {
-    const { id, correo, contrasena, nombres, apellidos, tipodoc, numerodoc } = req.body;
+    const { id, correo, contrasena, nombres, apellidos, tipodoc, numerodoc, imagenPerfil } = req.body;
 
     try {
       const usuariosData = JSON.parse(fs.readFileSync(usuariosFilePath, 'utf8'));
@@ -26,6 +26,7 @@ export default async function handler(req, res) {
         apellidos: apellidos || usuariosData[usuarioIndex].apellidos,
         tipodoc: tipodoc || usuariosData[usuarioIndex].tipodoc,
         numerodoc: numerodoc || usuariosData[usuarioIndex].numerodoc,
+        imagenPerfil: imagenPerfil || usuariosData[usuarioIndex].imagenPerfil
       };
 
       await fs.writeFileSync(usuariosFilePath, JSON.stringify(usuariosData, null, 2));
