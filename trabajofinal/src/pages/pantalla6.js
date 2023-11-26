@@ -10,14 +10,30 @@ const Busqueda = () => {
   const [librosMostrar, setLibrosMostrar] = useState(12);
   const [selectedData, setSelectedData] = useState(null);
   const handleSave = (data) => {
-
+    const fechaActual = new Date();
+  
+    // Add 15 days to the current date
+    const fechaFinal = new Date(fechaActual);
+    fechaFinal.setDate(fechaFinal.getDate() + 15);
+  
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const fechaReserva = new Intl.DateTimeFormat('es-ES', options).format(fechaActual);
+    const options2 = { hour: 'numeric', minute: 'numeric' };
+    const horaReserva = new Intl.DateTimeFormat('es-ES', options2).format(fechaActual);
+  
+    const options3 = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const fechaFinalFormatted = new Intl.DateTimeFormat('es-ES', options3).format(fechaFinal);
+  
     const reservaData = {
       titulo: data.titulo,
       "imagen-portada-url": data["imagen-portada-url"],
       ISBN13: data.ISBN13,
       "url-compra": data["url-compra"],
+      fechaReserva: fechaReserva,
+      horaReserva: horaReserva,
+      fechaFinal: fechaFinalFormatted, // Save the formatted date
     };
-
+  
     fetch('/api/guardarReserva', {
       method: 'PUT',
       body: JSON.stringify(reservaData),
@@ -28,7 +44,7 @@ const Busqueda = () => {
       .then((response) => {
         if (response.ok) {
           console.log('Reserva guardada correctamente en el archivo "reservas.json".');
-          setSelectedData(data); 
+          setSelectedData(data);
         } else {
           console.error('Error al guardar la reserva en el archivo "reservas.json".');
         }
@@ -37,7 +53,7 @@ const Busqueda = () => {
         console.error('Error al guardar la reserva en el archivo "reservas.json":', error);
       });
   };
-
+  
   useEffect(() => {
     const results = dato.filter((libro) =>
       libro.titulo.toLowerCase().includes(busqueda.toLowerCase())
