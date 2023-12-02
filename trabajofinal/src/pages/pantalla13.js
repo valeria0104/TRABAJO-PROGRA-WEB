@@ -1,5 +1,4 @@
 import Layout from './componentes/Layout3.js';
-import datos from './json/archivo.json';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -10,42 +9,43 @@ const Pantalla13 = () => {
   const { palabraclave, checkbox1, checkbox2, checkbox3, checkbox4, categorias } = router.query;
   const [opcionesSeleccionadas, setOpcionesSeleccionadas] = useState([]);
   const [reservas, setReservas] = useState([]);
+  const [libros, setLibros] = useState([]);
 
   const agregarReserva = (reserva) => {
     setReservas([...reservas, reserva]);
   };
   
 // Filtra los datos en función de las opciones seleccionadas y la palabra clave
-const opcionesFiltradas = datos.filter((opcion) => {
-  // Verificar si la propiedad "editorial" está definida y no es null
+const opcionesFiltradas = libros.filter((opcion) => {
   const tieneEditorial = opcion.editorial && opcion.editorial.toLowerCase().includes(palabraclave?.toLowerCase());
-
-  // Verificar si la propiedad "ISBN13" está definida y no es null
-  const tieneISBN13 = opcion.ISBN13 && opcion.ISBN13.toLowerCase().includes(palabraclave?.toLowerCase());
-
-  // Verificar si la categoría está incluida en las categorías seleccionadas
+  const tieneISBN = opcion.ISBN && opcion.ISBN.toLowerCase().includes(palabraclave?.toLowerCase()); // Cambiado a ISBN
   const categoriaSeleccionada = categorias && categorias.includes(opcion.categoria);
+  const alMenosUnCheckboxSeleccionado = checkbox1 || checkbox2 || checkbox3 || checkbox4;
 
-   // Verificar si al menos uno de los checkboxes está seleccionado
-   const alMenosUnCheckboxSeleccionado = checkbox1 || checkbox2 || checkbox3 || checkbox4;
-
-   return (
-    // Filtrar por categoría seleccionada si solo una categoría está seleccionada
+  return (
     (categorias && categorias.length === 1 && categoriaSeleccionada) ||
-    // Filtrar por categoría seleccionada y checkboxes si al menos un checkbox está seleccionado
     (categorias && categorias.length > 1 && categoriaSeleccionada && alMenosUnCheckboxSeleccionado) ||
-    // Filtrar por checkboxes si están seleccionados
     (!categorias && alMenosUnCheckboxSeleccionado &&
       ((checkbox1 && checkbox1 === 'titulo' && opcion.titulo.toLowerCase().includes(palabraclave?.toLowerCase())) ||
       (checkbox2 && checkbox2 === 'autor' && opcion.autor.toLowerCase().includes(palabraclave?.toLowerCase())) ||
       (checkbox3 && checkbox3 === 'editorial' && tieneEditorial) ||
-      (checkbox4 && checkbox4 === 'ISBN13' && tieneISBN13)))
+      (checkbox4 && checkbox4 === 'ISBN' && tieneISBN))) // Cambiado a ISBN
   );
 });
 
   const [paginaActual, setPaginaActual] = useState(1);
   const elementosPorPagina = 3;
 
+
+  useEffect(() => {
+    // Realiza la solicitud para obtener la lista de libros desde la API
+    fetch('/api/obtenerCategorias/libros')  // Asegúrate de que esta ruta sea correcta
+      .then((response) => response.json())
+      .then((data) => {
+        setLibros(data.libros);
+      })
+      .catch((error) => console.error('Error al obtener la lista de libros:', error));
+  }, []);
   
   useEffect(() => {
     if (categorias) {
@@ -80,24 +80,25 @@ const opcionesFiltradas = datos.filter((opcion) => {
       fechareserva: "", // Aquí se agrega una fecha en blanco
     };
     
-    // Realizar la solicitud para guardar la reserva en la API
-    fetch('/api/guardarReserva', {
-      method: 'PUT',
-      body: JSON.stringify(reservaData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log('Reserva guardada correctamente en la API.');
-        } else {
-          console.error('Error al guardar la reserva en la API.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error al guardar la reserva en la API:', error);
-      });
+// Realizar la solicitud para guardar la reserva en la API
+fetch('/api/reservas', {  // Cambia la ruta a /api/reservas
+  method: 'POST',  // Cambia el método a POST
+  body: JSON.stringify(reservaData),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+  .then((response) => {
+    if (response.ok) {
+      console.log('Reserva guardada correctamente en la API.');
+    } else {
+      console.error('Error al guardar la reserva en la API.');
+    }
+  })
+  .catch((error) => {
+    console.error('Error al guardar la reserva en la API:', error);
+  });
+
   };
 
   const totalPaginas = Math.ceil(opcionesFiltradas.length / elementosPorPagina);
