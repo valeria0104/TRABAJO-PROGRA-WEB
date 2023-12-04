@@ -1,7 +1,7 @@
 import Layout from './componentes/Layout3.js';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { elementosPorPagina } from './Index';
+import { elementosPorPagina } from './index';
 
 
 const pantalla12 = () => {
@@ -13,7 +13,7 @@ const pantalla12 = () => {
     const [errorMensaje, setErrorMensaje] = useState('');
     const [categorias, setCategorias] = useState([]);
   
-
+    const elementosPorPagina = 5;
 
     const handleBuscar = () => {
         const palabraclave = document.getElementById('palabraclave').value;
@@ -35,14 +35,12 @@ const pantalla12 = () => {
 
     const obtenerCategorias = async () => {
         try {
-            const response = await fetch('/api/obtenerCategorias');
-            console.log('Después de la llamada a la API');
+            const response = await fetch('/api/busqueda/categoria');
             if (response.ok) {
                 const data = await response.json();
-                const categorias = data.categorias.map((categoria) => categoria.categoria);
-                setCategorias(categorias);
+                setCategorias(data.categorias);
             } else {
-                const errorMessage = await response.text();  // Obtener el mensaje de error del cuerpo de la respuesta
+                const errorMessage = await response.text();
                 setErrorMensaje(`Error al obtener las categorías del backend: ${errorMessage}`);
             }
         } catch (error) {
@@ -50,7 +48,6 @@ const pantalla12 = () => {
             setErrorMensaje('Error al obtener las categorías del backend.');
         }
     };
-    
     
       // Llamar a obtenerCategorias al cargar el componente
       useEffect(() => {
@@ -63,28 +60,38 @@ const pantalla12 = () => {
     };
 
     const handleCategoriaChange = (e) => {
-        const nuevaCategoria = e.target.value;
-        console.log('Nueva categoría seleccionada:', nuevaCategoria);  // Agrega esta línea para imprimir en la consola
-        setCategoria(nuevaCategoria);
+        setCategoria(e.target.value);
     };
 
-    const handleEliminarOpcion = (opcion) => {
-        const opcionesActualizadas = opcionesSeleccionadas.filter((o) => o.id !== opcion.id);
-        setOpcionesSeleccionadas(opcionesActualizadas);
-    };
-
-    //NUEVO
     const handleSeleccionarCategoria = (categoria) => {
-        setOpcionesSeleccionadas((prevOpciones) => [...prevOpciones, categoria]);
+        const nuevaCategoria = { id: categoria, categoria };
+    
+        // Verificar si la categoría ya está presente en opcionesSeleccionadas
+        if (!opcionesSeleccionadas.some((c) => c.id === nuevaCategoria.id)) {
+            setOpcionesSeleccionadas((prevOpciones) => [...prevOpciones, nuevaCategoria]);
+        } else {
+            // Mostrar un mensaje de error o realizar alguna acción indicando que la categoría ya está seleccionada
+            console.warn('La categoría ya está seleccionada.');
+        }
     };
 
     const handleEliminarCategoria = (categoria) => {
         const opcionesActualizadas = opcionesSeleccionadas.filter((c) => c.id !== categoria.id);
         setOpcionesSeleccionadas(opcionesActualizadas);
     };
-    //NUEVO
 
+    const handlePaginaAnterior = () => {
+        setPaginaActual((prevPagina) => Math.max(prevPagina - 1, 1));
+    };
 
+    const handlePaginaSiguiente = () => {
+        setPaginaActual((prevPagina) => Math.min(prevPagina + 1, totalPages));
+    };
+    const totalPages = Math.ceil(categorias.length / elementosPorPagina);
+    const indexOfLastElement = paginaActual * elementosPorPagina;
+    const indexOfFirstElement = indexOfLastElement - elementosPorPagina;
+    const categoriasPaginaActual = categorias.slice(indexOfFirstElement, indexOfLastElement);
+    
     useEffect(() => {
         const checkbox1 = document.getElementById('checkbox1').checked ? 'titulo' : '';
         const checkbox2 = document.getElementById('checkbox2').checked ? 'autor' : '';
@@ -95,22 +102,7 @@ const pantalla12 = () => {
         router.replace({ pathname: '/pantalla12', query }, undefined, { shallow: true });
     }, [router]);
     
-    const totalPages = opcionesFiltradas ? Math.ceil(opcionesFiltradas.length / elementosPorPagina) : 0;
 
-
-    const handlePaginaAnterior = () => {
-        setPaginaActual((prevPagina) => Math.max(prevPagina - 1, 1));
-    };
-
-    const handlePaginaSiguiente = () => {
-        setPaginaActual((prevPagina) => Math.min(prevPagina + 1, totalPages));
-    };
-
-    const indexOfLastElement = paginaActual * elementosPorPagina;
-    const indexOfFirstElement = indexOfLastElement - elementosPorPagina;
-    const elementosPaginaActual = Array.isArray(opcionesFiltradas)
-        ? opcionesFiltradas.slice(indexOfFirstElement, indexOfLastElement)
-        : [];
 
     return (
         <Layout
@@ -140,19 +132,19 @@ const pantalla12 = () => {
                                         </li>
                                     </ul>
 
-                                    {Array.isArray(opcionesFiltradas) && opcionesFiltradas.length > 0 ? (
+                                    {Array.isArray(categoriasPaginaActual) && categoriasPaginaActual.length > 0 ? (
                                         <ul>
-                                            {opcionesFiltradas.map((categoria) => (
-                                                <li key={categoria.id}>
-                                                    {categoria.nombre}
+                                            {categoriasPaginaActual.map((categoria) => (
+                                                <li key={categoria}>
+                                                    {categoria}
                                                     <button onClick={() => handleSeleccionarCategoria(categoria)}>Seleccionar</button>
-                                                    <button onClick={() => handleEliminarCategoria(categoria)}>Eliminar</button>
                                                 </li>
                                             ))}
                                         </ul>
                                     ) : (
                                         <p>No hay categorías disponibles.</p>
                                     )}
+
 
                                     <div>
                                         <button onClick={handlePaginaAnterior} disabled={!opcionesFiltradas || paginaActual === 1}>
@@ -170,7 +162,7 @@ const pantalla12 = () => {
                                             {opcionesSeleccionadas.map((opcion) => (
                                                 <li key={opcion.id}>
                                                     {opcion.categoria}
-                                                    <button className="buttonX" onClick={() => obtenerCategorias(opcion)}>
+                                                    <button className="buttonX" onClick={() => handleEliminarCategoria(opcion)}>
                                                         x
                                                     </button>
                                                 </li>
