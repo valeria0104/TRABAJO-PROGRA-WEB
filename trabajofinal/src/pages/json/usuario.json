@@ -1,30 +1,24 @@
 [
- {
-  "id": 1,
-  "nombres": "Isabel",
-  "apellidos": "Vega Herrera",
-  "tipodoc": "DNI",
-  "numerodoc": "72915768",
-  "correo": "vale@gmail.com",
-  "tipo": 1,
-  "contrasena": "valeria",
-  "imagenPerfil": "https://tse4.mm.bing.net/th?id=OIP.e4UAkCNI9YOgGV3uQsVw8QHaKf&pid=Api&P=0&h=180",
-  "idioma": "español",
-  "prefijo": "srta",
-  "color": "verde"
- },
- {
-  "id": 2,
-  "nombres": "Abel",
-  "apellidos": "Delgado Romero",
-  "tipodoc": "DNI",
-  "numerodoc": "78283809",
-  "correo": "abel@gmail.com",
-  "tipo": 2,
-  "contrasena": "abel",
-  "imagenPerfil": "https://static.nationalgeographic.es/files/styles/image_3200/public/75552.ngsversion.1422285553360.jpg?w=1600&h=1067",
-  "idioma": "NaN",
-  "prefijo": "NaN",
-  "color": "NaN"
- }
+  {
+    "id": "1",
+    "nombres": "Valeria",
+    "apellidos": "Vega Herrera",
+    "tipodoc": "DNI",
+    "numerodoc": "72915768",
+    "correo": "vale@gmail.com",
+    "tipo": 1,
+    "contrasena": "valeria",
+    "imagenPerfil": "/fotosUsuarios/user.png"
+  },
+  {
+    "id": "2",
+    "nombres": "Abelardo1",
+    "apellidos": "Delgado Romero",
+    "tipodoc": "DNI",
+    "numerodoc": "78283809",
+    "correo": "abel@gmail.com",
+    "tipo": 2,
+    "contrasena": "abel",
+    "imagenPerfil": "/fotosUsuarios/user.png"
+  }
 ]
