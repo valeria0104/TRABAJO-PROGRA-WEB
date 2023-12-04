@@ -20,7 +20,7 @@ const pantalla12 = () => {
         const checkbox1 = document.getElementById('checkbox1').checked ? 'titulo' : '';
         const checkbox2 = document.getElementById('checkbox2').checked ? 'autor' : '';
         const checkbox3 = document.getElementById('checkbox3').checked ? 'editorial' : '';
-        const checkbox4 = document.getElementById('checkbox4').checked ? 'ISBN' : '';
+        const checkbox4 = document.getElementById('checkbox4').checked ? 'isbn' : '';
     
         const categoriasSeleccionadas = opcionesSeleccionadas.map((opcion) => opcion.categoria);
     
@@ -32,6 +32,8 @@ const pantalla12 = () => {
             { shallow: true }
         );
     };
+
+    
 
     const obtenerCategorias = async () => {
         try {
@@ -191,7 +193,7 @@ const pantalla12 = () => {
                                         <label className="labelA" htmlFor="checkbox4">
                                             ISBM
                                         </label>
-                                        <input className="box" type="checkbox" id="checkbox4" name="checkbox4" value="ISBN13" /> <br />
+                                        <input className="box" type="checkbox" id="checkbox4" name="checkbox4" value="isbn" /> <br />
                                     </form>
                                 </div>
                             </section>
