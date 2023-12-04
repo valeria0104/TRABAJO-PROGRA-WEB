@@ -16,7 +16,8 @@ export default async (req, res) => {
 
       res.status(200).json({ message: 'Reserva guardada correctamente.' });
     } catch (error) {
-      res.status(500).json({ error: 'Error al guardar la reserva.' });
+      console.error('Error al guardar la reserva en la API:', error);
+      res.status(500).json({ error: `Error interno al guardar la reserva: ${error.message}` });
     }
   } else {
     res.status(405).end();
