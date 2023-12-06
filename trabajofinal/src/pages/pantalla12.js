@@ -191,7 +191,7 @@ const pantalla12 = () => {
                                         <input className="box" type="checkbox" id="checkbox3" name="checkbox3" value="editorial" /> <br />
 
                                         <label className="labelA" htmlFor="checkbox4">
-                                            ISBM
+                                            ISBN
                                         </label>
                                         <input className="box" type="checkbox" id="checkbox4" name="checkbox4" value="isbn" /> <br />
                                     </form>

@@ -15,7 +15,7 @@ const PantallaReservas = () => {
 
   useEffect(() => {
     // Cargar las reservas desde el archivo JSON local
-    fetch('/reserva.json') // Ruta al archivo JSON local
+    fetch('/api/reservas/libros-reserva')
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -25,6 +25,7 @@ const PantallaReservas = () => {
       })
       .then((data) => {
         if (data) {
+          console.log('Reservas cargadas:', data); // Agrega este console.log
           setReservas(data);
         }
       })
@@ -47,10 +48,12 @@ const PantallaReservas = () => {
     }
   };
 
-  const reservasPaginaActual = reservas.slice(
-    (paginaActual - 1) * reservasPorPagina,
-    paginaActual * reservasPorPagina
-  );
+  const reservasPaginaActual = Array.isArray(reservas)
+  ? reservas.slice(
+      (paginaActual - 1) * reservasPorPagina,
+      paginaActual * reservasPorPagina
+    )
+  : [];
 
   const eliminarReserva = (ISBN13) => {
     fetch(`/api/cancelarReserva?ISBN13=${ISBN13}`, {
@@ -68,52 +71,6 @@ const PantallaReservas = () => {
       });
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  function actualizarFechaReserva(ISBN13, nuevaFecha) {
-    const reservaIndex = reservas.findIndex((reserva) => reserva.ISBN13 === ISBN13);
-  
-    if (reservaIndex !== -1) {
-      const reservaActualizada = { ...reservas[reservaIndex], fechareserva: nuevaFecha };
-      const nuevasReservas = [...reservas];
-      nuevasReservas[reservaIndex] = reservaActualizada;
-  
-      setReservas(nuevasReservas);
-    }
-  }
-
-  const completarReserva = (ISBN13) => {
-    if (selectedDate) {
-      fetch(`/api/actualizarReserva/${ISBN13}`, {
-        method: 'PUT',
-        body: JSON.stringify({ fechareserva: selectedDate }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            actualizarFechaReserva(ISBN13, selectedDate);
-            setSelectedDate(null);
-            setSelectedISBN(null);
-            setIsCompleting(false);
-          } else {
-            console.error('Error al completar la reserva:', response.status);
-          }
-        })
-        .catch((error) => {
-          console.error('Error al completar la reserva:', error);
-        });
-    }
-  };
-
-  const separarLibro = (ISBN13) => {
-    setSelectedISBN(ISBN13);
-    setIsCompleting(true);
-  };
-
   return (
     <Layout content={
       <>
@@ -122,11 +79,21 @@ const PantallaReservas = () => {
           <div className="reservas">
             {reservasPaginaActual.map((reserva, index) => (
               <div key={index} className="reserva">
-                <p>{reserva.titulo}</p>
-                <img src={reserva["imagen-portada-url"]} alt={reserva.titulo} style={{ maxWidth: '200px' }} />
-                <p>ISBN: {reserva.ISBN13}</p>
-                <p>URL de Compra: {reserva["url-compra"]}</p>
-                <button onClick={() => eliminarReserva(reserva.ISBN13)}>Eliminar</button>
+                {reserva.libroreserva && (
+                  <>
+                    <p>Libro: {reserva.libroreserva.titulo}</p>
+                    <img
+                      src={reserva.libroreserva.imagenLibro}
+                      alt={reserva.libroreserva.titulo}
+                      style={{ maxWidth: '200px' }}
+                    />
+                    <p>Autor: {reserva.libroreserva.autor}</p>
+                    <p>Editorial: {reserva.libroreserva.editorial}</p>
+                    <p>ISBN: {reserva.libroreserva.ISBN}</p>
+                    {/* Resto del contenido de la reserva... */}
+                    <button onClick={() => eliminarReserva(reserva.ISBN)}>Eliminar</button>
+                  </>
+                )}
               </div>
             ))}
           </div>
@@ -150,5 +117,4 @@ const PantallaReservas = () => {
     } />
   );
 };
-
 export default PantallaReservas;
