@@ -2,6 +2,8 @@ import fsPromises from 'fs/promises';
 import path from 'path';
 
 export default async function leerUsuario(req, res) {
+
+  
     const ruta = path.join(process.cwd(), '/src/pages/json/usuario.json');
 
     try {

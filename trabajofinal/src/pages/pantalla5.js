@@ -19,6 +19,7 @@ const Index2 = () =>
     // Cargar los datos actuales del usuario en el formulario cuando se monte el componente
     if (user) {
       setFormData({
+        id : user.id,
         idioma: user.idioma,
         prefijo: user.prefijo,
         color: user.color,
@@ -37,7 +38,32 @@ const Index2 = () =>
     }));
   };
 ///////
+const handleUpdateUser = async (e) => {
+  e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
 
+  try {
+    const response = await fetch(`/api/user/editarUsuarioADMIN?id=${formData.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        idioma: formData.idioma,
+        prefijo: formData.prefijo,
+        color: formData.color,
+        imagenPerfil: formData.imagenPerfil, 
+
+      }),
+
+    });
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
+  }
+};
+ 
+
+
+/*
 const handleUpdateUser = async (e) => {
   e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
 
@@ -69,7 +95,7 @@ const handleUpdateUser = async (e) => {
     console.error(error);
   }
 };
-
+*/
 
   return ( <Layout content ={
        <>
