@@ -130,3 +130,41 @@
 #librospage6{
     font-size: 14px;
 }
+
+
+.reservas {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea si no hay suficiente espacio */
+    justify-content: space-between;
+  }
+
+.reservas-y-libros {
+    display: flex;
+    justify-content: space-between;  /* Para que los elementos se distribuyan de manera uniforme en el contenedor */
+  }
+  
+  .reserva {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;  /* Ajusta el ancho según tus necesidades */
+    box-sizing: border-box;  /* Asegura que el padding no afecte el tamaño total del elemento */
+  }
+  
+  .contenedor-libros-recientes {
+    margin-top: 20px; /* Ajusta según sea necesario */
+  }
+  
+  .libros-recientes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .libro-reciente {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    box-sizing: border-box;
+  }
