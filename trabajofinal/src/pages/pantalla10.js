@@ -22,13 +22,14 @@ const Index1 = () =>
     // Cargar los datos actuales del usuario en el formulario cuando se monte el componente
     if (user) {
       setFormData({
+        id: user.id,
         nombres: user.nombres,
         apellidos: user.apellidos,
         tipodoc: user.tipodoc,
-        numerodoc: user.numerodoc,
+        numdoc: user.numdoc,
         imagenPerfil: user.imagenPerfil, 
       });
-    }
+    } 
   }, [user]);
 
   const handleInputChange = (e) => {
@@ -41,7 +42,29 @@ const Index1 = () =>
     }));
   };
 ///////
+const handleUpdateUser = async (e) => {
+  e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
+  try {
+    const response = await fetch('/api/user/editarUsuario', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nombres: formData.nombres,
+        apellidos: formData.apellidos,
+        tipodoc: formData.tipodoc,
+        numdoc: formData.numdoc,
+        imagenPerfil :formData.imagenPerfil 
 
+      }),
+
+    });
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
+  }
+};
+/*
 const handleUpdateUser = async (e) => {
   e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
 
@@ -49,12 +72,12 @@ const handleUpdateUser = async (e) => {
     console.log('Datos a enviar al servidor:', formData);
 
     // Realizar una solicitud PUT a la API para actualizar los datos del usuario
-    const response = await fetch('/api/editarUsuario', {
+    const response = await fetch(`/api/editarUsuario/${user.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...formData, id: user.id}),
+      body: JSON.stringify(formData), // Envía los datos del formulario al backend
     });
 
     if (response.ok) {
@@ -73,6 +96,7 @@ const handleUpdateUser = async (e) => {
     console.error(error);
   }
 };
+*/
 
 
 
@@ -112,7 +136,7 @@ const handleUpdateUser = async (e) => {
                 </li>  
 
                 <li id="formil" ><label id="label5"><span className="resaltado">Número de Documento:</span></label>
-               <input type="text" className="input-box1" id="numerodoc" name="numerodoc"  defaultValue={formData.numerodoc} onChange={handleInputChange} />
+               <input type="text" className="input-box1" id="numerodoc" name="numerodoc"  defaultValue={formData.numdoc} onChange={handleInputChange} />
                 </li>
                
                 <li id="formil" ><label id="label4"><span className="resaltado">Imagen:</span></label>

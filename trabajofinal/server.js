@@ -1,4 +1,4 @@
-/*const express = require('express');
+const express = require('express');
 const next = require('next');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
@@ -43,4 +43,4 @@ app.prepare()
  
  
  
- cambiar en package json --> next dev por node server.js */
+ 

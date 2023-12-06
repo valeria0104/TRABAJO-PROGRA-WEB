@@ -20,27 +20,32 @@ const Index = () => {
   
 
   const [usuarioData, setUsuarioData] = useState([]);
-  useEffect(() => {
-    // Cargar los datos de usuario desde la API
-    fetch('/api/leerUsuario')
-      .then(response => response.json())
-      .then(data => {
-        setUsuarioData(data);
+  const obtenerDatosUsuario = async () => {
+    try {
+        const response = await fetch('/api/user/datos');
+        if (response.ok) {
+            const data = await response.json();
+            setUsuarioData(data);
+        } else {
+            const errorMessage = await response.text();  // Obtener el mensaje de error del cuerpo de la respuesta
+            console.error(`Error al obtener los datos de usuario del backend: ${errorMessage}`);
+            // Manejar el error, mostrar un mensaje al usuario, etc.
+        }
+    } catch (error) {
+        console.error('Error al obtener los datos de usuario:', error);
+        // Manejar el error, mostrar un mensaje al usuario, etc.
+    }
+};
 
-      })
-      .catch(error => {
-        console.error('Error al cargar datos de usuario', error);
- 
-      });
-  }, []);
-
- 
+useEffect(() => {
+    obtenerDatosUsuario();
+}, []);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
    
     const usuarioEncontrado = handleLogin1(formData, usuarioData);
-
+ 
     if (usuarioEncontrado) {
       dispatch({ type: 'LOGIN', payload: usuarioEncontrado });
       if (usuarioEncontrado.tipo === 1) {
