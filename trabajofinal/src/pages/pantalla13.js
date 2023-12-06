@@ -1,6 +1,8 @@
 import Layout from './componentes/Layout3.js';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Link from 'next/link';
 
 
@@ -11,12 +13,21 @@ const Pantalla13 = () => {
   const [reservas, setReservas] = useState([]);
   const [libros, setLibros] = useState([]);
 
+
   const agregarReserva = (reserva) => {
     setReservas([...reservas, reserva]);
   };
+    
+  // Función para calcular la fecha final (ejemplo: 30 días después de la fecha de inicio)
+  const calcularFechaFinal = (fechaInicio) => {
+    const fechaFinal = new Date(fechaInicio);
+    fechaFinal.setDate(fechaInicio.getDate() + 30); // Ajusta según tus necesidades
+    return fechaFinal;
+  };
   
+  const [fechaInicio, setFechaInicio] = useState(new Date());
+  const [fechaFinal, setFechaFinal] = useState(calcularFechaFinal(new Date()));
 
-  
   // Filtra los datos en función de las opciones seleccionadas y la palabra clave
   const opcionesFiltradas = libros.filter((opcion) => {
     const tieneEditorial = opcion.editorial && opcion.editorial.toLowerCase().includes(palabraclave?.toLowerCase());
@@ -67,17 +78,26 @@ const Pantalla13 = () => {
     setPaginaActual(pagina);
   }, [router.query.pagina]);
 
-  const handleReservar = async (titulo, imagenPortada, ISBN, urlCompra) => {
+  const handleReservar = async (idLibro) => {
+    const fechainicio = new Date(); // Puedes ajustar esto según tus necesidades
+    const fechafinal = calcularFechaFinal(fechainicio); // Implementa lógica para calcular la fecha final
+    
+    // Verifica si ha pasado más de 30 días desde la fecha inicial
+    const diferenciaDias = Math.ceil((fechafinal - fechainicio) / (1000 * 60 * 60 * 24));
+    if (diferenciaDias > 30) {
+      alert('Excede tiempo de reserva. No se puede reservar más de 30 días.');
+      return;
+    }
+  
     try {
       const reservaData = {
-        titulo,
-        imagenlibro: imagenPortada,
-        ISBN,
-        urlCompra,
-        fechareserva: '', // Ajusta esto según tus necesidades
+        idLibro,
+        idUsuario: 1, // Reemplaza con la lógica para obtener el ID del usuario actual
+        fechainicio: fechaInicio,
+        fechafinal: fechaFinal,
       };
   
-      const response = await fetch('/api/reservas/reservar', {
+      const response = await fetch('/api/reservas/realizarReserva', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -155,7 +175,11 @@ const Pantalla13 = () => {
               {checkbox2 === 'autor' && <p>Autor(es): {opcion.autor}</p>}
               {checkbox3 === 'editorial' && <p>Editorial: {opcion.editorial}</p>}
               {checkbox4 === 'ISBN' && <p>ISBN: {opcion.ISBN}</p>}
-              <button onClick={() => handleReservar(opcion.titulo, opcion.imagenlibro, opcion.isbn, opcion["url-compra"])}>Reservar</button>
+
+              {/* Uso de DatePicker para la fecha final */}
+              <DatePicker selected={fechaFinal} onChange={date => setFechaFinal(date)} />
+
+              <button onClick={() => handleReservar(opcion.id)}>Reservar</button>
             </div>
           ))}
         </div>

@@ -55,13 +55,13 @@ const PantallaReservas = () => {
     )
   : [];
 
-  const eliminarReserva = (ISBN13) => {
-    fetch(`/api/cancelarReserva?ISBN13=${ISBN13}`, {
+  const eliminarReserva = (idLibro) => {
+    fetch(`/api/reservas/cancelarReserva?idLibro=${idLibro}`, {
       method: 'DELETE',
     })
       .then((response) => {
         if (response.ok) {
-          setReservas((prevReservas) => prevReservas.filter((reserva) => reserva.ISBN13 !== ISBN13));
+          setReservas((prevReservas) => prevReservas.filter((reserva) => reserva.libroreserva.id !== idLibro));
         } else {
           console.error('Error al eliminar la reserva desde el servidor.');
         }
@@ -90,8 +90,7 @@ const PantallaReservas = () => {
                     <p>Autor: {reserva.libroreserva.autor}</p>
                     <p>Editorial: {reserva.libroreserva.editorial}</p>
                     <p>ISBN: {reserva.libroreserva.ISBN}</p>
-                    {/* Resto del contenido de la reserva... */}
-                    <button onClick={() => eliminarReserva(reserva.ISBN)}>Eliminar</button>
+                    <button onClick={() => eliminarReserva(reserva.libroreserva.id)}>Eliminar</button>
                   </>
                 )}
               </div>
