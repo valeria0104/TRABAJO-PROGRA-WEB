@@ -19,10 +19,11 @@ const Index2 = () =>
     // Cargar los datos actuales del usuario en el formulario cuando se monte el componente
     if (user) {
       setFormData({
+        id: user.id,
         nombres: user.nombres,
         apellidos: user.apellidos,
         tipodoc: user.tipodoc,
-        numerodoc: user.numerodoc,
+        numdoc: user.numdoc,
         imagenPerfil: user.imagenPerfil, 
       });
     }
@@ -39,6 +40,29 @@ const Index2 = () =>
   };
 ///////
 
+const handleUpdateUser = async (e) => {
+  e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
+  try {
+    const response = await fetch(`/api/user/editarUsuario?id=${formData.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nombres: formData.nombres,
+        apellidos: formData.apellidos,
+        tipodoc: formData.tipodoc,
+        numdoc: formData.numdoc,
+        imagenPerfil :formData.imagenPerfil 
+
+      }),
+
+    });
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
+  }
+};
+/* 
 const handleUpdateUser = async (e) => {
   e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
 
@@ -69,7 +93,7 @@ const handleUpdateUser = async (e) => {
   } catch (error) {
     console.error(error);
   }
-};
+};*/
 
   return ( <Layout content ={
        <>
@@ -104,7 +128,7 @@ const handleUpdateUser = async (e) => {
                 </li>  
 
                 <li id= "formilAM" ><label id="labelAM5"><span className="resaltado">Número de Documento:</span></label>
-               <input type="text" className="input-boxAM1" id="numerodoc" name="numerodoc"defaultValue={formData.numerodoc} onChange={handleInputChange} />
+               <input type="text" className="input-boxAM1" id="numerodoc" name="numerodoc"defaultValue={formData.numdoc} onChange={handleInputChange} />
                 </li>
 
                 <li id="formil" ><label id="label4"><span className="resaltado">Imagen:</span></label>

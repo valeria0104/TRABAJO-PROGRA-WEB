@@ -45,7 +45,7 @@ const Index1 = () =>
 const handleUpdateUser = async (e) => {
   e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
   try {
-    const response = await fetch('/api/user/editarUsuario', {
+    const response = await fetch(`/api/user/editarUsuario?id=${formData.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

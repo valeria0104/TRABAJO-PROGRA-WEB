@@ -20,6 +20,7 @@ const Index1 = () =>
     // Cargar los datos actuales del usuario en el formulario cuando se monte el componente
     if (user) {
       setFormData({
+        id : user.id,
         correo: user.correo,
         contrasena: user.contrasena,
         imagenPerfil: user.imagenPerfil, 
@@ -42,31 +43,21 @@ const handleUpdateUser = async (e) => {
   e.preventDefault(); // Prevenir el comportamiento de envío de formulario por defecto
 
   try {
-    console.log('Datos a enviar al servidor:', formData);
-
-    // Realizar una solicitud PUT a la API para actualizar los datos del usuario
-    const response = await fetch('/api/editarUsuario', {
+    const response = await fetch(`/api/user/editarUsuarioC?id=${formData.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...formData, id: user.id}),
-    });
+      body: JSON.stringify({
+        correo: formData.correo,
+        contrasena: formData.contrasena,
+        imagenPerfil :formData.imagenPerfil 
 
-    if (response.ok) {
-      // Actualización exitosa
-      const updatedUser = await response.json();
-      console.log('Respuesta del servidor:', updatedUser);
-      // Actualiza la variable user con los datos actualizados
- 
-    
-      alert('Datos de usuario actualizados correctamente');
-    } else {
-      // Error al actualizar
-      alert('No se pudo actualizar los datos del usuario');
-    }
+      }),
+
+    });
   } catch (error) {
-    console.error(error);
+    console.error('Error en la solicitud:', error);
   }
 };
  
