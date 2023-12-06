@@ -3,63 +3,8 @@ import Head from "next/head";
 import Layout7 from './componentes/Layout7.js';
 import datos from './json/archivo.json';
 import { useAuth } from './context/demo'; // Importa el contexto de autenticación
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 
-function sumarDiasAFecha(fecha, dias) {
-  const nuevaFecha = new Date(fecha);
-  nuevaFecha.setDate(nuevaFecha.getDate() + dias);
-  return nuevaFecha;
-}
-        //-----------
-async function obtenerDatos(setLibrosMasPedidos, setLibrosAMostrar2) {
-  try {
-    // Obtener las últimas reservas
-    const response = await fetch('/api/reservas');
-    const data = await response.json();
-
-    // Obtener las reservas más frecuentes
-    const pedidosPorLibro = {};
-    data.forEach((libro) => {
-      pedidosPorLibro[libro.titulo] = (pedidosPorLibro[libro.titulo] || 0) + 1;
-    });
-
-    // Ordenar los libros por la cantidad de pedidos en orden descendente
-    const librosMasPedidos = Object.keys(pedidosPorLibro)
-      .map((titulo) => ({
-        titulo,
-        pedidos: pedidosPorLibro[titulo],
-      }))
-      .sort((a, b) => b.pedidos - a.pedidos)
-      .slice(0, 10);
-
-    // Obtener los libros próximos a vencer
-    const hoy = new Date(); // Fecha actual
-    const librosAMostrar2 = data.map((libro) => {
-      // Obtener la fecha y hora de reserva desde el JSON
-      const [dia, mes, año] = libro.fechaReserva.split('/');
-      const [hora, minuto] = libro.horaReserva.split(':');
-      const fechaReserva = new Date(`${año}-${mes}-${dia}T${hora}:${minuto}:00Z`);
-
-      const diasRestantes = Math.floor((fechaReserva - hoy) / (1000 * 60 * 60 * 24));
-
-      if (diasRestantes < 15) {
-        const nuevaFechaReserva = sumarDiasAFecha(libro.fechaReserva, 15).toLocaleString();
-
-        return {
-          ...libro,
-        };
-      }
-
-      return null;
-    })
-    .filter(Boolean);
-
-    setLibrosMasPedidos(librosMasPedidos);
-    setLibrosAMostrar2(librosAMostrar2);
-  } catch (error) {
-    console.error('Error al obtener las reservas:', error);
-  }
-}
 
 function App() {
   const { state } = useAuth();
@@ -69,11 +14,33 @@ function App() {
   const [librosMasPedidos, setLibrosMasPedidos] = useState([]);
   const [librosAMostrar2, setLibrosAMostrar2] = useState([]);
 
+  const obtenerLibrosMasPedidos = async () => {
+    try {
+      const request = await fetch(`/api/muestra/librosMasPedidosPorUsuario/${user.id}`);
+      const data = await request.json();
+      setLibrosMasPedidos(data);
+    } catch (error) {
+      console.error('Error al obtener los libros más pedidos:', error);
+    }
+  };
+  const obtenerLibrosProximosAVencer = async () => {
+    try {
+      const response = await fetch(`api/muestra/librosProximosAVencer/${user.id}`);
+      const data = await response.json();
+      setLibrosAMostrar2(data);
+    } catch (error) {
+      console.error('Error al obtener libros próximos a vencer:', error);
+    }
+  };
+
   useEffect(() => {
-    obtenerDatos(setLibrosMasPedidos, setLibrosAMostrar2);
+    obtenerLibrosMasPedidos();
+    obtenerLibrosProximosAVencer();
+
   }, []);
+
   return (
-    <Layout7 
+    <Layout7
       content={
         <div>
           <div id="cuerpo">
@@ -90,14 +57,16 @@ function App() {
                   </div>
                   <div className="cuadrado_letras">
                     <p>
-                      <a href="pantalla3.html">{libro.titulo}</a>
-                      <br/>
-                      {` Pedidos: ${libro.pedidos}`}
+                      <a href="pantalla3.html">{libro.libro.titulo}</a>
+                      <br />
+                      {` Pedidos: ${libro.cantidadPedidos}`}
                     </p>
                   </div>
                   <div className="cuadrado_libro">
-                    <a href="pantalla3.html">
-                      <img src={datos.find((d) => d.titulo === libro.titulo)['imagen-portada-url']} height="100px" />
+                    <a>
+                      {libro.libro && libro.libro['imagenLibro'] && (
+                        <img src={libro.libro['imagenLibro']} height="100px" />
+                      )}
                     </a>
                   </div>
                 </div>
@@ -115,14 +84,19 @@ function App() {
                   <div className="cuadrado_letras">
                     <p>
                       <a href="pantalla3.html">{libro.titulo}</a>
+                      <br />
+                      <h>Fecha reserva: </h>{libro.fechaReserva && formatDate(libro.fechaReserva)}
                       <br/>
-                      {libro.fechaReserva} , {libro.fechaFinal}
+                      <h>Fecha final: </h> {libro.fechaFinal && formatDate(libro.fechaFinal)}
+
                     </p>
                   </div>
                   <div id="imagen_page2">
                     <div className="cuadrado_libro">
-                      <a href="pantalla3.html">
-                        <img src={libro['imagen-portada-url']} height="100px" />
+                      <a>
+                      {libro && libro['imagenLibro'] && (
+                        <img src={libro['imagenLibro']} height="100px" />
+                        )}
                       </a>
                     </div>
                   </div>
@@ -134,6 +108,16 @@ function App() {
       }
     />
   );
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+
+  return `${year}-${month}-${day}`;
 }
 
 export default App;
