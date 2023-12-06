@@ -2,64 +2,70 @@ import Link from "next/link";
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import Layout from './componentes/Layout.js';
-import dato from "./json/archivo.json";
+import { useAuth } from './context/demo'; // Importa el contexto de autenticación
 
 const Busqueda = () => {
   const [busqueda, setBusqueda] = useState("");
   const [resultBusqueda, setResultBusqueda] = useState([]);
   const [librosMostrar, setLibrosMostrar] = useState(12);
   const [selectedData, setSelectedData] = useState(null);
-  const handleSave = (data) => {
+  const [fechaInicio, setFechaInicio] = useState(new Date());
+  const [fechaFinal, setFechaFinal] = useState(null);
+  const { state } = useAuth();
+  const user = state.user;
+  const welcomeMessage = user ? `Bienvenido, ${user.nombres} ` : 'Bienvenido';
+
+  const handleReservar  = async (idLibro) => {
     const fechaActual = new Date();
-  
-    // Add 15 days to the current date
-    const fechaFinal = new Date(fechaActual);
-    fechaFinal.setDate(fechaFinal.getDate() + 15);
-  
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
-    const fechaReserva = new Intl.DateTimeFormat('es-ES', options).format(fechaActual);
-    const options2 = { hour: 'numeric', minute: 'numeric' };
-    const horaReserva = new Intl.DateTimeFormat('es-ES', options2).format(fechaActual);
-  
-    const options3 = { day: 'numeric', month: 'numeric', year: 'numeric' };
-    const fechaFinalFormatted = new Intl.DateTimeFormat('es-ES', options3).format(fechaFinal);
-  
-    const reservaData = {
-      titulo: data.titulo,
-      "imagen-portada-url": data["imagen-portada-url"],
-      ISBN13: data.ISBN13,
-      "url-compra": data["url-compra"],
-      fechaReserva: fechaReserva,
-      horaReserva: horaReserva,
-      fechaFinal: fechaFinalFormatted, // Save the formatted date
-    };
-  
-    fetch('/api/guardarReserva', {
-      method: 'PUT',
-      body: JSON.stringify(reservaData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log('Reserva guardada correctamente en el archivo "reservas.json".');
-          setSelectedData(data);
-        } else {
-          console.error('Error al guardar la reserva en el archivo "reservas.json".');
-        }
-      })
-      .catch((error) => {
-        console.error('Error al guardar la reserva en el archivo "reservas.json":', error);
+    const fechaFinalReserva = new Date();
+    fechaFinalReserva.setDate(fechaFinalReserva.getDate() + 30);
+    
+    try {
+      const reservaData = {
+        idLibro,
+        idUsuario: user.id,
+        fechainicio: fechaActual,
+        fechafinal: fechaFinalReserva,
+      };
+
+      const response = await fetch('/api/muestra/realizarReserva', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservaData),
       });
+
+      if (response.ok) {
+        console.log('Reserva realizada correctamente.');
+        setSelectedData(data);
+        // Puedes realizar acciones adicionales después de realizar la reserva
+      } else {
+        console.error('Error al realizar la reserva:',  await response.text());
+        // Manejo de errores
+      }
+    } catch (error) {
+      console.error('Error al realizar la reserva:', error);
+      // Manejo de errores
+    }
   };
-  
   useEffect(() => {
-    const results = dato.filter((libro) =>
-      libro.titulo.toLowerCase().includes(busqueda.toLowerCase())
-    );
-    setResultBusqueda(results);
+    console.log('Antes de la llamada a la API');
+    fetch('/api/muestra/libros')  // Actualiza el endpoint para que coincida con tu API de backend
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Datos recibidos:', data);
+        
+        // Filtrar los resultados de la API basándonos en la búsqueda
+        const results = data.libros.filter((libro) =>
+          libro.titulo.toLowerCase().includes(busqueda.toLowerCase())
+        );
+
+        setResultBusqueda(results);
+      })
+      .catch((error) => console.error('Error al obtener datos de libros:', error));
   }, [busqueda]);
+ 
 
   const CargarLibros = () => {
     setLibrosMostrar(librosMostrar + 12);
@@ -79,8 +85,8 @@ const Busqueda = () => {
             <hr />
             <li id="lipage6">
               <label id="labelpage6"><span className="resaltado">Ingrese la palabra clave:</span></label>
-              <div class="contenidoBusqueda">
-                <img src="busqueda.png" alt="Icono de búsqueda" class="iconoBusqueda" />
+              <div className="contenidoBusqueda">
+                <img src="busqueda.png" alt="Icono de búsqueda" className="iconoBusqueda" />
                 <input
                   type="text"
                   value={busqueda}
@@ -93,17 +99,19 @@ const Busqueda = () => {
             </li>
             <div className="results">
               {resultBusqueda.slice(0, librosMostrar).map((libro, index) => (
-                <div key={index} className="libro">
+                <div key={libro.id} className="libro">
                   <h2>{libro.titulo}</h2>
                   <div id="imagen_page6">
-                    <img src ={libro['imagen-portada-url']} alt={`Portada de ${libro.titulo}`} />
+                    <img src ={libro['imagenLibro']} alt={`Portada de ${libro.titulo}`} />
                   </div>
+                  <p id="librospage6">id: {libro.id}</p>
+
                   <p id="librospage6">ISBN: {libro.ISBN}</p>
                   <p id="librospage6">Autor: {libro.autor}</p>
                   <p id="librospage6">Editorial: {libro.editorial}</p>
                   <div id="botonpage6">
                     <a>
-                  <button onClick={() => handleSave(libro)}>Reservar</button></a></div>
+                    <button onClick={() => handleReservar(libro.id)}>Reservar</button></a></div>
                 </div>
               ))}
             </div>
