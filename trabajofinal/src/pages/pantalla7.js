@@ -75,7 +75,7 @@ const Index = () => {
                   value={formData.apellidos}
                   onChange={(e) =>
                     setFormData({ ...formData, apellidos: e.target.value })
-                  }/>
+                  }/> 
                 </div>
     
                 </li>
